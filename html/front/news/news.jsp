@@ -8,12 +8,26 @@
 <link rel="stylesheet" type="text/css" href="../../css/news/demo.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/news/style2.css" />
 		<link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css' />
+<script type="text/javascript">
+
+    //跳到测试结果:
+    function jump()
+     {
+		 //获取路径 | | |
+		 var pathName=window.document.location.pathname;
+		 //截取，得到项目名称
+		 var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
+		 var url=projectName+"/community/news.action";
+       console.log(window.document.getElementById("content").src);
+       window.document.getElementById("content").src = url;
+	 }
+</script>
 </head>
 <body>
 	<div id="newsnav">
 		<div id="header">
 			<ul id="navigation">
-				<li><a id="link-home" style="background:#026fe8;" href="#home">团学学生会</a></li>
+				<li><a id="link-home" style="background:#026fe8;" href="#home" onclick="jump()">团学学生会</a></li>
 				<li><a id="link-portfolio" href="#portfolio">青年志愿者协会</a></li>
 				<li><a id="link-about" href="#about">红十字会</a></li>
 				<li><a id="link-contact" href="#contact">心理协会</a></li>
