@@ -13,7 +13,7 @@ public class CollegeAction{
 	// @RequestMapping注解：配置请求的url
 	@RequestMapping("/mathBuild.action")
 	//数学建模页面
-	public ModelAndView mathBuild(){
+	public String mathBuild(){
 		// 1.创建ModelAndView对象
 		ModelAndView mav = new ModelAndView();
 
@@ -22,12 +22,14 @@ public class CollegeAction{
 		// 参数一：模型的名称（hello）
 		// 参数二：模型数据
 		mav.addObject("hello", "springmvc!!!");
+		System.out.println("呵呵呵呵呵");
 		// 3.设置响应的视图
 		// setViewName方法：设置响应的视图
 		// 参数：视图名称（jsp页面的物理路径）
-		mav.setViewName("/front/index.jsp");
+		//mav.setViewName("/front/index.jsp");
+		return "redirect:/front/index.jsp";
 
-		return mav;
+		//return mav;
 	}
 
 }
