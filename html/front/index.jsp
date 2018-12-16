@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <title>学生社团管理系统</title>
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
-    <LINK href="./qtimages/style.css" type=text/css rel=stylesheet>
+    <!-- <LINK href="././qtimages/style.css" type=text/css rel=stylesheet> -->
     <style type="text/css">
         <!--
         .STYLE1 {
@@ -20,21 +20,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             font-weight: bold;
         }
         .STYLE3 {color: #086BD6; font-weight: bold; }
+        .wrapper{min-width: 1200px;}
+.wrapper{ background-size: 100% 100%; background-color: hsla(0,0%,10%,1.00); }
+
+.wrapper{font-size: 16px;}
+.head{min-width: 1200px;position: fixed;z-index: 100;left: 0;right: 0;background: rgba(0,0,0,0.5);}
+.head-main{width: 90%;margin: 8px auto;}
+.logo{float: left;width: 95px;height: 60px;position: relative;top: 5px;}
+.logo img{width: 100%;height: 100%;}
+.menuDiv{width: 750px;margin: 0 auto;position: relative;top: 10px;left: -55px;}
+.menu{width: 100%;    display: flex;display: -webkit-box;display: -webkit-flex;}
+.menu>li{-webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;padding: 10px 0;}
+.menu>li>a{text-align: center;position: relative;color: #fff;display: block;
+       justify-content: center;
+    align-items: center;border-right: 1px solid #fff;
+   }
+ .menu li a:hover{color:#026fe8;}
+ .menu>li:last-child a{border-right: none;}
+.menu li a.active{color:#026fe8;}
+.linkTel{float: right;color: #fff;position: relative;top: -20px;}
+ul,li,img,p{margin:0;padding:0;list-style:none;border:none;}
+a{color:#000;text-decoration:none;}
+#college{margin-left:150px;}
         -->
     </style>
 </head>
-<body class = "ui-body">
-<table width="1002"  border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
+<body class = "wrapper">
+<div class="head">
+          <div class="head-main clearfix">
+            <div class="logo">
+              <img src="../css/images/logo.png" alt="">
+            </div>
+            <div class="menuDiv">
+              <ul class="menu clearfix">
+                <li>
+                  <a href="" class="active">
+                  首页
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    注册
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    关于微梦
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="linkTel">
+              联系电话 : 203-88257936
+            </div>
+          </div>
+        </div>
+<div id="college"><%@ include file="./panel/qttop.html"%></div>
+<%-- <table width="1002"  border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
     <tr>
         <td><%@ include file="./panel/qttop.html"%></td>
     </tr>
+    <%@ include file="./news/leftnav.html" %>
     <tr>
-        <td><table id="__01" width="1002" border="0" cellpadding="0" cellspacing="0">
+        <td><table id="__01" width="1002" border="0" cellpadding="0" cellspacing="0" style="width:1002px;height:300px;border:1px #fff solid">
             <tr>
-                <td rowspan="2" valign="top">
-                    <table id="__01" width="738" border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td><table id="__01" width="738" height="319" border="0" cellpadding="0" cellspacing="0">
+                <td></td>
+                        </tr>
+                        </table>
+                        </td>
+                        </tr> --%>
+                            <%--<td><table id="__01" width="738" height="319" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="738" height="62" background="qtimages/1_02_01_01_01.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                                         <tr>
@@ -50,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <tr>
                                                     <td><img src="qtimages/1_02_01_01_02_01_01.gif" width="10" height="248" alt=""></td>
                                                     <td width="304" height="248" background="qtimages/1_02_01_01_02_01_02.gif" align="center">
-                                                        <%--                                 <SCRIPT type=text/javascript>
+                                                                                        <SCRIPT type=text/javascript>
                                                         var focus_width=284;
                                                         var focus_height=211;
                                                         var text_height=20;
@@ -92,14 +149,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                         texts="<%=biaotibht%>";
                                                         document.write('<embed src="qtimages/pixviewer.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#ffffff" quality="Best" width="'+ focus_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">');
 
-                                                                        </SCRIPT> --%>
+                                                                        </SCRIPT>
                                                     </td>
                                                     <td><img src="qtimages/1_02_01_01_02_01_03.gif" width="11" height="248" alt=""></td>
                                                 </tr>
                                             </table></td>
                                             <td width="413" height="248" valign="top" background="qtimages/1_02_01_01_02_02.gif"><table  cellspacing="0" cellpadding="0" width="98%"
                                                                                                                                          align="center" border="0" class="newsline">
-                                                <%--                               <tbody>
+                                                                              <tbody>
                                                                                 <%
                                                                             String sql="";
                                                                             sql="select  id,biaoti,addtime from xinwentongzhi where leibie='站内新闻' order by id desc";
@@ -138,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                             }
                                                                             }
                                                                             %>
-                                                                              </tbody> --%>
+                                                                              </tbody>
                                             </table></td>
                                         </tr>
                                     </table></td>
@@ -164,7 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <tr>
                                             <td width="13" background="qtimages/1_02_01_02_02_01.gif">&nbsp;</td>
                                             <td width="714" height="100%"><table width="100%" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <%--                           <tr>
+                                                                          <tr>
                                                                             <%
                                                                              id="";
                                                                              i=0;
@@ -198,7 +255,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                     <td><img src="qtimages/1_02_01_02_03.gif" width="738" height="10" alt=""></td>
                                                                   </tr>
                                                                 </table></td>
-                                                              </tr> --%>
+                                                              </tr>
                                                 <tr>
                                                     <td><table id="__01" width="738" height="225" border="0" cellpadding="0" cellspacing="0">
                                                         <tr>
@@ -226,7 +283,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                             <td bgcolor='#CCFFFF'>人数</td>
                                                                             <td width="30" align="center" bgcolor="CCFFFF">详细</td>
                                                                         </tr>
-                                                                        <%--  <%
+                                                                         <%
                                                sql="SELECT * FROM shetuanxinxi LIMIT 0,6";
 
                                               /*  sql=sql+" order by id desc"; */
@@ -254,7 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                          </tr>
                                                                          <%
                                                }
-                                                %> --%>
+                                                %>
                                                                     </table></td>
                                                                     <td width="11" background="qtimages/1_02_01_02_02_03.gif">&nbsp;</td>
                                                                 </tr>
@@ -269,13 +326,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <td><img src="qtimages/1_02_02.gif" width="264" height="8" alt=""></td>
                                         </tr>
                                         <tr>
-                                            <%--  <td valign="top"><%@ include file="./panel/qtleft.jsp"%></td> --%>
+                                             <td valign="top"><%@ include file="./panel/qtleft.jsp"%></td>
                                         </tr>
                                     </table></td>
                                 </tr>
                                 <tr>
-                                    <%-- <td><%@ include file="./panel/qtdown.jsp"%></td> --%>
+                                    <td><%@ include file="./panel/qtdown.jsp"%></td>
                                 </tr>
-                            </table>
+                            </table> --%>
+                            
 </body>
+	<script>
+	</script>
 </html>

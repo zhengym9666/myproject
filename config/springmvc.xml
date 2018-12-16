@@ -11,6 +11,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     <!-- 组件扫描的方式，扫描controller -->
+     <mvc:annotation-driven></mvc:annotation-driven>
     <context:component-scan base-package="com.community.web"/>
 
     <!--注解驱动配置处理器映射器、处理器适配器，说明：

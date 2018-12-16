@@ -8,20 +8,20 @@
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 		var url=projectName+"/community/mathBuild.action";
-		alert(url); 
 		$.ajax({
 			type: "get",
 			url: url,
 			success: function (data) {
-				$("#college").html(data);
+				
 			//成功后 执行的方法
+				//$("#dowebok").scrollTop(100);
+				$("#college").html(data);
 				console.log(data);
 				  $(".qxgd.style").animate({
 	                  left: '0'
 	                 },500,function(){
 	                      $(this).addClass("skew")
-	                 });
-	                 
+	                 });    
 			}
 			});
 	  });

@@ -4,35 +4,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>翻转炫酷的导航栏</title>
-<link href="./././css/qttop/css/style.css" rel="stylesheet" type="text/css" />
-<!-- <script type="text/javascript" src="../css/qttop/js/jquery.min.js"></script> -->
+<link href="../css/qttop/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../css/qttop/js/jquery.min.js"></script>
 	<script language="javascript">
 		$(document).ready(function() {
-
-			/* 	1st example	*/
-
-			/// wrap inner content of each anchor with first layer and append background layer
-			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
-
-			// loop each anchor and add copy of text content
-			$("#menu1 li a").each(function() {
-				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
-			});
-
-			$("#menu1 li a").hover(function() {
-				// this function is fired when the mouse is moved over
-				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
-				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
-				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
-
-			}, function() {
-				// this function is fired when the mouse is moved off
-				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
-				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
-				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
-			});
-					
-
 			/*	2nd example	*/
 			
 			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
@@ -57,10 +32,9 @@
 
 <body>
 <div id="topTitle">数院</div>
-<div id="menu1" class="topmenu">
+<div id="menu2" class="topmenu">
 	<ul>
-	<li><a href="#">首　　页</a></li>
-	<li><a href="#">社团新闻</a></li>
+	<li><a id = "news" target="content">首页新闻</a></li>
 	<li><a href="#">畅聊空间</a></li>
 	<li><a href="#">交会费</a></li>
 	<li><a href="#">活动报销</a></li>
@@ -68,7 +42,32 @@
 	</ul>
 	<div class="cls"></div>
 </div>
-
+<iframe width="80%" height="100%" frameborder="0" scrolling="no" src="./news/news.jsp" class="" name="content" id="content">
+                   	
+</iframe>
 
 </body>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$("#news").on('click',function(){
+	//获取路径 | | |
+	var pathName=window.document.location.pathname;
+	//截取，得到项目名称
+	var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
+	var url=projectName+"/community/news.action";
+	$.ajax({
+		type: "get",
+		url: url,
+		success: function (data) {
+			
+		//成功后 执行的方法
+			//$("#dowebok").scrollTop(100);
+			$("#content").html(data);
+		}
+		});
+});
+
+
+</script>
+
 </html>
