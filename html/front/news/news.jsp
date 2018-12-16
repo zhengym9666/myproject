@@ -13,13 +13,13 @@
 	<div id="newsnav">
 		<div id="header">
 			<ul id="navigation">
-				<li><a id="link-home" style="background:#026fe8;" href="#home">Home</a></li>
-				<li><a id="link-portfolio" href="#portfolio">Portfolio</a></li>
-				<li><a id="link-about" href="#about">About Me</a></li>
-				<li><a id="link-contact" href="#contact">Contact</a></li>
-				<li><a id="link-contact" href="#contact">Contact</a></li>
-				<li><a id="link-contact" href="#contact">Contact</a></li>
-				<li><a id="link-contact" href="#contact">Contact</a></li>
+				<li><a id="link-home" style="background:#026fe8;" href="#home">团学学生会</a></li>
+				<li><a id="link-portfolio" href="#portfolio">青年志愿者协会</a></li>
+				<li><a id="link-about" href="#about">红十字会</a></li>
+				<li><a id="link-contact" href="#contact">心理协会</a></li>
+				<li><a id="link-contact" href="#contact">尚行社</a></li>
+				<li><a id="link-contact" href="#contact">辩论队</a></li>
+				<!-- <li><a id="link-contact" href="#contact">Contact</a></li> -->
 			</ul>
 
 		</div>
@@ -41,7 +41,9 @@
  		$(function(){
 			$("#navigation li").mouseover(function(){
 				$(this).children("a").css("background","#026fe8");
+				$(this).children("a").css("color","#fff");
 				$(this).siblings().children("a").css("background","rgba(255, 255, 255, 0.9)");
+				$(this).siblings().children("a").css("color","#333");
 				
 			});
 			
