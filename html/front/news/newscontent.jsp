@@ -5,12 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/news/newscontent.css" />
 </head>
 <body>
-	新闻内容
-	新闻内容
-	新闻内容
-	新闻内容
-	新闻内容	
+	<div class="head">
+		<span>
+			<%=request.getAttribute("head") %>
+		</span>
+	</div>
+	<div class="title">
+		<p>
+			<%=request.getAttribute("title") %>
+		</p>
+	</div>
+	<div class="content">
+		<p>
+			<%=request.getAttribute("content") %>
+		</p>
+	</div>
 </body>
 </html>

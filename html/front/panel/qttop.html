@@ -34,8 +34,8 @@
 <div id="topTitle">数院</div>
 <div id="menu2" class="topmenu">
 	<ul>
-	<li><a id = "news" target="content">首页新闻</a></li>
-	<li><a href="#">畅聊空间</a></li>
+	<li><a id ="news">首页新闻</a></li>
+	<li><a id="chat">畅聊空间</a></li>
 	<li><a href="#">交会费</a></li>
 	<li><a href="#">活动报销</a></li>
 	<li><a href="./login.jsp">后台</a></li>
@@ -49,13 +49,16 @@
 </body>
 <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 <script>
-$("#news").on('click',function(){
+$("a").on('click',function(){
 	//获取路径 | | |
+	var id = $(this).attr("id");
 	var pathName=window.document.location.pathname;
 	//截取，得到项目名称
 	var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
-	var url=projectName+"/community/news.action";
-	$.ajax({
+	var url=projectName+"/community/"+id+".action";
+	var iframe = window.document.getElementById("content");
+	iframe.src = url;
+	/* $.ajax({
 		type: "get",
 		url: url,
 		success: function (data) {
@@ -64,7 +67,7 @@ $("#news").on('click',function(){
 			//$("#dowebok").scrollTop(100);
 			$("#content").html(data);
 		}
-		});
+		}); */
 });
 
 
