@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../css/news/newscontent.css" />
 </head>
 <body>
+<div style="width:75%;height:100%;position:absolute;top:10px;bottom:20px;">
 	<div class="head">
 		<span>
 			<%=request.getAttribute("head") %>
@@ -19,9 +20,23 @@
 		</p>
 	</div>
 	<div class="content">
+		<img alt="" src="../css/news/images/fengmi.jpg">
 		<p>
 			<%=request.getAttribute("content") %>
 		</p>
+		<img alt="" src="../css/news/images/fengmi.jpg">
+		<p>
+			<%=request.getAttribute("content") %>
+		</p>
+		<img alt="" src="../css/news/images/fengmi.jpg">
+		<p>
+			<%=request.getAttribute("content") %>
+		</p>
+		
 	</div>
+	<div class="foot">
+		<span>底部</span></div>
+</div>
+
 </body>
 </html>
