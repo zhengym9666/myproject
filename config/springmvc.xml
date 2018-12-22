@@ -10,6 +10,20 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <!-- 允许JVM参数覆盖 -->
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <!-- 忽略没有找到的资源文件 -->
+        <property name="ignoreResourceNotFound" value="true" />
+        <!-- 配置资源文件 -->
+      <!--  <property name="locations">
+            <list>
+                <value>classpath:env.properties</value>
+            </list>
+        </property>-->
+    </bean>
+
     <!-- 组件扫描的方式，扫描controller -->
      <mvc:annotation-driven></mvc:annotation-driven>
     <context:component-scan base-package="com.community.web"/>
@@ -26,4 +40,7 @@
         &lt;!&ndash; 设置视图扩展名称 &ndash;&gt;
         <property name="suffix" value=".jsp"/>
     </bean>-->
+
+    <!-- 解决静态资源404问题 -->
+    <mvc:default-servlet-handler/>
 </beans>  
