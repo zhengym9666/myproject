@@ -37,7 +37,7 @@
 
 		</div>
 	</div>
-	<div id="content" style="width:100%;height:100%;position:absolute;top:10px;;left:135px;">
+	<div id="content" style="width:85%;height:80%;position:absolute;top:10px;;left:135px;">
          <iframe width="100%" height="100%" frameborder="0" class="" src="" name="content" id="newscontent">
                             	
 		</iframe>                   	
@@ -60,17 +60,17 @@
 				
 			});
 			 //$("#league").on('click',function(){
-				var title = "蜂蜜真的不会变质吗？看完我震惊了";
+				/* var title = "蜂蜜真的不会变质吗？看完我震惊了";
 				var content = "<p>蜂蜜是我们日常生活中经常会吃到的食品。</p><p>它营养丰富，具有增强抵抗力，减肥，促进消化和吸收等功效。长期服用不仅能够强身健体还能美容养颜，是爱美、爱健康人士必不可少的滋补佳品。</p><p>在食用蜂蜜的过程中我们肯定也听别人说过“蜂蜜一万年也不会变质”的说法 ，意思是蜂蜜可以保持很久基本不会腐坏变质。</p><p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p><p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p><p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p><p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p>"
 				 
 				var id = $("a").eq(0).attr("id");
-				var head = $("a").eq(0).text();
+				var head = $("a").eq(0).text(); */
 				console.log(head);
 			    var pathName=window.document.location.pathname;
 				//截取，得到项目名称
 		        var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 				
-				var url=projectName+"/community/newscontent.action?head="+head+"&id="+id+"&collegeId=1&title="+title+"&content="+content;
+				var url=projectName+"/community/newscontent.action?collegeId=010000&clubId=010100";
 				console.log(url);		       
 			    window.document.getElementById("newscontent").src = url;
 
