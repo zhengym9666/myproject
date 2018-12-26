@@ -1,36 +1,118 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html; charset=UTF-8"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>翻转炫酷的导航栏</title>
+<link href="../css/qttop/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../css/qttop/js/jquery.min.js"></script>
+	<script language="javascript">
+		$(document).ready(function() {
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
 
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
 
-<META content="MSHTML 6.00.2800.1106" name=GENERATOR>
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
 
+		});
+
+	</script>
 </head>
-<table id="__01" width="1002" height="198" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="1002" height="167" background="qtimages/1_01_01.gif"><table width="72%" height="51" border="0" align="left">
-              <tr>
-                <td><div style="font-family:宋体; color:#FFFFFF; filter:Glow(Color=#000000,Strength=2); WIDTH: 100%; FONT-WEIGHT: bold; FONT-SIZE: 19pt; margin-top:5pt">
-                    <div align="center" class="STYLE5">学生社团管理系统</div>
-                </div></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr> 
-            <td width="1002" height="31" background="qtimages/1_01_02.gif"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="red">
-              <tr>
-                <td align="center"><strong><a href="index2.jsp"><font  class="STYLE1">首页</font></a></strong></td>
-                <td align="center"><strong><a href="./front/news.jsp?lb=站内新闻"><font  class="STYLE1">社团新闻</font></a></strong></td>
-                <td align="center"><strong><a href="./front/sheyuanxinxiadd.jsp"><font  class="STYLE1">社员注册</font></a></strong></td>
-                <td align="center"><strong><a href="./front/shetuanxinxilist.jsp"><font  class="STYLE1">社团信息</font></a></strong></td>
-                <td align="center"><strong><a href="./front/huodongxinxilist.jsp"><font  class="STYLE1">社团活动</font></a></strong></td>
-                <td align="center"><strong><a href="./front/lyb.jsp"><font  class="STYLE1">留言板</font></a></strong></td>
-                <td align="center"><strong><a href="login.jsp"><font  class="STYLE1">后台</font></a></strong></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table>
+
+<body>
+<div >
+	<div id="topTitle">数院</div>
+	
+	<div id="menu2" class="topmenu">
+		<div class="blank" style="position:absolute;left:0;"></div>
+		<ul>
+			<li><a id ="news">首页新闻</a></li>
+			<li><a id="chat">畅聊空间</a></li>
+			<li><a href="#">交会费</a></li>
+			<li><a href="#">活动报销</a></li>
+			<li><a href="#" id="login">登录</a></li>
+			<li><a href="./login.jsp">后台</a></li>
+		</ul>
+		<div class="blank" style="position:absolute;right:0">欢迎您，郑永梅</div>
+		<div class="loginbox" id="loginbox" style="display:none;">
+			<form action="" id="loginform">
+				<div class="row" style="margin-top:63px;">
+					<span>学号：</span>
+					<input type="text" id="username"/>
+				</div>
+				<div class="row">
+					<span>密码：</span>
+					<input type="password" id="password"/>
+				</div>
+				<div class="row">
+					<span>选择社团：</span>
+					<select id="clublist">
+						<option>团委学生会</option>
+						<option>青年志愿者协会</option>
+						<option>红十字会</option>
+					</select>
+				</div>
+				<div class="row">
+					<span>验证码：</span>
+					<input type="text" id="validate" style="width:60px;" />
+					<img src="" alt=""/>
+				</div>
+				<div class="submitbtn">
+					<input type="submit" id="loginsubmit" value="登录"/>
+					<input type="reset" value="重置"/>
+				</div>
+			</form>
+		
+		</div>
+	<div class="cls"></div>
+	</div>
+</div>
+
+<iframe width="110%" height="100%" frameborder="0" src="./news/news.jsp" class="" name="content" id="content"
+scrolling="no" style="position:fixed;top:115px;margin-left:-160px;">
+                   	
+</iframe>
+
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script>
+/* $("a").on('click',function(){
+	//获取路径 | | |
+	var id = $(this).attr("id");
+	var pathName=window.document.location.pathname;
+	//截取，得到项目名称
+	var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
+	var url=projectName+"/community/"+id+".action";
+	var iframe = window.document.getElementById("content");
+	iframe.src = url;
+	/* $.ajax({
+		type: "get",
+		url: url,
+		success: function (data) {
+			
+		//成功后 执行的方法
+			//$("#dowebok").scrollTop(100);
+			$("#content").html(data);
+		}
+		}); */
+//}); 
+
+$("#login").on('click',function(){
+	$("#loginbox").slideToggle("slow");
+});
+
+
+</script>
+
+</html>

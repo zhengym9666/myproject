@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -9,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../css/news/newscontent.css" />
 </head>
 <body>
-<div style="width:75%;height:100%;position:absolute;top:10px;">
+<div style="width:98%;height:100%;position:absolute;top:10px;">
 <c:forEach items="${pageNews.data }" var="news">
 	<div class="head">
 		<span>
@@ -53,31 +52,48 @@
 	</c:forEach>
 	
 	<div class="foot">
-	<a href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.firstPage }&collegeId=${collegeId}&clubId=${clubId}">首页${pageNews.firstPage }</a>&nbsp;
-	<a href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.prePage }&collegeId=${collegeId}&clubId=${clubId}">上一页${pageNews.prePage }</a>&nbsp;
-	<a href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.nextPage }&collegeId=${collegeId}&clubId=${clubId}">下一页${pageNews.nextPage }</a>&nbsp;
-	<a href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.totalPage }&collegeId=${collegeId}&clubId=${clubId}">末页${pageNews.totalPage }</a>&nbsp;
+	<a id="firstPage">首页${pageNews.firstPage }</a>&nbsp;
+	<a id="prePage" href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.prePage }&collegeId=${collegeId}&clubId=${clubId}">上一页${pageNews.prePage }</a>&nbsp;
+	<a id="nextPage" href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.nextPage }&collegeId=${collegeId}&clubId=${clubId}">下一页${pageNews.nextPage }</a>&nbsp;
+	<a id="lastPage">末页${pageNews.totalPage }</a>&nbsp;
 	第${pageNews.currentPage }页/共${pageNews.totalPage }页&nbsp;一共有${pageNews.totalCount }条数据
 	</div>
 </div>
 
 </body>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 <script>
-	/* $(".foot a").click(function(){
+	 $(".foot a").click(function(){
 		//获取路径 | | |
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 		var url=projectName+"/news/queryNewsPage.action";
-		
+		var currentPage;
+		if($(this).attr("id")=="firstPage"){
+			currentPage = ${pageNews.firstPage };
+		}else if($(this).attr("id")=="prePage"){
+			currentPage=${pageNews.prePage };
+		}else if($(this).attr("id")=="nextPage"){
+			currentPage=${pageNews.nextPage };
+		}else if($(this).attr("id")=="lastPage"){
+			currentPage=${pageNews.totalPage };
+		}
+		var collegeId = ${collegeId};
+		var clubId = ${clubId};
 		$.ajax({
 			url:url,
 			type:'get',
 			dataType:"json",
 			data:{
-				"currentPage":
+				"currentPage":currentPage,
+				"collegeId":collegeId,
+				"clubId":clubId
+			},
+			success:function(){
+				
 			}
-		})
-	}) */
+		});
+	}) 
 </script>
 </html>

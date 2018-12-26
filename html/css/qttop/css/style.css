@@ -11,21 +11,43 @@ body {
 	clear: both;
 }
 a:focus { outline: none; }
+#menu2:before{
+	content:" ";
+	width:200px;
+	height:40px;
+	background:#292727;
+}
 .topmenu {
 	height: 40px;
 	display: block;
 	padding: 0px;
-	width: 960px;
+	width: 1366px;
 	margin-top: 0px;
 	margin-right: auto;
 	/* margin-bottom: 40px; */
-	margin-left: 0;
+	margin-left: -150px;
+	position:relative;
 }
-
+#menu2:after{
+	content:" ";
+	width:100px;
+	height:40px;
+	background:#292727;
+}
+.blank{
+	width:200px;
+	background:#292727;
+	font-size:14px;
+	line-height:40px;
+}
 .topmenu ul {
 			list-style: none;
 			padding: 0;
 			margin: 0;
+			width:960px;
+			height:40px;
+			position:absolute;
+			left:100px;
 }
 
 .topmenu ul li {
@@ -35,13 +57,16 @@ a:focus { outline: none; }
 	position: relative;
 	line-height: 40px;
 	text-align: center;
+	border-right:2px solid #2b2b2f;
 }
-
+.topmenu ul li:last-child{
+	border-right:none;
+}
 .topmenu ul li a {
 			/* must be postioned relative  */ 
 			position: relative;
 			display: block;
-			width: 160px;
+			width: 158px;
 			height: 40px;
 			font-family: "Î¢ÈíÑÅºÚ", "ËÎÌå";
 			font-size: 14px;
@@ -53,7 +78,7 @@ a:focus { outline: none; }
 			/* all layers will be absolute positioned */
 			position: absolute;
 			left: 0;
-			width: 160px;
+			width: 158px;
 }
 
 .topmenu ul li a span.out {
@@ -94,7 +119,7 @@ a:focus { outline: none; }
 		/** 2nd example **/
 
 #menu2 {
-			background: #000;		
+			background: #292727;		
 }
 		
 #menu2 ul li a {
@@ -102,8 +127,8 @@ a:focus { outline: none; }
 }
 
 #menu2 ul li a span.over {
-	color: #000;
-	background-color: #f0f0f0;
+	color: #fff;
+	background-color: #026fe8;
 }
 
 #topTitle{
@@ -114,4 +139,49 @@ a:focus { outline: none; }
 	color:#fff;
 	font-weight:bold;
 	text-align:center;
+}
+.loginbox{
+	width:267px;
+	height:293px;
+	background:url(../images/login_box.png) no-repeat;
+	position:absolute;
+	top:35px;
+	left:700px;
+	z-index:2;
+}
+.loginbox .row{
+	margin-left:10px;
+	margin-top:18px;
+}
+.loginbox .row span{
+	font-size: 15px;
+    color:  #1b0202;
+}
+.loginbox .row input{
+	height:30px;
+	width:180px;
+}
+.loginbox .row select{
+	height:30px;
+}
+.submitbtn{
+	width:200px;
+	height:35px;
+	margin-top:18px;
+	margin-left:60px;
+}
+.submitbtn input{
+	width:60px;
+	height:28px;
+	border:none;
+	background:#1c922c;
+	color:#fff;
+	border-radius:4px;
+}
+.submitbtn input:hover{
+	cursor:pointer;
+}
+.submitbtn input[type="reset"]{
+	background:#626763;
+	margin-left:10px;
 }

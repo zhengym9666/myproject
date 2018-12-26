@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<div id="content" style="width:85%;height:80%;position:absolute;top:10px;;left:135px;">
-         <iframe width="100%" height="100%" frameborder="0" class="" src="" name="content" id="newscontent">
+         <iframe width="100%" height="100%" frameborder="0" class="" src="" name="content" id="newscontent" style="overfolw-x:hidden">
                             	
 		</iframe>                   	
     </div> 
@@ -49,7 +49,7 @@
                             </div> -->
      
 </body>
-<script type="text/javascript" src="../../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../jquery-1.11.1.min.js"></script>
 	<script>
  		$(function(){
 			$("#navigation li").mouseover(function(){
@@ -65,12 +65,11 @@
 				 
 				var id = $("a").eq(0).attr("id");
 				var head = $("a").eq(0).text(); */
-				console.log(head);
 			    var pathName=window.document.location.pathname;
 				//截取，得到项目名称
 		        var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 				
-				var url=projectName+"/community/newscontent.action?collegeId=010000&clubId=010100";
+				var url=projectName+"/news/queryNewsPage.action?currentPage=1&collegeId=010000&clubId=010100";
 				console.log(url);		       
 			    window.document.getElementById("newscontent").src = url;
 
