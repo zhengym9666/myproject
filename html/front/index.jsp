@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .STYLE3 {color: #086BD6; font-weight: bold; }
         .wrapper{min-width: 1200px;}
-.wrapper{ background-size: 100% 100%; background-color: hsla(0,0%,10%,1.00); }
+.wrapper{ background-size: 100% 100%; height:100%;background-color: hsla(0,0%,10%,1.00); }
 
 .wrapper{font-size: 16px;}
 .head{min-width: 1200px;position: fixed;z-index: 100;left: 0;right: 0;background: rgba(0,0,0,0.5);}
@@ -77,7 +77,7 @@ a{color:#000;text-decoration:none;}
             </div>
           </div>
         </div>
-<div id="college"><%@ include file="./panel/qttop.html"%></div>
+<div id="college"><%@ include file="./panel/qttop.jsp"%></div>
 <%-- <table width="1002"  border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
     <tr>
         <td><%@ include file="./panel/qttop.html"%></td>
