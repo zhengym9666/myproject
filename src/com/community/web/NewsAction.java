@@ -72,6 +72,8 @@ public class NewsAction {
 		String collegeId = request.getParameter("collegeId");
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
+//		获取社团名称作为新闻头
+		String clubName = request.getParameter("clubname");
 		int currentPage;
 		if(currentPage0==null || currentPage0.equals("")){
 			currentPage = 1;
@@ -84,6 +86,8 @@ public class NewsAction {
 		request.setAttribute("pageNews", pageNews);
 		request.setAttribute("collegeId", collegeId);
 		request.setAttribute("clubId", clubId);
+		request.setAttribute("clubName", clubName);
+		System.out.println(pageNews);
 		return "forward:/front/news/newscontent.jsp";
 		
 	}

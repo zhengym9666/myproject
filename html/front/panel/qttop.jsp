@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,7 +33,8 @@
 
 <body>
 <div >
-	<div id="topTitle">数院</div>
+	<div id="topTitle">数院<span id="collegeId" style="display:none;">${collegeId }</span></div>
+	
 	
 	<div id="menu2" class="topmenu">
 		<div class="blank" style="position:absolute;left:0;"></div>
@@ -41,9 +43,9 @@
 			<li><a id="chat">畅聊空间</a></li>
 			<li><a href="#">交会费</a></li>
 			<li><a href="#">活动报销</a></li>
-			<li><a href="#" id="login">登录</a></li>
 			<li><a href="./login.jsp">后台</a></li>
 		</ul>
+		<div id="login">登录</div>
 		<div class="blank" style="position:absolute;right:0">欢迎您，郑永梅</div>
 		<div class="loginbox" id="loginbox" style="display:none;">
 			<form action="" id="loginform">
@@ -58,9 +60,12 @@
 				<div class="row">
 					<span>选择社团：</span>
 					<select id="clublist">
-						<option>团委学生会</option>
+						<c:forEach items="${clublist }" var="club">
+						<option>${club.name }</option>
+						</c:forEach>
+						<!-- <option>团委学生会</option>
 						<option>青年志愿者协会</option>
-						<option>红十字会</option>
+						<option>红十字会</option> -->
 					</select>
 				</div>
 				<div class="row">
@@ -85,7 +90,6 @@ scrolling="no" style="position:fixed;top:115px;margin-left:-160px;">
 </iframe>
 
 </body>
-<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 <script>
 /* $("a").on('click',function(){
 	//获取路径 | | |
@@ -107,6 +111,9 @@ scrolling="no" style="position:fixed;top:115px;margin-left:-160px;">
 		}
 		}); */
 //}); 
+$(function(){
+	
+});
 
 $("#login").on('click',function(){
 	$("#loginbox").slideToggle("slow");

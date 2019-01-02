@@ -42,9 +42,19 @@ body{
 	margin:0 auto;
 }
 .foot{
-	width:100%;
+	width:500px;
 	height:30px;
+	margin:0 auto;
 	color:#026fe8;
+}
+.foot a{
+	text-decoration:none;	
+	font-size:16px;
+	margin-right:10px;
+	color:#026fe8;
+}
+.foot a:hover{
+	cursor:pointer;
 }
 .head{
 	position:relative;

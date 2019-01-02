@@ -13,7 +13,7 @@ import com.community.bean.News;
  * 2018年12月24日
  */
 public interface NewsDAO {
-//	根据用户id获取新闻信息
+//	根据新闻id获取新闻信息
 	public News queryNewsById(@Param("id")int id);
 	
 //	分页获取新闻信息

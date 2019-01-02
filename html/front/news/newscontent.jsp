@@ -9,20 +9,21 @@
 </head>
 <body>
 <div style="width:98%;height:100%;position:absolute;top:10px;">
-<c:forEach items="${pageNews.data }" var="news">
+
 	<div class="head">
 		<span>
 			<%-- <%=request.getAttribute("head") %> --%>
-			${news.clubName }
+			${clubName}
 		</span>
 		<div class="curpos">
 			<span>当前位置：</span>
-			<span>${news.collegeName }</span><span style="font-size:18px;"> · </span>
-			<span>${news.clubName }</span><span style="font-size:18px;"> · </span>
+			<span>${sessionScope.collegeName }</span><span style="font-size:18px;"> · </span>
+			<span>${clubName }</span><span style="font-size:18px;"> · </span>
 			<span>正文</span>
 		</div>
 	</div>
-	
+		
+		<c:forEach items="${pageNews.data }" var="news">
 		<div class="title">
 		<p>
 			<%-- <%=request.getAttribute("title") %> --%>
@@ -52,10 +53,10 @@
 	</c:forEach>
 	
 	<div class="foot">
-	<a id="firstPage">首页${pageNews.firstPage }</a>&nbsp;
-	<a id="prePage" href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.prePage }&collegeId=${collegeId}&clubId=${clubId}">上一页${pageNews.prePage }</a>&nbsp;
-	<a id="nextPage" href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.nextPage }&collegeId=${collegeId}&clubId=${clubId}">下一页${pageNews.nextPage }</a>&nbsp;
-	<a id="lastPage">末页${pageNews.totalPage }</a>&nbsp;
+	<a id="firstPage" href="${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.firstPage }&collegeId=${collegeId}&clubId=${clubId}">首页</a>&nbsp;
+	<a id="prePage" href="${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.prePage }&collegeId=${collegeId}&clubId=${clubId}">上一页</a>&nbsp;
+	<a id="nextPage" href = "${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.nextPage }&collegeId=${collegeId}&clubId=${clubId}">下一页</a>&nbsp;
+	<a id="lastPage" href="${pageContext.request.contextPath }/news/queryNewsPage.action?currentPage=${pageNews.totalPage }&collegeId=${collegeId}&clubId=${clubId}">末页</a>&nbsp;
 	第${pageNews.currentPage }页/共${pageNews.totalPage }页&nbsp;一共有${pageNews.totalCount }条数据
 	</div>
 </div>
@@ -63,7 +64,7 @@
 </body>
 <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 <script>
-	 $(".foot a").click(function(){
+/* 	 $("a").click(function(){
 		//获取路径 | | |
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
@@ -81,6 +82,7 @@
 		}
 		var collegeId = ${collegeId};
 		var clubId = ${clubId};
+		alert(collegeId);
 		$.ajax({
 			url:url,
 			type:'get',
@@ -90,10 +92,10 @@
 				"collegeId":collegeId,
 				"clubId":clubId
 			},
-			success:function(){
-				
+			success:function(data){
+				console.log(data);
 			}
 		});
-	}) 
+	})  */
 </script>
 </html>

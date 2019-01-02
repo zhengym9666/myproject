@@ -21,11 +21,10 @@ a:focus { outline: none; }
 	height: 40px;
 	display: block;
 	padding: 0px;
-	width: 1366px;
+	width: 1367px;
 	margin-top: 0px;
 	margin-right: auto;
 	/* margin-bottom: 40px; */
-	margin-left: -150px;
 	position:relative;
 }
 #menu2:after{
@@ -47,7 +46,7 @@ a:focus { outline: none; }
 			width:960px;
 			height:40px;
 			position:absolute;
-			left:100px;
+			left:134px;
 }
 
 .topmenu ul li {
@@ -139,6 +138,24 @@ a:focus { outline: none; }
 	color:#fff;
 	font-weight:bold;
 	text-align:center;
+	margin:0 auto;
+}
+#login{
+	width:58px;
+	height:36px;
+	background:#318609;
+	line-height:36px;
+	color:#e4e0e0;
+	position:absolute;
+	right:243px;
+	top:2px;
+	font-size:13px;
+	text-align:center;
+	border-radius:4px;
+	
+}
+#login:hover{
+	cursor:pointer;
 }
 .loginbox{
 	width:267px;
@@ -146,7 +163,7 @@ a:focus { outline: none; }
 	background:url(../images/login_box.png) no-repeat;
 	position:absolute;
 	top:35px;
-	left:700px;
+	left:949px;
 	z-index:2;
 }
 .loginbox .row{
@@ -155,10 +172,11 @@ a:focus { outline: none; }
 }
 .loginbox .row span{
 	font-size: 15px;
-    color:  #1b0202;
+    color:  #026fe8;
+    font-weight:800;
 }
 .loginbox .row input{
-	height:30px;
+	height:24px;
 	width:180px;
 }
 .loginbox .row select{

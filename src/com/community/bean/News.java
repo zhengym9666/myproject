@@ -11,9 +11,7 @@ public class News {
 	private String image;
 	private int readcount;
 	private String collegeId;
-	private String collegeName;
 	private String clubId;
-	private String clubName;
 	public int getId() {
 		return id;
 	}
@@ -74,23 +72,11 @@ public class News {
 	public void setCollegeId(String collegeId) {
 		this.collegeId = collegeId;
 	}
-	public String getCollegeName() {
-		return collegeName;
-	}
-	public void setCollegeName(String collegeName) {
-		this.collegeName = collegeName;
-	}
 	public String getClubId() {
 		return clubId;
 	}
 	public void setClubId(String clubId) {
 		this.clubId = clubId;
-	}
-	public String getClubName() {
-		return clubName;
-	}
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
 	}
 	
 	
