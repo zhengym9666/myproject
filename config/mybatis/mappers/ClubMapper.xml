@@ -6,8 +6,8 @@
     <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->	
 	<id column="id" property="id"></id>
   <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
-	<result column="id" property="id"/>
-	<result column="name" property="name"/>
+	<result column="clubId" property="id"/>
+	<result column="clubName" property="name"/>
 	<result column="intro" property="intro"/>
 	<result column="collegeId" property="collegeId"/>
 	<result column="generalId" property="generalId"/>
@@ -17,13 +17,16 @@
 	</resultMap>
 	
 	<sql id="Base_Column_List" >
-        id,name,intro,collegeId,generalId,presidentId,vice1,vice2
+        clubId,clubName,intro,collegeId,generalId,presidentId,vice1,vice2
     </sql>
     <select id="queryClubBycollegeId" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
         from CLUB
         where collegeId = #{collegeId}
+    </select>
+    <select id="getGeneralIdByClubId" resultType="String" parameterType="String">
+    	select generalId from CLUB where clubId = #{clubId}
     </select>
 	
 		

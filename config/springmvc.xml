@@ -27,7 +27,9 @@
     <!-- 组件扫描的方式，扫描controller -->
      <mvc:annotation-driven></mvc:annotation-driven>
     <context:component-scan base-package="com.community.web"/>
-
+    <context:component-scan base-package="activiti.servlet"/>
+	<context:component-scan base-package="activiti.common.*"/>
+	
     <!--注解驱动配置处理器映射器、处理器适配器，说明：
         1.等于同时配置了 RequestMappingHandlerMapping、RequestMappingHandlerAdapter
         2.企业项目中，推荐使用这种方式 -->

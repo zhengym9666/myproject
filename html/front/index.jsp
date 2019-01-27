@@ -101,8 +101,8 @@ a{color:#000;text-decoration:none;}
 		<ul>
 			<li><a id ="news">首页新闻</a></li>
 			<li><a id="chat">畅聊空间</a></li>
-			<li><a href="#">交会费</a></li>
-			<li><a href="#">活动报销</a></li>
+			<li><a id="pay">交会费</a></li>
+			<li><a id="receipt">活动报销</a></li>
 			<li><a href="./login.jsp">后台</a></li>
 		</ul>
 		<div id="login">登录</div>
@@ -143,7 +143,7 @@ a{color:#000;text-decoration:none;}
 	<div class="cls"></div>
 	</div>
 
-<iframe width="110%" height="100%" frameborder="0" src="./news/news.jsp" class="" name="content" id="content"
+<iframe width="110%" height="100%" frameborder="0" src="" class="" name="content" id="content"
 scrolling="no" style="position:fixed;top:115px;">
                    	
 </iframe>
@@ -151,6 +151,14 @@ scrolling="no" style="position:fixed;top:115px;">
 	$(function(){
 		$("#login").click(function(){
 			$("#loginbox").slideToggle("slow");
+		});
+		
+		var iframe = document.getElementById("content");
+		var newsid = $(".topmenu a").eq(0).attr("id");
+		iframe.src = "./"+newsid+"/"+newsid+".jsp";
+		$(".topmenu a").click(function(){
+			var navid = $(this).attr("id");
+			iframe.src="./"+navid+"/"+navid+".jsp";
 		});
 	});
 
