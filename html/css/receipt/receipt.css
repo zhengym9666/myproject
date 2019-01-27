@@ -1,0 +1,143 @@
+/*报销表单样式*/
+#receiptform input{
+	width:93%;
+	height:19px;
+}
+#calender{
+	width:55%;
+	height:24px;
+}
+#receiptform,#receiptwrapper{
+	width:80%;
+	position:relative;
+	height:430px;
+	margin-left:127px;
+	color:#ccc;
+}
+#receiptform{
+	top:10px;
+}
+#receiptform th{
+	font-size:15px;
+}
+#addCol{
+	margin-left:119px;
+}
+.backOrsub{
+	width:20%;
+	margin:60px auto;
+}
+.backOrsub button{
+	width:72px;
+	height:37px;
+	border-radius:7px;
+	border:none;
+	background:#318609;
+	color:#e4e0e0;
+	cursor:pointer;
+}
+button{
+	cursor:pointer;
+}
+#backBtn{
+	margin-left:62px;
+	background:#5a8820;
+}
+#totalbox{
+	width:200px;
+	hright:30px;
+	position:absolute;
+	right:110px;
+	top:76px;
+	color:#fff;
+}
+#total{
+	width:75px;
+	height:30px;
+	display:inline-block;
+	border:1px solid #040404;
+	position:absolute;
+	top:-5px;
+	line-height:30px;
+	background:#e6cfcf;
+	color:#000;
+}
+/*提交返回页面样式*/
+#submitResult{
+	width:45%;
+	margin:52px auto;
+}
+p.resultTitle{
+	color:#f50808;
+	font-weight:bold;
+}
+#submitResult div{
+	color:#fbecec;
+	font-size:14px;
+}
+#submitResult span{
+	font-weight:bold;
+}
+.auditFlow{
+	color:#cacad8;
+}
+#amount{
+	margin-right:20px;
+}
+#submitResult button{
+	width:72px;
+	height:37px;
+	border-radius:7px;
+	border:none;
+	background:#318609;
+	color:#e4e0e0;
+	margin:20px 320px;
+}
+
+/*报销首页样式*/
+.title p{
+	color:#026fe8;
+	font-weight:700;
+}
+.title span{
+	font-size:13px;
+	color:#a9abad;
+}
+.recordbox{
+	width:70%;
+	position:absolute;
+	left:0;
+	margin-top:23px;
+}
+.onerecord{
+	margin-bottom:12px;
+}
+.onerecord span{
+	display:block;
+	font-size:15px;
+	font-weight:700;
+	width:231px;
+	height:28px;
+	border-bottom:1px solid #484646;
+	line-height:33px;
+	color:#6277ea;
+}
+.operbox{
+	margin-top:-21px;
+	margin-left:650px;
+	
+}
+.operbox button{
+	margin-left:10px;
+}
+#receiptEntry{
+	width:214px;
+	position:absolute;
+	right:-315px;
+	top:0;
+}
+.foot{
+	position:absolute;
+	left:30%;
+	bottom:-30px;
+}
