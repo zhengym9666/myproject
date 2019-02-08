@@ -36,31 +36,119 @@
             color: #FFFFFF;
             font-weight: bold;
         }
-        .STYLE3 {color: #086BD6; font-weight: bold; }
-        .wrapper{min-width: 1200px;}
-.wrapper{ background-size: 100% 100%; height:100%;background-color: hsla(0,0%,10%,1.00); }
 
-.wrapper{font-size: 16px;}
-.head{min-width: 1200px;position: fixed;z-index: 100;left: 0;right: 0;background: rgba(0,0,0,0.5);}
-.head-main{width: 90%;margin: 8px auto;}
-.logo{float: left;width: 95px;height: 60px;position: relative;top: 5px;}
-.logo img{width: 100%;height: 100%;}
-.menuDiv{width: 750px;margin: 0 auto;position: relative;top: 10px;left: -55px;}
-.menu{width: 100%;    display: flex;display: -webkit-box;display: -webkit-flex;}
-.menu>li{-webkit-box-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;padding: 10px 0;}
-.menu>li>a{text-align: center;position: relative;color: #fff;display: block;
-       justify-content: center;
-    align-items: center;border-right: 1px solid #fff;
-   }
- .menu li a:hover{color:#026fe8;}
- .menu>li:last-child a{border-right: none;}
-.menu li a.active{color:#026fe8;}
-.linkTel{float: right;color: #fff;position: relative;top: -20px;}
-ul,li,img,p{margin:0;padding:0;list-style:none;border:none;}
-a{color:#000;text-decoration:none;}
-#college{margin-left:150px;}
+		.STYLE3 {
+			color: #086BD6;
+			font-weight: bold;
+		}
+
+		.wrapper {
+			min-width: 1200px;
+		}
+
+		.wrapper {
+			background-size: 100% 100%;
+			height: 100%;
+			background-color: hsla(0, 0%, 10%, 1.00);
+		}
+
+		.wrapper {
+			font-size: 16px;
+		}
+
+		.head {
+			min-width: 1200px;
+			position: fixed;
+			z-index: 100;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
+
+		.head-main {
+			width: 90%;
+			margin: 8px auto;
+		}
+
+		.logo {
+			float: left;
+			width: 95px;
+			height: 60px;
+			position: relative;
+			top: 5px;
+		}
+
+		.logo img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.menuDiv {
+			width: 750px;
+			margin: 0 auto;
+			position: relative;
+			top: 10px;
+			left: -55px;
+		}
+
+		.menu {
+			width: 100%;
+			display: flex;
+			display: -webkit-box;
+			display: -webkit-flex;
+		}
+
+		.menu > li {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			padding: 10px 0;
+		}
+
+		.menu > li > a {
+			text-align: center;
+			position: relative;
+			color: #fff;
+			display: block;
+			justify-content: center;
+			align-items: center;
+			border-right: 1px solid #fff;
+		}
+
+		.menu li a:hover {
+			color: #026fe8;
+		}
+
+		.menu > li:last-child a {
+			border-right: none;
+		}
+
+		.menu li a.active {
+			color: #026fe8;
+		}
+
+		.linkTel {
+			float: right;
+			color: #fff;
+			position: relative;
+			top: -20px;
+		}
+
+		ul, li, img, p {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			border: none;
+		}
+
+		a {
+			color: #000;
+			text-decoration: none;
+		}
+
+		#college {
+			margin-left: 150px;
+		}
         -->
     </style>
 </head>
@@ -138,31 +226,35 @@ a{color:#000;text-decoration:none;}
 					<input type="reset" value="重置"/>
 				</div>
 			</form>
-		
+
 		</div>
 	<div class="cls"></div>
 	</div>
 
-<iframe width="110%" height="100%" frameborder="0" src="" class="" name="content" id="content"
+<iframe width="100%" height="100%" frameborder="0" src="" class="" name="content" id="content"
 scrolling="no" style="position:fixed;top:115px;">
-                   	
+
 </iframe>
    	<script>
 	$(function(){
 		$("#login").click(function(){
 			$("#loginbox").slideToggle("slow");
 		});
-		
+
 		var iframe = document.getElementById("content");
 		var newsid = $(".topmenu a").eq(0).attr("id");
 		iframe.src = "./"+newsid+"/"+newsid+".jsp";
+		//获取对应选项的标签名称
 		$(".topmenu a").click(function(){
 			var navid = $(this).attr("id");
-			iframe.src="./"+navid+"/"+navid+".jsp";
+            iframe.src="./"+navid+"/"+navid+".jsp";
+			if(navid=="chat"){
+                iframe.src="./"+navid+"/"+navid+".jsp?token=c4926be8b8bd40b1b84ec20c8121fda9";
+            }
 		});
 	});
 
-	
-	</script>                         
+
+	</script>
 </body>
 </html>
