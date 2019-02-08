@@ -106,42 +106,46 @@ a{color:#000;text-decoration:none;}
 			<li><a href="./login.jsp">后台</a></li>
 		</ul>
 		<div id="login">登录</div>
-		<div class="blank" style="position:absolute;right:0">欢迎您，郑永梅</div>
-		<div class="loginbox" id="loginbox" style="display:none;">
-			<form action="" id="loginform">
-				<div class="row" style="margin-top:57px;">
-					<span>学号：</span>
-					<input type="text" id="username"/>
-				</div>
-				<div class="row">
-					<span>密码：</span>
-					<input type="password" id="password"/>
-				</div>
-				<div class="row">
-					<span>选择社团：</span>
-					<select id="clublist">
-						<c:forEach items="${sessionScope.clublist }" var="club">
-						<option>${club.name }</option>
-						</c:forEach>
-		<!-- 				<option>团委学生会</option>
-						<option>青年志愿者协会</option>
-						<option>红十字会</option> -->
-					</select>
-				</div>
-				<div class="row">
-					<span>验证码：</span>
-					<input type="text" id="validate" style="width:60px;" />
-					<img src="" alt=""/>
-				</div>
-				<div class="submitbtn">
-					<input type="submit" id="loginsubmit" value="登录"/>
-					<input type="reset" value="重置"/>
-				</div>
-			</form>
-		
-		</div>
+		<c:if test="${not empty sessionScope.userName }">
+		<div class="blank" style="position:absolute;right:0">欢迎您，${sessionScope.userName }</div>
+		</c:if>
 	<div class="cls"></div>
 	</div>
+<div class="loginbox" id="loginbox" style="display:none;">
+	<form action="" id="loginform">
+		<div class="row" style="margin-top:57px;">
+			<span>学号：</span>
+			<input type="text" id="username" name="userId"/>
+		</div>
+		<div class="row">
+			<span>密码：</span>
+			<input type="password" id="password" name="password"/>
+		</div>
+		<div class="row">
+			<span>选择社团：</span>
+			<input type="text" id="choseClubName" name="clubName" value="请选择" class="ui-down"/>
+			<input type="hidden" id="choseClubId" name="clubId" class="ui-down"/>
+			<ul id="clublist" style="display:none;">
+				<c:forEach items="${sessionScope.clublist }" var="club">
+				<li id="${club.id }">${club.name }</li>
+				</c:forEach>
+<!-- 				<option>团委学生会</option>
+				<option>青年志愿者协会</option>
+				<option>红十字会</option> -->
+			</ul>
+		</div>
+		<div class="row">
+			<span>验证码：</span>
+			<input type="text" id="validate" style="width:60px;" />
+			<img src="" alt=""/>
+		</div>
+		<div class="submitbtn">
+			<input type="submit" id="loginsubmit" value="登录"/>
+			<input type="reset" value="重置"/>
+		</div>
+	</form>
+
+</div>
 
 <iframe width="110%" height="100%" frameborder="0" src="" class="" name="content" id="content"
 scrolling="no" style="position:fixed;top:115px;">
@@ -149,8 +153,35 @@ scrolling="no" style="position:fixed;top:115px;">
 </iframe>
    	<script>
 	$(function(){
+		var clubId;
+		
 		$("#login").click(function(){
 			$("#loginbox").slideToggle("slow");
+		});
+		
+		$("#choseClubName").click(function(){
+			if($(this).hasClass("ui-down")){
+				$(this).toggleClass("ui-up");
+			}else{
+				$(this).toggleClass("ui-down");
+			}
+			$("#clublist").toggle();
+		});
+		
+		$("#clublist li").click(function(){
+			$("#choseClubName").val($(this).text());
+			$("#clublist").toggle();
+			$("#choseClubName").toggleClass("ui-up");
+			$("#choseClubId").val($(this).attr("id"));
+		});
+		
+		$("#loginsubmit").click(function(){
+			//获取路径 | | |
+	        var pathName=window.document.location.pathname;
+			//截取，得到项目名称
+	        var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
+			var loginUrl = projectName+"/login/LoginAction.action";
+			$("#loginform").attr("action", loginUrl);
 		});
 		
 		var iframe = document.getElementById("content");
@@ -160,6 +191,7 @@ scrolling="no" style="position:fixed;top:115px;">
 			var navid = $(this).attr("id");
 			iframe.src="./"+navid+"/"+navid+".jsp";
 		});
+		
 	});
 
 	
