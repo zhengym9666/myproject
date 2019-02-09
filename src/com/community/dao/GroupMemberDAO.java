@@ -2,6 +2,8 @@ package com.community.dao;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.community.bean.GroupMember;
+
 /** 
 * @author  作者 :zhengym
 * @date 创建时间：2019年1月25日 上午9:24:29
@@ -10,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
 */
 public interface GroupMemberDAO {
 	public String getDepartmentId(@Param("stuNum")String stuNum,@Param("clubId")String clubId);
+	
+	public GroupMember queryMemberInfo(@Param("stuNum")String stuNum,@Param("clubId")String clubId);
 }

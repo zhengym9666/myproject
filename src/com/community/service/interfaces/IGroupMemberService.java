@@ -1,5 +1,6 @@
 package com.community.service.interfaces;
 
+import com.community.bean.GroupMember;
 
 /** 
 * @author  зїеп :zhengym
@@ -9,4 +10,6 @@ package com.community.service.interfaces;
 */
 public interface IGroupMemberService {
 	public String getDepartmentId(String stuNum,String clubId);
+	
+	public GroupMember queryMemberInfo(String stuNum,String clubId);
 }

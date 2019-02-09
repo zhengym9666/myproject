@@ -20,6 +20,12 @@ public class ClubServiceImpl implements IClubService {
 		// TODO Auto-generated method stub
 		return clubMapper.queryClubBycollegeId(collegeId);
 	}
+
+	@Override
+	public String getGeneralIdByClubId(String clubId) {
+		// TODO Auto-generated method stub
+		return clubMapper.getGeneralIdByClubId(clubId);
+	}
 	
 
 }
