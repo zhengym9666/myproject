@@ -25,6 +25,7 @@ public class GroupMemberServiceImpl implements IGroupMemberService {
 		return groupMemberMapper.getDepartmentId(stuNum, clubId);
 	}
 
+	
 	@Override
 	public GroupMember queryMemberInfo(String stuNum, String clubId) {
 		// TODO Auto-generated method stub

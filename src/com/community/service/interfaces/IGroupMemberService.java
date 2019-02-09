@@ -9,6 +9,7 @@ import com.community.bean.GroupMember;
 * @desrciption		
 */
 public interface IGroupMemberService {
+	
 	public String getDepartmentId(String stuNum,String clubId);
 	
 	public GroupMember queryMemberInfo(String stuNum,String clubId);
