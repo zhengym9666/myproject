@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.community.dao.TaskDAO">
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.community.bean.Task" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->	
+	<id column="ID_" property="id"></id>
+  	<!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+	<result column="ID_" property="id"/>
+	<result column="REV_" property="rev"/>
+	<result column="EXECUTION_ID_" property="execution_id"/>
+	<result column="PROC_INST_ID_" property="proc_inst_id"/>
+	<result column="PROC_DEF_ID_" property="proc_def_id"/>
+	<result column="NAME_" property="name"/>
+	<result column="PARENT_TASK_ID_" property="parent_task_id"/>
+	<result column="DESCRIPTION_" property="description"/>
+	<result column="TASK_DEF_KEY_" property="task_def_key"/>
+	<result column="OWNER_" property="owner"/>	
+	<result column="ASSIGNEE_" property="assignee"/>
+	<result column="DELEGATION_" property="delegation"/>
+	<result column="PRIORITY_" property="priority"/>
+	<result column="CREATE_TIME_" property="create_time"/>
+	<result column="DUE_DATE_" property="due_date"/>
+	<result column="CATEGORY_" property="category"/>
+	<result column="SUSPENSION_STATE_" property="suspension_state"/>
+	<result column="TENANT_ID_" property="tenant_id"/>
+	<result column="FORM_KEY_" property="form_key"/>	
+	</resultMap>
+	
+    <select id="getTaskId" resultType="String" parameterType="String" >
+        select ID_
+        from ACT_RU_TASK
+        where execution_id_ = #{inst_id}
+    </select>
+	
+</mapper>
