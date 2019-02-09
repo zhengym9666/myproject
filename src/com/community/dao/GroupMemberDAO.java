@@ -11,6 +11,7 @@ import com.community.bean.GroupMember;
 * @desrciption		
 */
 public interface GroupMemberDAO {
+	
 	public String getDepartmentId(@Param("stuNum")String stuNum,@Param("clubId")String clubId);
 	
 	public GroupMember queryMemberInfo(@Param("stuNum")String stuNum,@Param("clubId")String clubId);
