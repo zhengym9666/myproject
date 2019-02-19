@@ -195,7 +195,7 @@
 		</ul>
 		<div id="login">登录</div>
 		<c:if test="${not empty sessionScope.userName }">
-		<div class="blank" style="position:absolute;right:0">欢迎您，${sessionScope.userName }</div>
+		<div class="blank" style="position:absolute;right:0">欢迎您，<span id="userName">${sessionScope.userName }</span></div>
 		</c:if>
 	<div class="cls"></div>
 	</div>
@@ -241,7 +241,10 @@ scrolling="no" style="position:fixed;top:115px;">
 </iframe>
    	<script>
 	$(function(){
-		var clubId;
+		//获取路径 | | |
+        var pathName=window.document.location.pathname;
+		//截取，得到项目名称
+        var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 
 		$("#login").click(function(){
 			$("#loginbox").slideToggle("slow");
@@ -265,10 +268,6 @@ scrolling="no" style="position:fixed;top:115px;">
 		});
 
 		$("#loginsubmit").click(function(){
-			//获取路径 | | |
-	        var pathName=window.document.location.pathname;
-			//截取，得到项目名称
-	        var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 			var loginUrl = projectName+"/login/LoginAction.action";
 			$("#loginform").attr("action", loginUrl);
 		});
@@ -279,10 +278,19 @@ scrolling="no" style="position:fixed;top:115px;">
 		//获取对应选项的标签名称
 		$(".topmenu a").click(function(){
 			var navid = $(this).attr("id");
-            iframe.src="./"+navid+"/"+navid+".jsp";
+			if(navid=="receipt"){
+				var sessionUser = $("#userName").text();
+				if(sessionUser==""){
+					alert("请先登录！");
+					return;
+				}else{
+					iframe.src="./"+navid+"/"+navid+".jsp";
+				}
+			}
 			if(navid=="chat"){
                 iframe.src="./"+navid+"/"+navid+".jsp?token=c4926be8b8bd40b1b84ec20c8121fda9";
             }
+			
 		});
 
 	});
