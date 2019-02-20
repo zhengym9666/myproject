@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.community.dao.ReceiptOperLogDAO" >
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.community.bean.ReceiptOperLog" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->
+        <id column="oper_id" property="oper_id"/>
+    <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+        <result column="proc_inst_id" property="proc_inst_id"/>
+        <result column="oper_name" property="oper_name"/>
+        <result column="oper_type" property="oper_type"/>
+        <result column="oper_time" property="oper_time"/>
+        <result column="receipt_type" property="receipt_type"/>
+    </resultMap>
+    
+    <select id="queryAllOperInfo" resultMap="BaseResultMap">
+    	select * from receipt_oper_log where proc_inst_id in
+    	(select proc_inst_id from receipt where receiptman_id = #{receiptman_id} and clubId = #{clubId}) order by oper_time DESC limit #{start},#{size}
+    </select>
+    
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+    	select count(*) from receipt_oper_log where proc_inst_id in
+    	(select proc_inst_id from receipt where receiptman_id = #{receiptman_id} and clubId = #{clubId})
+    </select>
+    
+    <insert id="saveOperInfo" parameterType="com.community.bean.ReceiptOperLog">
+    	insert into receipt_oper_log(proc_inst_id,oper_name,oper_type,oper_time,receipt_type)
+    	values(#{proc_inst_id},#{oper_name},#{oper_type},#{oper_time},#{receipt_type})
+    </insert>
+</mapper>
