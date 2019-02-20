@@ -30,7 +30,7 @@
     <select id="getTaskId" resultType="String" parameterType="String" >
         select ID_
         from ACT_RU_TASK
-        where execution_id_ = #{inst_id}
+        where PROC_INST_ID_ = #{pro_inst_id}
     </select>
 	
 </mapper>

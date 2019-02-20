@@ -18,13 +18,79 @@
         <result column="third_autitor" property="third_autitor"/>
         <result column="amount" property="amount"/>
         <result column="reason" property="reason"/>
-
+		<result column="taskId" property="taskId"/>
+		<result column="proc_inst_id" property="proc_inst_id"/>
+		<result column="audit_suggest" property="audit_suggest"/>
     </resultMap>
     <sql id="Base_Column_List" >
-        receiptman_id,receiptman_name,clubId,state,submit_time,revise_time,lastaudit_time,one_autitor,second_autitor,third_autitor,amount,reason
+        receiptman_id,receiptman_name,clubId,state,submit_time,revise_time,lastaudit_time,one_autitor,second_autitor,third_autitor,amount,reason,taskId,proc_inst_id,audit_suggest
     </sql>
     <insert id="insertReceipt" parameterType="com.community.bean.Receipt">
-    	insert into RECEIPT(receiptman_id,receiptman_name,clubId,state,submit_time,revise_time,lastaudit_time,one_autitor,second_autitor,third_autitor,amount,reason)
- 		values(#{receiptman_id},#{receiptman_name},#{clubId},#{state},#{submit_time},#{revise_time},#{lastaudit_time},#{one_autitor},#{second_autitor},#{third_autitor},#{amount},#{reason})
+    	insert into RECEIPT(receiptman_id,receiptman_name,clubId,state,submit_time,revise_time,lastaudit_time,one_autitor,second_autitor,third_autitor,amount,reason,taskId,proc_inst_id,audit_suggest)
+ 		values(#{receiptman_id},#{receiptman_name},#{clubId},#{state},#{submit_time},#{revise_time},#{lastaudit_time},#{one_autitor},#{second_autitor},#{third_autitor},#{amount},#{reason},#{taskId},#{proc_inst_id},#{audit_suggest})
     </insert>
+    <select id="queryReceiptByOneId" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from RECEIPT where clubId = #{clubId} and one_autitor = #{one_autitor} and state = #{state} limit #{start},#{size}	
+    </select>
+    <select id="queryReceiptBySecondId" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from RECEIPT where clubId = #{clubId} and second_autitor = #{second_autitor} and state = #{state} limit #{start},#{size}
+    </select>
+    
+    <select id="queryTotalCountByOneId" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from RECEIPT where clubId = #{clubId} and one_autitor = #{one_autitor} and state = #{state}
+    </select>
+    
+    <select id="queryTotalCountBySecondId" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from RECEIPT where clubId = #{clubId} and second_autitor = #{second_autitor} and state = #{state}
+    </select>
+    
+    <select id="queryTotalCountByThirdId" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from RECEIPT where clubId = #{clubId} and third_autitor = #{third_autitor} and state = #{state}
+    </select>
+    
+    <update id="auditReceipt" parameterType="HashMap">
+    	update RECEIPT set state = #{state},lastaudit_time = #{lastaudit_time},taskId = (select ID_ from ACT_RU_TASK where PROC_INST_ID_ = #{proc_inst_id})
+    	where proc_inst_id = #{proc_inst_id}
+    </update>
+       
+    <select id="getReceiptByTaskId" parameterType="String" resultMap="BaseResultMap">
+    	select * from RECEIPT where taskId = #{taskId}
+    </select>
+    
+     <select id="queryCompletedAuditByOneId" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from RECEIPT where clubId = #{clubId} and one_autitor = #{one_autitor} and state >= #{state} and state!=4 or state	= -1 limit #{start},#{size}
+    </select>
+    <select id="queryCompletedAuditBySecondId" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from RECEIPT where clubId = #{clubId} and second_autitor = #{second_autitor} and state >= #{state} and state!=4 or state = -2 limit #{start},#{size}
+    </select>
+    <select id="queryCompletedAuditByThirdId" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from RECEIPT where clubId = #{clubId} and third_autitor = #{third_autitor} and state >= #{state} and state!=4 or state = -3 limit #{start},#{size}
+    </select>
+    
+    <select id="queryCompletedTotalCountByOneId" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from RECEIPT where clubId = #{clubId} and one_autitor = #{one_autitor} and state >= #{state} and state!=4 or state	= -1
+    </select>
+    <select id="queryCompletedTotalCountBySecondId" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from RECEIPT where clubId = #{clubId} and second_autitor = #{second_autitor} and state >= #{state} and state!=4 or state = -2
+    </select>
+    <select id="queryCompletedTotalCountByThirdId" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from RECEIPT where clubId = #{clubId} and third_autitor = #{third_autitor} and state >= #{state} and state!=4 or state = -3
+    </select>
+        
+    <select id="queryOneReceiptByProcInstId" parameterType="String" resultMap="BaseResultMap">
+    	select * from RECEIPT where proc_inst_id = #{procInstId}
+    </select>
+    
+    <update id="updateOneReceiptByProcInstId" parameterType="HashMap">
+    	update RECEIPT set reason = #{receipt_reason},amount = #{amount},revise_time = #{revise_time} where proc_inst_id = #{proc_inst_id}
+    </update> 
+    
+    <update id="revokeOneReceiptByProcInstId" parameterType="HashMap">
+    	update RECEIPT set state = #{state} where proc_inst_id = #{procInstId}
+    </update>
+    
+    <update id="rejectOneReceiptByProcInstId" parameterType="HashMap">
+    	update RECEIPT set state = #{state},audit_suggest = #{audit_suggest} where proc_inst_id = #{proc_inst_id}
+    </update>
+    
 </mapper>

@@ -22,9 +22,9 @@ public class ClubServiceImpl implements IClubService {
 	}
 
 	@Override
-	public String getGeneralIdByClubId(String clubId) {
+	public Club getClubById(String clubId) {
 		// TODO Auto-generated method stub
-		return clubMapper.getGeneralIdByClubId(clubId);
+		return clubMapper.getClubById(clubId);
 	}
 	
 

@@ -25,8 +25,8 @@
         from CLUB
         where collegeId = #{collegeId}
     </select>
-    <select id="getGeneralIdByClubId" resultType="String" parameterType="String">
-    	select generalId from CLUB where clubId = #{clubId}
+    <select id="getClubById" resultMap="BaseResultMap" parameterType="String">
+    	select * from CLUB where clubId = #{clubId}
     </select>
 	
 		

@@ -23,7 +23,7 @@ public class PageBean {
 	public List getData() {
 		return data;
 	}
-	public void setData(List<News> data) {
+	public void setData(List data) {
 		this.data = data;
 	}
 	public int getCurrentPage() {

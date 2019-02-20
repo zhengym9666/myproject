@@ -18,5 +18,5 @@ public interface ClubDAO {
 	public List<Club> queryClubBycollegeId(@Param("collegeId")String collegeId);
 	
 	//根据社团id获取会长id
-	public String getGeneralIdByClubId(@Param("clubId")String clubId);
+	public Club getClubById(@Param("clubId")String clubId);
 }

@@ -69,7 +69,7 @@ public class NewsAction {
 	
 	@RequestMapping("queryNewsPage.action")
 	public String queryNewsPage(HttpServletRequest request){
-		String collegeId = request.getParameter("collegeId");
+		String collegeId = (String) request.getSession().getAttribute("collegeId");
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
 //		获取社团名称作为新闻头

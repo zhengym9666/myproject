@@ -1,5 +1,6 @@
 package com.community.service.interfaces;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.community.bean.ReceiptDetail;
@@ -13,4 +14,10 @@ import com.community.bean.ReceiptDetail;
 public interface IReceiptDetailService {
 	//保存报销详情
 	public void saveReceiptDetail(List<ReceiptDetail> receiptList);
+	
+	//根据流程实例id查询单个报销
+	public List<ReceiptDetail> queryReceiptDetailByProcInstId(String procInstId);
+	
+	//修改报销详情
+	public void updateDetail(List<ReceiptDetail> detailList,String procInstId);
 }

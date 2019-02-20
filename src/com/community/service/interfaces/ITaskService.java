@@ -1,4 +1,7 @@
 package com.community.service.interfaces;
+
+import com.community.bean.Task;
+
 /** 
 * @author  作者 :zhengym
 * @date 创建时间：2019年2月9日 上午12:02:00
@@ -7,6 +10,6 @@ package com.community.service.interfaces;
 */
 public interface ITaskService {
 
-	public String getTaskId(String inst_id);
+	public String getTaskId(String pro_inst_id);
 	
 }

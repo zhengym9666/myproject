@@ -25,14 +25,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.community.bean.Club;
 import com.community.bean.Department;
 import com.community.bean.Receipt;
 import com.community.bean.ReceiptDetail;
+import com.community.bean.ReceiptOperLog;
 import com.community.bean.Student;
+import com.community.bean.Task;
 import com.community.service.interfaces.IClubService;
 import com.community.service.interfaces.IDepartmentService;
 import com.community.service.interfaces.IGroupMemberService;
 import com.community.service.interfaces.IReceiptDetailService;
+import com.community.service.interfaces.IReceiptOperLogService;
 import com.community.service.interfaces.IReceiptService;
 import com.community.service.interfaces.IStudentService;
 import com.community.service.interfaces.ITaskService;
@@ -66,18 +70,21 @@ public class StartProcessInstanceByIdServlet{
 	IReceiptDetailService receiptDetailService;
 	
 	@Autowired
-	ITaskService TaskService;
+	ITaskService taskService;
+	
+	@Autowired
+	IReceiptOperLogService receiptOperLogService;
 	
 	@RequestMapping("/startprocess.action")
 	public void StartProcess(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
-		
 		/** 接收流程定义id */
-		String pdId = request.getParameter("pdId");
-		String receiptman_id = request.getParameter("receiptman_id");
-		String receiptman_name = request.getParameter("receiptman_name");
-		String clubId = request.getParameter("clubId");
+		String pdId = request.getParameter("pdId");	
+		String receiptman_id = (String) request.getSession().getAttribute("userId");
+		String receiptman_name = (String) request.getSession().getAttribute("userName");
+		String clubId = (String) request.getSession().getAttribute("clubId");
 		Integer amount = Integer.parseInt(request.getParameter("amount"));
+		String receipt_reason = request.getParameter("reason");
 		String receiptObj = request.getParameter("receiptObj");
 		JSONArray jsonArray = JSONArray.fromObject(receiptObj);
 		JSONObject jsonObject;
@@ -121,8 +128,8 @@ public class StartProcessInstanceByIdServlet{
 		
 		//会长学号作为第二审批人
 		//Student generalInfo = studentService.getStudentInfoById(generalId);
-		String second_autitor = clubService.getGeneralIdByClubId(clubId);
-		
+		Club clubBean = clubService.getClubById(clubId);
+		 String second_autitor = clubBean.getGeneralId();
 		Date submit_time = new Date();
 		
 		Receipt receiptBean = new Receipt();
@@ -133,6 +140,8 @@ public class StartProcessInstanceByIdServlet{
 		receiptBean.setOne_autitor(one_autitor);
 		receiptBean.setSecond_autitor(second_autitor);
 		receiptBean.setSubmit_time(submit_time);
+		receiptBean.setReason(receipt_reason);
+		receiptBean.setState(0);
 		
 				
 		/** 获取流程引擎 */
@@ -157,10 +166,21 @@ public class StartProcessInstanceByIdServlet{
 		/** 根据流程定义id开启流程实例 */
 		ProcessInstance pi = rs.startProcessInstanceById(pdId,params);
 		System.out.println(pi);
-		String taskId = TaskService.getTaskId(pi.getId());	
+		String taskId = taskService.getTaskId(pi.getId());
 		receiptBean.setTaskId(taskId);
+		receiptBean.setProc_inst_id(pi.getId());
 		receiptService.insertReceipt(receiptBean);
+		//保存报销单明细
 		receiptDetailService.saveReceiptDetail(receiptList);
+		
+		//保存操作日志
+		ReceiptOperLog OperLogInfo = new ReceiptOperLog();
+		OperLogInfo.setProc_inst_id(pi.getId());
+		OperLogInfo.setOper_name(receiptman_name);
+		OperLogInfo.setOper_time(new Date());
+		OperLogInfo.setOper_type(0);
+		OperLogInfo.setReceipt_type(receipt_reason);
+		receiptOperLogService.saveOperInfo(OperLogInfo);
 		
 		//第二个节点可以启动好之后设置流程变量
 		//rs.setVariable(pi.getId(), "one_autitor", "1515200005");

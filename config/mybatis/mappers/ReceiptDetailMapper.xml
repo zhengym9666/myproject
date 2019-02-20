@@ -12,11 +12,25 @@
         <result column="reason" property="reason"/>
         <result column="detail" property="detail"/>
         <result column="cost" property="cost"/>  
-
+ 
     </resultMap>
     
     <insert id="saveReceiptDetail" parameterType="com.community.bean.ReceiptDetail">
     	insert into RECEIPTDETAIL(receipt_id,spend_time,reason,detail,cost)
  		values((select max(id) from RECEIPT),#{spend_time},#{reason},#{detail},#{cost})
     </insert>
+    
+    <select id="queryReceiptDetailByProcInstId" parameterType="String" resultMap="BaseResultMap">
+    	SELECT * FROM RECEIPTDETAIL t WHERE t.receipt_id = (SELECT t2.id FROM receipt t2 WHERE t2.proc_inst_id = #{procInstId});
+    </select>
+    
+    <update id="updateDetailById" parameterType="com.community.bean.ReceiptDetail">
+    	update RECEIPTDETAIL set spend_time = #{spend_time},reason = #{reason},detail = #{detail},cost = #{cost}
+    	where receipt_item_id = #{receipt_item_id}
+    </update>
+    
+    <select id="addDetailByProcInstId" parameterType="HashMap">
+    	insert into RECEIPTDETAIL(receipt_id,spend_time,reason,detail,cost)
+    	values((select id from RECEIPT where proc_inst_id = #{proc_inst_id}),#{spend_time},#{reason},#{detail},#{cost})
+    </select>
 </mapper>

@@ -14,5 +14,5 @@ import com.community.bean.Club;
 public interface IClubService {
 	public List<Club> queryClubBycollegeId(String collegeId);
 	
-	public String getGeneralIdByClubId(String clubId);
+	public Club getClubById(String clubId);
 }
