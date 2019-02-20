@@ -12,7 +12,7 @@ public class Receipt {
 	private String receiptman_id;
 	private String receiptman_name;
 	private String clubId;
-	private String state;
+	private Integer state;
 	private Date submit_time;
 	private Date revise_time;
 	private Date lastaudit_time;
@@ -21,6 +21,10 @@ public class Receipt {
 	private String third_autitor;
 	private Integer amount;
 	private String reason;
+	private String taskId;
+	private int id;
+	private String proc_inst_id;
+	private String audit_suggest;
 	public String getReceiptman_id() {
 		return receiptman_id;
 	}
@@ -39,10 +43,10 @@ public class Receipt {
 	public void setClubId(String clubId) {
 		this.clubId = clubId;
 	}
-	public String getState() {
+	public Integer getState() {
 		return state;
 	}
-	public void setState(String state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 	public Date getSubmit_time() {
@@ -93,6 +97,29 @@ public class Receipt {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getProc_inst_id() {
+		return proc_inst_id;
+	}
+	public void setProc_inst_id(String proc_inst_id) {
+		this.proc_inst_id = proc_inst_id;
+	}
+	public String getAudit_suggest() {
+		return audit_suggest;
+	}
+	public void setAudit_suggest(String audit_suggest) {
+		this.audit_suggest = audit_suggest;
+	}
 	
 }

@@ -1,5 +1,6 @@
 package com.community.bean;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /** 
@@ -10,7 +11,7 @@ import java.util.Date;
 */
 public class Task {
 	private String id;
-	private int rev;
+	private Integer rev;
 	private String execution_id;
 	private String proc_inst_id;
 	private String proc_def_id;
@@ -21,11 +22,11 @@ public class Task {
 	private String owner;
 	private String assignee;
 	private String delegation;
-	private int priority;
+	private Integer priority;
 	private Date create_time;
-	private Date due_date;
+	private Timestamp due_date;
 	private String category;
-	private int suspension_state;
+	private Integer suspension_state;
 	private String tenant_id;
 	private String form_key;
 	public String getId() {
@@ -112,10 +113,10 @@ public class Task {
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
-	public Date getDue_date() {
+	public Timestamp getDue_date() {
 		return due_date;
 	}
-	public void setDue_date(Date due_date) {
+	public void setDue_date(Timestamp due_date) {
 		this.due_date = due_date;
 	}
 	public String getCategory() {
