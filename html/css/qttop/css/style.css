@@ -39,7 +39,7 @@ a:focus { outline: none; }
 	font-size:14px;
 	line-height:40px;
 }
-.topmenu ul {
+.topmenu ul{
 			list-style: none;
 			padding: 0;
 			margin: 0;
@@ -162,8 +162,8 @@ a:focus { outline: none; }
 	height:293px;
 	background:url(../images/login_box.png) no-repeat;
 	position:absolute;
-	top:35px;
-	left:949px;
+	top:118px;
+	right:136px;
 	z-index:2;
 }
 .loginbox .row{
@@ -202,4 +202,39 @@ a:focus { outline: none; }
 .submitbtn input[type="reset"]{
 	background:#626763;
 	margin-left:10px;
+}
+#choseClubName{
+	width:128px;
+	background-size:12%;
+	background-position:106px;
+	border:1px #9a9a9a solid;
+	caret-color: transparent;
+}
+#choseClubName:hover{
+	cursor:pointer;
+} 
+#clublist{
+	width:128px;
+	border:1px #9a9a9a solid;
+	overflow:hidden;
+	color:#0f055f;
+	margin-left:80px;
+	font-size:15px;
+	position:absolute;
+	background:#efeee8;
+}
+#clublist li{
+	width:128px;
+	height:26px;
+}
+#clublist li:hover{
+	background:#6581ec;
+	color:#f0f7f0;
+	cursor:pointer;
+}
+.ui-down{
+	background:url(../images/down.png) no-repeat;
+}
+.ui-up{
+	background:url(../images/up.png) no-repeat;
 }

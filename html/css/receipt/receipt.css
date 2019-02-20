@@ -1,4 +1,102 @@
+/*报销首页样式*/
+ 	.title p{
+		color:#026fe8;
+		font-weight:700;
+	}
+	.title span{
+		font-size:13px;
+		color:#a9abad;
+	}
+	.recordbox{
+		width:70%;
+		position:absolute;
+		left:0;
+		margin-top:23px;
+	}
+	.onerecord{
+		margin-bottom:12px;
+		color:#ccc;
+	}
+	.onerecord span{
+		display:block;
+		font-size:15px;
+		font-weight:700;
+		width:231px;
+		height:28px;
+		border-bottom:1px solid #484646;
+		line-height:33px;
+		color:#6277ea;
+	}
+	.onerecord a{
+		display:inline-block;
+		width:45px;
+		height:26px;
+		background:#e2dbdb;
+		line-height:26px;
+		font-size:12px;
+		text-align:center;
+		border-radius:6px;
+		margin-right:10px;
+		cursor:pointer;
+		text-decoration:none;
+		color:#000;
+	}
+	.operbox{
+		margin-top:-21px;
+		margin-left:650px;
+		
+	}
+	.operbox button{
+		margin-left:10px;
+	}
+	#receiptEntry{
+		width:214px;
+		position:absolute;
+		right:-315px;
+		top:0;
+	}
+	#myAudit{
+		width:214px;
+		position:absolute;
+		right:-222px;
+		top:0;
+	}
+	#receiptwrapper .foot{
+		position:absolute;
+		left:30%;
+		bottom:-30px;
+		color:#026fe8;
+		text-decoration:none;
+	}
+	.foot a{
+		text-decoration:none;	
+		font-size:16px;
+		margin-right:10px;
+		color:#026fe8;
+	}
+	#receiptwrapper{
+		color:#ccc;
+	}
+	.tips{
+		color:#f12626;
+		font-size:16px;
+		font-weight:500;
+	}
 /*报销表单样式*/
+#receiptTab{
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	-webkit-margin-start: auto;
+	-webkit-margin-end: auto;
+	width:80%;
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: grey;
+	margin-left:74px;
+}
 #receiptform input{
 	width:93%;
 	height:19px;
@@ -8,10 +106,10 @@
 	height:24px;
 }
 #receiptform,#receiptwrapper{
-	width:80%;
+	width:90%;
 	position:relative;
 	height:430px;
-	margin-left:127px;
+	margin-left:23px;
 	color:#ccc;
 }
 #receiptform{
@@ -21,7 +119,7 @@
 	font-size:15px;
 }
 #addCol{
-	margin-left:119px;
+	margin-left:74px;
 }
 .backOrsub{
 	width:20%;
@@ -45,11 +143,8 @@ button{
 }
 #totalbox{
 	width:200px;
-	hright:30px;
-	position:absolute;
-	right:110px;
-	top:76px;
-	color:#fff;
+	height:28px;
+	margin-left:1022px;
 }
 #total{
 	width:75px;
@@ -57,7 +152,6 @@ button{
 	display:inline-block;
 	border:1px solid #040404;
 	position:absolute;
-	top:-5px;
 	line-height:30px;
 	background:#e6cfcf;
 	color:#000;
@@ -91,53 +185,29 @@ p.resultTitle{
 	border:none;
 	background:#318609;
 	color:#e4e0e0;
-	margin:20px 320px;
+	margin:99px 320px;
 }
 
-/*报销首页样式*/
-.title p{
-	color:#026fe8;
-	font-weight:700;
+/*修改报销单样式*/
+#total2{
+	width:75px;
+	height:30px;
+	display:inline-block;
+	border:1px solid #040404;
+	line-height:30px;
+	background:#e6cfcf;
+	color:#000;
 }
-.title span{
-	font-size:13px;
-	color:#a9abad;
-}
-.recordbox{
-	width:70%;
-	position:absolute;
-	left:0;
-	margin-top:23px;
-}
-.onerecord{
-	margin-bottom:12px;
-}
-.onerecord span{
-	display:block;
-	font-size:15px;
-	font-weight:700;
-	width:231px;
-	height:28px;
-	border-bottom:1px solid #484646;
-	line-height:33px;
-	color:#6277ea;
-}
-.operbox{
-	margin-top:-21px;
-	margin-left:650px;
-	
-}
-.operbox button{
-	margin-left:10px;
-}
-#receiptEntry{
-	width:214px;
-	position:absolute;
-	right:-315px;
-	top:0;
-}
-.foot{
-	position:absolute;
-	left:30%;
-	bottom:-30px;
+#backToHomePage{
+    display:  inline-block;
+    width: 72px;
+    height: 37px;
+    color:  #ccc;
+    line-height:  37px;
+    font-size: 14px;
+    text-decoration:  none;
+    background: #2b7b05;
+    text-align: center;
+    border-radius:  4px;
+	border:none;
 }
