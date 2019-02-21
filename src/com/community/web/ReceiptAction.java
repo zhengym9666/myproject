@@ -32,8 +32,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê2ÔÂ14ÈÕ ÉÏÎç10:36:05
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´2æœˆ14æ—¥ ä¸Šåˆ10:36:05
 * @version 1.0 
 * @desrciption		
 */
@@ -72,8 +72,8 @@ public class ReceiptAction {
 		
 		int pageSize = 4;
 		
-		//»ñÈ¡ÉçÍÅÃû³Æ
-		String clubName = clubService.getClubById(clubId).getName();
+		//è·å–ç¤¾å›¢åç§°
+		String clubName = clubService.getClubById(clubId).getClubName();
 		
 		PageBean PageOperLog = ReceiptOperLogService.queryAllOperInfo(receiptman_id, clubId,currentPage,pageSize);
 		
@@ -82,18 +82,18 @@ public class ReceiptAction {
 		
 		return "forward:/front/receipt/receiptInfo.jsp";
 	}
-	
+
 	@RequestMapping("/lookOneReceipt.action")
 	public void LookOneReceipt(HttpServletRequest request,HttpServletResponse response) throws Exception, IOException{
 		
 		String  procInstId = request.getParameter("procInstId");
 		int backPageId = Integer.parseInt(request.getParameter("backPage"));
 		
-		//»ñÈ¡±¨ÏúĞÅÏ¢
+		//è·å–æŠ¥é”€ä¿¡æ¯
 		Receipt oneReceiptInfo = receiptService.queryOneReceiptByProcInstId(procInstId);
 		HashMap<String,Object> oneReceiptMap = new HashMap<String,Object>();
 		
-		//¸ù¾İstateÅĞ¶ÏÏÂÒ»ÉóÅúÈË
+		//æ ¹æ®stateåˆ¤æ–­ä¸‹ä¸€å®¡æ‰¹äºº
 		String next_autitor = null;
 		Integer state = oneReceiptInfo.getState();
 		if(state==0){
@@ -104,10 +104,10 @@ public class ReceiptAction {
 			next_autitor = studentService.getStudentInfoById(oneReceiptInfo.getThird_autitor()).getStuName();
 		}
 		
-		//»ñÈ¡ÉçÍÅÃû³Æ
-		String clubName = clubService.getClubById(oneReceiptInfo.getClubId()).getName();
+		//è·å–ç¤¾å›¢åç§°
+		String clubName = clubService.getClubById(oneReceiptInfo.getClubId()).getClubName();
 		
-		//×éºÏ·µ»Ø±¨ÏúµÄĞÅÏ¢
+		//ç»„åˆè¿”å›æŠ¥é”€çš„ä¿¡æ¯
 		oneReceiptMap.put("stuNum", oneReceiptInfo.getReceiptman_id());
 		oneReceiptMap.put("stuName", oneReceiptInfo.getReceiptman_name());
 		oneReceiptMap.put("clubName", clubName);
@@ -121,7 +121,7 @@ public class ReceiptAction {
 		oneReceiptMap.put("procInstId", procInstId);
 		oneReceiptMap.put("audit_suggest", oneReceiptInfo.getAudit_suggest());
 	
-		//»ñÈ¡±¨ÏúÏêÏ¸
+		//è·å–æŠ¥é”€è¯¦ç»†
 		List<ReceiptDetail> detailList = receiptDetailService.queryReceiptDetailByProcInstId(procInstId);
 		
 		request.setAttribute("oneReceiptMap", oneReceiptMap);
@@ -135,10 +135,10 @@ public class ReceiptAction {
 		
 		String procInstId = request.getParameter("procInstId");
 		
-		//»ñÈ¡±¨ÏúĞÅÏ¢
+		//è·å–æŠ¥é”€ä¿¡æ¯
 		Receipt oneReceiptInfo = receiptService.queryOneReceiptByProcInstId(procInstId);
 		
-		//»ñÈ¡±¨ÏúÏêÏ¸
+		//è·å–æŠ¥é”€è¯¦ç»†
 		List<ReceiptDetail> detailList = receiptDetailService.queryReceiptDetailByProcInstId(procInstId);
 		
 		request.setAttribute("oneReceiptInfo", oneReceiptInfo);
@@ -159,7 +159,7 @@ public class ReceiptAction {
 		JSONObject jsonObject;
 		List<ReceiptDetail> detailList = new ArrayList<ReceiptDetail>();
 		SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd");
-		//ĞŞ¸ÄÊ±¼ä
+		//ä¿®æ”¹æ—¶é—´
 		Date revise_time = new Date();
 		for(int i = 0;i<jsonArray.size();i++){
 			jsonObject = jsonArray.getJSONObject(i);
@@ -187,14 +187,14 @@ public class ReceiptAction {
 			}
 		}
 		
-		//¸üĞÂ±¨Ïú±í
+		//æ›´æ–°æŠ¥é”€è¡¨
 		receiptService.updateOneReceiptByProcInstId(receipt_reason, amount,revise_time,procInstId);
 		
-		//¸üĞÂ±¨ÏúÏêÇé±í
+		//æ›´æ–°æŠ¥é”€è¯¦æƒ…è¡¨
 		receiptDetailService.updateDetail(detailList, procInstId);
 		
-		//Ìí¼Ó²Ù×÷ÈÕÖ¾
-		//»ñÈ¡±¨ÏúÈËÃû×Ö
+		//æ·»åŠ æ“ä½œæ—¥å¿—
+		//è·å–æŠ¥é”€äººåå­—
 		ReceiptOperLog operLogInfo = new ReceiptOperLog();
 		String oper_name = receiptService.queryOneReceiptByProcInstId(procInstId).getReceiptman_name();
 		operLogInfo.setOper_name(oper_name);
@@ -204,9 +204,9 @@ public class ReceiptAction {
 		operLogInfo.setReceipt_type(receipt_reason);
 		ReceiptOperLogService.saveOperInfo(operLogInfo);
 		
-		//·µ»ØĞŞ¸Ä³É¹¦ĞÅÏ¢
+		//è¿”å›ä¿®æ”¹æˆåŠŸä¿¡æ¯
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		//·µ»ØÏÂÒ»ÉóÅúÈË¼´µÚÒ»ÉóÅúÈË
+		//è¿”å›ä¸‹ä¸€å®¡æ‰¹äººå³ç¬¬ä¸€å®¡æ‰¹äºº
 		String oneAuditor = studentService.getStudentInfoById(receiptService.queryOneReceiptByProcInstId(procInstId).getOne_autitor()).getStuName();
 		resultMap.put("amount", amount);
 		resultMap.put("oneAuditor", oneAuditor);
@@ -228,10 +228,10 @@ public class ReceiptAction {
 		
 		String procInstId = request.getParameter("procInstId");
 		
-		//ĞŞ¸Ä±¨Ïú±í±¨Ïúµ¥×´Ì¬
+		//ä¿®æ”¹æŠ¥é”€è¡¨æŠ¥é”€å•çŠ¶æ€
 		receiptService.revokeOneReceiptByProcInstId(4, procInstId);
 		
-		//Ìí¼Ó²Ù×÷ÈÕÖ¾±í
+		//æ·»åŠ æ“ä½œæ—¥å¿—è¡¨
 		ReceiptOperLog operLogInfo = new ReceiptOperLog();
 		String oper_name = receiptService.queryOneReceiptByProcInstId(procInstId).getReceiptman_name();
 		String receipt_reason = receiptService.queryOneReceiptByProcInstId(procInstId).getReason();
@@ -251,7 +251,7 @@ public class ReceiptAction {
 		String procInstId = request.getParameter("procInstId");
 		String audit_suggest = request.getParameter("audit_suggest");
 		
-		//ÅĞ¶Ïµ±Ç°±¨Ïúµ¥´¦ÓÚ¼¸¼¶ÉóÅú
+		//åˆ¤æ–­å½“å‰æŠ¥é”€å•å¤„äºå‡ çº§å®¡æ‰¹
 		Receipt receiptInfo = receiptService.queryOneReceiptByProcInstId(procInstId);
 		Integer state = receiptInfo.getState();
 		String oper_name = null;
@@ -270,10 +270,10 @@ public class ReceiptAction {
 			oper_type = -3;
 		}
 		
-		//ĞŞ¸Ä±¨Ïúµ¥×´Ì¬
+		//ä¿®æ”¹æŠ¥é”€å•çŠ¶æ€
 		receiptService.rejectOneReceiptByProcInstId(state, audit_suggest, procInstId);
 		
-		//Ìí¼Ó²Ù×÷ÈÕÖ¾±í
+		//æ·»åŠ æ“ä½œæ—¥å¿—è¡¨
 		ReceiptOperLog operLogInfo = new ReceiptOperLog();
 		String receipt_reason = receiptService.queryOneReceiptByProcInstId(procInstId).getReason();
 		operLogInfo.setOper_name(oper_name);

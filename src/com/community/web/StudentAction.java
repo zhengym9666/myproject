@@ -52,7 +52,7 @@ public class StudentAction {
     public ResponseEntity<Student> queryUserById(@PathVariable("studentId")String userId){
 
         try {
-            //根据用户id查询用户
+            //鏍规嵁鐢ㄦ埛id鏌ヨ鐢ㄦ埛
             Student student = studentService.getStudentInfoById(userId);
 
             return ResponseEntity.ok(student);
@@ -60,18 +60,18 @@ public class StudentAction {
             e.printStackTrace();
         }
 
-        //返回500
+        //杩斿洖500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 
-    //根据token获取用户信息
+    //鏍规嵁token鑾峰彇鐢ㄦ埛淇℃伅
     @RequestMapping("/queryStudent.action")
     public ResponseEntity<Map> queryStudentHandle(HttpServletRequest request, HttpSession session) throws IOException {
         Student student;
         JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
         String studentId = ob.getString("studentId");
         String hOpCode = ob.getString("hOpCode");
-        //测试使用
+        //娴嬭瘯浣跨敤
         if(studentId==null){
             //studentId="123";
         }
@@ -85,8 +85,8 @@ public class StudentAction {
         if (student == null) {
            /* UCError errorPack = UCErrorPack.create(UCErrorCode.ERROR_CODE_4, httpPacket.hSession.headParam.hOpCode);
             throw new HttpException(HOpCodeUCenter.UC_ERROR, errorPack);*/
-            log.error("找不到该学生");
-            //返回500
+            log.error("鎵句笉鍒拌瀛︾敓");
+            //杩斿洖500
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
         User user = studentToUser(student);
@@ -95,7 +95,7 @@ public class StudentAction {
         return ResponseEntity.ok(map);
     }
 
-    //获取用户所在社团的好友
+    //鑾峰彇鐢ㄦ埛鎵�鍦ㄧぞ鍥㈢殑濂藉弸
     @RequestMapping("/queryFriendList.action")
     public ResponseEntity<Map> queryFriendList(HttpServletRequest request, HttpSession session) throws IOException {
         Map map = new HashMap();;
@@ -103,7 +103,7 @@ public class StudentAction {
         JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
         String hOpCode=ob.getString("hOpCode");
         try {
-            //获取当前社团ID
+            //鑾峰彇褰撳墠绀惧洟ID
             String cludId=ob.getString("userGroupTopId");
             List<GroupMember> groupMembers = groupMemberService.queryMemberListByClubId(cludId);
             List<String> studentIds=new ArrayList<>();
@@ -132,7 +132,7 @@ public class StudentAction {
         return ResponseEntity.ok(map);
     }
 
-    //根据token获取用户信息
+    //鏍规嵁token鑾峰彇鐢ㄦ埛淇℃伅
     @RequestMapping("/queryStudent2.action")
     public ResponseEntity<Student> queryStudent2Handle(HttpServletRequest request, HttpSession session){
         Student student=new Student();
@@ -140,7 +140,7 @@ public class StudentAction {
         student.setStuName("213");
         student.setStuPass("21322");
         student.sethOpCode("233");
-        //返回500
+        //杩斿洖500
         return ResponseEntity.ok(student);
     }
 
