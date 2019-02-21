@@ -28,9 +28,8 @@
 		<div id="header"> 
 			<ul id="navigation">
 			<c:forEach items="${sessionScope.clublist }" var="club">
-				<li><a id="${club.id }">${club.name }</a></li>
+				<li><a id="${club.clubId }">${club.clubName }</a></li>
 			</c:forEach>
-				
 				<!-- <li><a id="volunteer">青年志愿者协会</a></li>
 				<li><a id="redcross">红十字会</a></li>
 				<li><a id="psychology">心理协会</a></li>

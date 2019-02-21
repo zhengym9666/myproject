@@ -27,7 +27,11 @@ public class ClubServiceImpl extends AbsServiceImpl<ClubDAO> implements IClubSer
 	@Override
 	public Club getClubById(String clubId) {
 		// TODO Auto-generated method stub
-		return clubMapper.getClubById(clubId);
+		return mapper.getClubById(clubId);
+	}
+
+	@Override
+	public String getGeneralIdByClubId(String clubId) {
 		return mapper.getGeneralIdByClubId(clubId);
 	}
 

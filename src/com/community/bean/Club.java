@@ -1,7 +1,6 @@
 package com.community.bean;
 
 public class Club {
-	
 	private String clubId;
 	private String clubName;
 	private String intro;
@@ -10,6 +9,8 @@ public class Club {
 	private String presidentId;
 	private String vice1;
 	private String vice2;
+
+
 	public String getClubId() {
 		return clubId;
 	}

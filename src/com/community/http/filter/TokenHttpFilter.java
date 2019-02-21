@@ -47,7 +47,8 @@ public class TokenHttpFilter implements HandlerInterceptor {
             //获取请求地址
             String getServletPath =request.getServletPath();
             //如果是登录接口，不进行拦截
-            if(getServletPath.contains("LoginAction.action") || getServletPath.contains("queryNewsPage.action")){
+            if(getServletPath.contains("LoginAction.action") || getServletPath.contains("queryNewsPage.action") ||
+                    getServletPath.contains("mathBuild.action")){
                 return true;
             }
             //先检测聊天系统是否有toekn

@@ -214,7 +214,7 @@
 			<input type="hidden" id="choseClubId" name="clubId" class="ui-down"/>
 			<ul id="clublist" style="display:none;">
 				<c:forEach items="${sessionScope.clublist }" var="club">
-				<li id="${club.id }">${club.name }</li>
+				<li id="${club.clubId }">${club.clubName }</li>
 				</c:forEach>
 <!-- 				<option>团委学生会</option>
 				<option>青年志愿者协会</option>
