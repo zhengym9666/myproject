@@ -32,7 +32,7 @@ String shetuanmingcheng=request.getParameter("shetuanmingcheng");String jine=req
 //gdsossselse{
 
 	
-  	  	String sql="insert into caiwujilu(shetuanmingcheng,jine,shouzhi,jingshouren,xiangmumingcheng,riqi,beizhu) values('"+shetuanmingcheng+"','"+jine+"','"+shouzhi+"','"+jingshouren+"','"+xiangmumingcheng+"','"+riqi+"','"+beizhu+"') ";
+  	  	String sql="insert into caiwujilu(shetuanmingcheng,jine,shouzhi,jingshouren,xiangmumingcheng,riqi,beizhu) bean('"+shetuanmingcheng+"','"+jine+"','"+shouzhi+"','"+jingshouren+"','"+xiangmumingcheng+"','"+riqi+"','"+beizhu+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('Ìí¼Ó³É¹¦!!');location.href='caiwujilu_add.jsp';</script>");

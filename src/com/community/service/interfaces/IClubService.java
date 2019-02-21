@@ -8,11 +8,14 @@ import com.community.bean.Club;
  * 
  * @author zym
  *
- * 2018Äê12ÔÂ27ÈÕ
+ * 2018å¹´12æœˆ27æ—¥
  */
 
 public interface IClubService {
 	public List<Club> queryClubBycollegeId(String collegeId);
 	
 	public Club getClubById(String clubId);
+	public String getGeneralIdByClubId(String clubId);
+
+    Club queryUserGroup(String clubId);
 }

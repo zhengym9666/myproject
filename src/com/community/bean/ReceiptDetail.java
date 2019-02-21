@@ -3,8 +3,8 @@ package com.community.bean;
 import java.util.Date;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÉÏÎç10:00:53
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸Šåˆ10:00:53
 * @version 1.0 
 * @desrciption		
 */

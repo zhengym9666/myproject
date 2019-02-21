@@ -1,7 +1,7 @@
 package com.community.bean;
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ24ÈÕ ÏÂÎç11:40:48
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ24æ—¥ ä¸‹åˆ11:40:48
 * @version 1.0 
 * @desrciption		
 */

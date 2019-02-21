@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import com.community.bean.Department;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÉÏÎç10:29:30
+* @author  ä½œè€… :zhengym
+* @date  åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸Šåˆ10:29:30
 * @version 1.0 
 * @desrciption		
 */

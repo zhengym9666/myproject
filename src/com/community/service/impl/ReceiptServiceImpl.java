@@ -14,8 +14,8 @@ import com.community.service.interfaces.IReceiptService;
 import com.community.util.PageBean;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÏÂÎç2:36:27
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸‹åˆ2:36:27
 * @version 1.0 
 * @desrciption		
 */

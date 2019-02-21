@@ -30,7 +30,7 @@ out.print("<script>alert('该用户名已经存在,请换其他用户名!');window.history.go(-
 else{
 
 	
-  	  	String sql="insert into allusers(username,pwd) values('"+username+"','"+pwd+"')";
+  	  	String sql="insert into allusers(username,pwd) bean('"+username+"','"+pwd+"')";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('添加成功!!');location.href='yhzhgl.jsp';</script>");

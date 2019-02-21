@@ -4,57 +4,57 @@ import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
 
 /**
- * Á÷³ÌÒıÇæ¹¤¾ßÀà
+ * æµç¨‹å¼•æ“å·¥å…·ç±»
  * @author LEE.SIU.WAH
  * @email lixiaohua7@163.com
- * @date 2016Äê7ÔÂ5ÈÕ ÏÂÎç5:32:33
+ * @date 2016å¹´7æœˆ5æ—¥ ä¸‹åˆ5:32:33
  * @version 1.0
  */
 public class ProcessEngineUtils {
-	/** ¶¨ÒåÁ÷³ÌÒıÇæ¶ÔÏó */
+	/** å®šä¹‰æµç¨‹å¼•æ“å¯¹è±¡ */
 	private static ProcessEngine processEngine;
 	static{
-		/** ´´½¨Á÷³ÌÒıÇæÅäÖÃĞÅÏ¢¶ÔÏó(´´½¨Ò»¸ö¶ÀÁ¢µÄÁ÷³ÌÒıÇæÅäÖÃĞÅÏ¢¶ÔÏó) */
+		/** åˆ›å»ºæµç¨‹å¼•æ“é…ç½®ä¿¡æ¯å¯¹è±¡(åˆ›å»ºä¸€ä¸ªç‹¬ç«‹çš„æµç¨‹å¼•æ“é…ç½®ä¿¡æ¯å¯¹è±¡) */
 		ProcessEngineConfiguration pec = ProcessEngineConfiguration
 					.createStandaloneProcessEngineConfiguration();
-		/** µ÷ÓÃÁ÷³ÌÒıÇæÅäÖÃĞÅÏ¢¶ÔÏóÖĞµÄ·½·¨ÉèÖÃÅäÖÃĞÅÏ¢ */
-		/** ÉèÖÃÊı¾İ¿âÀàĞÍ */
+		/** è°ƒç”¨æµç¨‹å¼•æ“é…ç½®ä¿¡æ¯å¯¹è±¡ä¸­çš„æ–¹æ³•è®¾ç½®é…ç½®ä¿¡æ¯ */
+		/** è®¾ç½®æ•°æ®åº“ç±»å‹ */
 		pec.setDatabaseType("mysql");
 		/** 
-		 * ÉèÖÃ´´½¨Êı¾İ¿â±íµÄ·½Ê½:
-		 * ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE(true):  Èç¹ûÃ»ÓĞÊı¾İ¿â±í¾Í»á´´½¨±í£¬ÓĞµÄ»°¾Í²»´´½¨£¬Èç¹ûÊÇ°æ±¾Éı¼¶¾Í»áĞŞ¸Ä
-		 * ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE(false): ²»»á´´½¨´´½¨Êı¾İ¿â±í
-		 * ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP(create-drop): Ã¿´Î¶¼»áÏÈ´´½¨Êı¾İ¿â±í£¬ÔÙÉ¾³ı
+		 * è®¾ç½®åˆ›å»ºæ•°æ®åº“è¡¨çš„æ–¹å¼:
+		 * ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE(true):  å¦‚æœæ²¡æœ‰æ•°æ®åº“è¡¨å°±ä¼šåˆ›å»ºè¡¨ï¼Œæœ‰çš„è¯å°±ä¸åˆ›å»ºï¼Œå¦‚æœæ˜¯ç‰ˆæœ¬å‡çº§å°±ä¼šä¿®æ”¹
+		 * ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE(false): ä¸ä¼šåˆ›å»ºåˆ›å»ºæ•°æ®åº“è¡¨
+		 * ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP(create-drop): æ¯æ¬¡éƒ½ä¼šå…ˆåˆ›å»ºæ•°æ®åº“è¡¨ï¼Œå†åˆ é™¤
 		 */
 		pec.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
-		/** ÉèÖÃÊı¾İ¿âÇı¶¯ */
+		/** è®¾ç½®æ•°æ®åº“é©±åŠ¨ */
 		pec.setJdbcDriver("com.mysql.jdbc.Driver");
-		/** ÉèÖÃÁ¬½ÓÊı¾İ¿âµÄURL */
+		/** è®¾ç½®è¿æ¥æ•°æ®åº“çš„URL */
 		pec.setJdbcUrl("jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf-8");
-		/** ÉèÖÃÁ¬½ÓÊı¾İ¿âµÄÓÃ»§Ãû */
+		/** è®¾ç½®è¿æ¥æ•°æ®åº“çš„ç”¨æˆ·å */
 		pec.setJdbcUsername("root");
-		/** ÉèÖÃÁ¬½ÓÊı¾İ¿âµÄÃÜÂë */
+		/** è®¾ç½®è¿æ¥æ•°æ®åº“çš„å¯†ç  */
 		pec.setJdbcPassword("root");
 		
-		/** ÉèÖÃÁ÷³ÌÍ¼½ÚµãÉÏµÄ×ÖÌå */
-		pec.setActivityFontName("ËÎÌå");
-		/** ÉèÖÃÁ¬½ÓÏßÉÏÃæµÄ×ÖÌå*/
-		pec.setLabelFontName("ËÎÌå");
-		/** ÉèÖÃxmlÎÄ¼şµÄ×ÖÌå±àÂë*/
+		/** è®¾ç½®æµç¨‹å›¾èŠ‚ç‚¹ä¸Šçš„å­—ä½“ */
+		pec.setActivityFontName("å®‹ä½“");
+		/** è®¾ç½®è¿æ¥çº¿ä¸Šé¢çš„å­—ä½“*/
+		pec.setLabelFontName("å®‹ä½“");
+		/** è®¾ç½®xmlæ–‡ä»¶çš„å­—ä½“ç¼–ç */
 		pec.setXmlEncoding("utf-8");
-		/** ÉèÖÃÓÊ¼şÏà¹ØµÄÊôĞÔ */
-		/**ÉèÖÃÓÊ¼ş·şÎñÆ÷£¨Ö÷»ú£©*/
+		/** è®¾ç½®é‚®ä»¶ç›¸å…³çš„å±æ€§ */
+		/**è®¾ç½®é‚®ä»¶æœåŠ¡å™¨ï¼ˆä¸»æœºï¼‰*/
 		pec.setMailServerHost("smtp.163.com");
-		/** ÉèÖÃÄ¬ÈÏµÄÓÊ¼ş·¢ËÍÈË */
+		/** è®¾ç½®é»˜è®¤çš„é‚®ä»¶å‘é€äºº */
 		pec.setMailServerDefaultFrom("fkjava8888@163.com");
-		/** ÉèÖÃÓÊ¼ş·şÎñÓÃ»§Ãû */
+		/** è®¾ç½®é‚®ä»¶æœåŠ¡ç”¨æˆ·å */
 		pec.setMailServerUsername("fkjava8888");
-		/** ÉèÖÃÓÊ¼ş·şÎñÃÜÂë*/
+		/** è®¾ç½®é‚®ä»¶æœåŠ¡å¯†ç */
 		pec.setMailServerPassword("fkjava888");
-		/** ÉèÖÃ¿ªÆô¶¨Ê±ÈÎÎñ*/
+		/** è®¾ç½®å¼€å¯å®šæ—¶ä»»åŠ¡*/
 		pec.setJobExecutorActivate(true);
 		
-		/** ÓÃÁ÷³ÌÒıÇæÅäÖÃĞÅÏ¢¶ÔÏó¹¹½¨Á÷³ÌÒıÇæ */
+		/** ç”¨æµç¨‹å¼•æ“é…ç½®ä¿¡æ¯å¯¹è±¡æ„å»ºæµç¨‹å¼•æ“ */
 		processEngine = pec.buildProcessEngine();
 	}
 	

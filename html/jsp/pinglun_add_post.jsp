@@ -33,7 +33,7 @@ out.print("<script>alert('对不起，您已经评价过了，请不要重复!');window.history.g
 else{
 
 	
-  	  	String sql="insert into pinglun(xinwenID,pinglunneirong,pinglunren,pingfen) values('"+xinwenID+"','"+pinglunneirong+"','"+pinglunren+"','"+pingfen+"') ";
+  	  	String sql="insert into pinglun(xinwenID,pinglunneirong,pinglunren,pingfen) bean('"+xinwenID+"','"+pinglunneirong+"','"+pinglunren+"','"+pingfen+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
 		

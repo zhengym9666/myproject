@@ -7,5 +7,5 @@ package com.community.service.interfaces;/**
 
 import com.community.bean.User;
 public interface IUserService {
-    public User queryUserById(float id);
+    public User queryUserById(String id);
 }

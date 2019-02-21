@@ -6,7 +6,7 @@ import com.community.util.PageBean;
  * 
  * @author zym
  *
- * 2018Äê12ÔÂ24ÈÕ
+ * 2018å¹´12æœˆ24æ—¥
  */
 
 public interface INewsService {

@@ -3,8 +3,8 @@ package com.community.bean;
 import java.util.Date;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÉÏÎç9:55:12
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸Šåˆ9:55:12
 * @version 1.0 
 * @desrciption		
 */
@@ -98,5 +98,21 @@ public class GroupMember {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "GroupMember{" +
+				"stuNum='" + stuNum + '\'' +
+				", stuName='" + stuName + '\'' +
+				", clubId='" + clubId + '\'' +
+				", departmentId='" + departmentId + '\'' +
+				", rank='" + rank + '\'' +
+				", job='" + job + '\'' +
+				", state='" + state + '\'' +
+				", joinTime=" + joinTime +
+				", exitTime=" + exitTime +
+				", id=" + id +
+				'}';
 	}
 }

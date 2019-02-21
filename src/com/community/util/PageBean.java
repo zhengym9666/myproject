@@ -6,20 +6,20 @@ import com.community.bean.News;
 
 
 /**
- * ·ÖÒ³ÔªÊı¾İ
+ * åˆ†é¡µå…ƒæ•°æ®
  * @author zym
  *
- * 2018Äê12ÔÂ24ÈÕ
+ * 2018å¹´12æœˆ24æ—¥
  */
 public class PageBean {
-	private List data;//·ÖÒ³Êı¾İ
-	private int currentPage;//µ±Ç°Ò³
-	private int firstPage;//Ê×Ò³
-	private int prePage;//ÉÏÒ»Ò³
-	private int nextPage;//ÏÂÒ»Ò³
-	private int totalPage;//Ä©Ò³/×ÜÒ³Êı
-	private int totalCount;//×Ü¼ÇÂ¼Êı
-	private int pageSize;//Ã¿Ò³¼ÇÂ¼Êı
+	private List data;//åˆ†é¡µæ•°æ®
+	private int currentPage;//å½“å‰é¡µ
+	private int firstPage;//é¦–é¡µ
+	private int prePage;//ä¸Šä¸€é¡µ
+	private int nextPage;//ä¸‹ä¸€é¡µ
+	private int totalPage;//æœ«é¡µ/æ€»é¡µæ•°
+	private int totalCount;//æ€»è®°å½•æ•°
+	private int pageSize;//æ¯é¡µè®°å½•æ•°
 	public List getData() {
 		return data;
 	}
@@ -39,7 +39,7 @@ public class PageBean {
 		this.firstPage = firstPage;
 	}
 	
-//	ÉÏÒ»Ò³  Ëã·¨£ºÈôµ±Ç°Ò³µÈÓÚÊ×Ò³£¬ÉÏÒ»Ò³µÈÓÚµ±Ç°Ò³£¬·ñÔòÉÏÒ»Ò³µÈÓÚµ±Ç°Ò³-1
+//	ä¸Šä¸€é¡µ  ç®—æ³•ï¼šè‹¥å½“å‰é¡µç­‰äºé¦–é¡µï¼Œä¸Šä¸€é¡µç­‰äºå½“å‰é¡µï¼Œå¦åˆ™ä¸Šä¸€é¡µç­‰äºå½“å‰é¡µ-1
 	public int getPrePage() {
 		return this.getCurrentPage()==this.getFirstPage()?this.getCurrentPage():this.getCurrentPage()-1;
 	}
@@ -47,7 +47,7 @@ public class PageBean {
 		this.prePage = prePage;
 	}
 	
-//	ÏÂÒ»Ò³  Ëã·¨£ºÈôµ±Ç°Ò³µÈÓÚ×ÜÒ³Êı£¬ÏÂÒ»Ò³µÈÓÚµ±Ç°Ò³£¬·ñÔòÏÂÒ»Ò³µÈÓÚµ±Ç°Ò³+1
+//	ä¸‹ä¸€é¡µ  ç®—æ³•ï¼šè‹¥å½“å‰é¡µç­‰äºæ€»é¡µæ•°ï¼Œä¸‹ä¸€é¡µç­‰äºå½“å‰é¡µï¼Œå¦åˆ™ä¸‹ä¸€é¡µç­‰äºå½“å‰é¡µ+1
 	public int getNextPage() {
 		return this.getCurrentPage()==this.getTotalPage()?this.getCurrentPage():this.getCurrentPage()+1;
 	}
@@ -55,7 +55,7 @@ public class PageBean {
 		this.nextPage = nextPage;
 	}
 	
-//	×ÜÒ³Êı  Ëã·¨£ºÈô×Ü¼ÇÂ¼Êı¿ÉÒÔÕû³ıÃ¿Ò³¼ÇÂ¼£¬×ÜÒ³Êı=×Ü¼ÇÂ¼Êı/Ã¿Ò³¼ÇÂ¼Êı£¬·ñÔò×ÜÒ³Êı=×Ü¼ÇÂ¼Êı/Ã¿Ò³¼ÇÂ¼Êı+1
+//	æ€»é¡µæ•°  ç®—æ³•ï¼šè‹¥æ€»è®°å½•æ•°å¯ä»¥æ•´é™¤æ¯é¡µè®°å½•ï¼Œæ€»é¡µæ•°=æ€»è®°å½•æ•°/æ¯é¡µè®°å½•æ•°ï¼Œå¦åˆ™æ€»é¡µæ•°=æ€»è®°å½•æ•°/æ¯é¡µè®°å½•æ•°+1
 	public int getTotalPage() {
 		return this.getTotalCount()%this.getPageSize()==0?this.getTotalCount()/this.getPageSize():this.getTotalCount()/this.getPageSize()+1;
 	}

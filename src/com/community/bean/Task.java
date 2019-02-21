@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê2ÔÂ9ÈÕ ÏÂÎç6:23:36
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´2æœˆ9æ—¥ ä¸‹åˆ6:23:36
 * @version 1.0 
 * @desrciption		
 */

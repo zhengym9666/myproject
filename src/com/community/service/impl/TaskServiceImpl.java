@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 import com.community.bean.Task;
 import com.community.dao.TaskDAO;
 import com.community.service.interfaces.ITaskService;
+import org.springframework.stereotype.Service;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê2ÔÂ9ÈÕ ÉÏÎç12:09:25
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´2æœˆ9æ—¥ ä¸Šåˆ12:09:25
 * @version 1.0 
 * @desrciption		
 */
-
-@Service("TaskService")
+@Service("taskService")
 public class TaskServiceImpl implements ITaskService {
 	
 	@Autowired

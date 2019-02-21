@@ -195,12 +195,11 @@
 		</ul>
 		<div id="login">登录</div>
 		<c:if test="${not empty sessionScope.userName }">
-		<div class="blank" style="position:absolute;right:0">欢迎您，<span id="userName">${sessionScope.userName }</span></div>
+		<div class="blank" style="position:absolute;right:0">欢迎您，${sessionScope.userName }</div>
 		</c:if>
 	<div class="cls"></div>
 	</div>
 <div class="loginbox" id="loginbox" style="display:none;">
-	<form action="" id="loginform">
 		<div class="row" style="margin-top:57px;">
 			<span>学号：</span>
 			<input type="text" id="username" name="userId"/>
@@ -231,7 +230,6 @@
 			<input type="submit" id="loginsubmit" value="登录"/>
 			<input type="reset" value="重置"/>
 		</div>
-	</form>
 
 </div>
 
@@ -240,11 +238,23 @@ scrolling="no" style="position:fixed;top:115px;">
 
 </iframe>
    	<script>
+	var rootPath = '<%=request.getContextPath()%>';
 	$(function(){
 		//获取路径 | | |
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
+
+		var clubId;
+		//isLogin:0：不需要登录,不展开登录页面  1：需要登录，展开登录页面
+        var isLogin=0;
+        <c:if test="${! empty param.isLogin}">isLogin="${param.isLogin}"</c:if>
+        if(typeof isLogin == "undefined" || isLogin == null || isLogin == ""){
+            isLogin=0;//默认不需要登录
+        }
+        if(isLogin==1){
+            $("#loginbox").slideToggle("slow");
+        }
 
 		$("#login").click(function(){
 			$("#loginbox").slideToggle("slow");
@@ -266,10 +276,40 @@ scrolling="no" style="position:fixed;top:115px;">
 			$("#choseClubName").toggleClass("ui-up");
 			$("#choseClubId").val($(this).attr("id"));
 		});
-
 		$("#loginsubmit").click(function(){
 			var loginUrl = projectName+"/login/LoginAction.action";
-			$("#loginform").attr("action", loginUrl);
+
+			// $("#loginform").attr("action", loginUrl);
+
+            var username=$("#username").val();
+            var password=$("#password").val();
+            var clubId=$("#choseClubId").val();
+
+            $.ajax({
+                url : loginUrl,
+                type:'post',
+                async:true,
+                cache:false,
+                data : {
+                    username:username,
+                    password:password,
+                    clubId:clubId
+                },
+                dataType:'JSON',
+                success : function(response) {
+                    response=JSON.parse(response);
+                    if(response.status){
+                        window.location.href=rootPath+"/front/index.jsp";
+                    }else{
+                        alert("错误信息："+response.msg);
+                    }
+                },
+                error : function() {
+                    var obj = {};
+                    obj["Ptext"] = "系统出错";
+                    operationTipsFailed(obj);
+                }
+            });
 		});
 
 		var iframe = document.getElementById("content");
@@ -277,6 +317,8 @@ scrolling="no" style="position:fixed;top:115px;">
 		iframe.src = "./"+newsid+"/"+newsid+".jsp";
 		//获取对应选项的标签名称
 		$(".topmenu a").click(function(){
+            <c:if test="${empty sessionScope.token}">window.location.href=rootPath+"/front/index.jsp?isLogin=1"</c:if>
+
 			var navid = $(this).attr("id");
 			if(navid=="receipt"){
 				var sessionUser = $("#userName").text();
@@ -288,9 +330,8 @@ scrolling="no" style="position:fixed;top:115px;">
 				}
 			}
 			if(navid=="chat"){
-                iframe.src="./"+navid+"/"+navid+".jsp?token=c4926be8b8bd40b1b84ec20c8121fda9";
+                iframe.src="./"+navid+"/"+navid+".jsp?token=${sessionScope.token }";
             }
-			
 		});
 
 	});

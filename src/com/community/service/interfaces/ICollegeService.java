@@ -6,7 +6,7 @@ import com.community.bean.College;
  * 
  * @author zym
  *
- * 2018Äê12ÔÂ28ÈÕ
+ * 2018å¹´12æœˆ28æ—¥
  */
 
 public interface ICollegeService {

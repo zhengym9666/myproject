@@ -32,7 +32,7 @@ out.print("<script>alert('您已经申请地了，请不要重复提交!');window.history.go(-1
 else{
 
 	
-  	  	String sql="insert into shechangshenqing(xuehao,xingming,shetuan,shenqingliyou) values('"+xuehao+"','"+xingming+"','"+shetuan+"','"+shenqingliyou+"') ";
+  	  	String sql="insert into shechangshenqing(xuehao,xingming,shetuan,shenqingliyou) bean('"+xuehao+"','"+xingming+"','"+shetuan+"','"+shenqingliyou+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('添加成功!!');location.href='shechangshenqing_add.jsp';</script>");

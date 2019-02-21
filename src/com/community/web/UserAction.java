@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
 /**
  * @ClassName:
  * @Description: TODO
@@ -23,10 +27,10 @@ public class UserAction {
     private IUserService userService;
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<User> queryUserById(@PathVariable("userId")Long userId){
+    public ResponseEntity<User> queryUserById(@PathVariable("userId")String userId){
 
         try {
-            //根据用户id查询用户
+            //鏍规嵁鐢ㄦ埛id鏌ヨ鐢ㄦ埛
             User user = userService.queryUserById(userId);
 
             return ResponseEntity.ok(user);
@@ -34,7 +38,9 @@ public class UserAction {
             e.printStackTrace();
         }
 
-        //返回500
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        //杩斿洖500
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
+
+
 }

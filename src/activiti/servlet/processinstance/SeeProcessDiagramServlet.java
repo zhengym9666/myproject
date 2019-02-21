@@ -38,59 +38,59 @@ public class SeeProcessDiagramServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/**
-		 * »ñÈ¡Á÷³ÌÊµÀıid
+		 * è·å–æµç¨‹å®ä¾‹id
 		 */
 		String id = (String) request.getParameter("piId");
 		/**
-		 * »ñÈ¡Á÷³ÌÒıÇæ
+		 * è·å–æµç¨‹å¼•æ“
 		 */
 		ProcessEngine pe = ProcessEngineUtils.getProcessEngine();
 		/**
-		 * »ñÈ¡²Ö´¢·şÎñ 
+		 * è·å–ä»“å‚¨æœåŠ¡ 
 		 */
 		RepositoryService repositoryService = pe.getRepositoryService();
 		/**
-		 * »ñÈ¡RuntimeService
+		 * è·å–RuntimeService
 		 */
 		RuntimeService runtimeService = pe.getRuntimeService();
 		/**
-		 * ¸ù¾İÁ÷³ÌÊµÀıid»ñÈ¡Á÷³ÌÊµÀı
+		 * æ ¹æ®æµç¨‹å®ä¾‹idè·å–æµç¨‹å®ä¾‹
 		 */
 		ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(id).singleResult();
 		/**
-		 * ¸ù¾İÁ÷³Ì¶¨Òåid»ñÈ¡Á÷³Ì¶¨ÒåÍ¼Æ¬¶ÔÓ¦µÄÊäÈëÁ÷
+		 * æ ¹æ®æµç¨‹å®šä¹‰idè·å–æµç¨‹å®šä¹‰å›¾ç‰‡å¯¹åº”çš„è¾“å…¥æµ
 		 */
 		InputStream inputStream = repositoryService.getProcessDiagram(pi.getProcessDefinitionId());
 		/**
-		 * °ÑÊäÈëÁ÷×ª»»³É»º³åÁ÷Í¼Æ¬
+		 * æŠŠè¾“å…¥æµè½¬æ¢æˆç¼“å†²æµå›¾ç‰‡
 		 */
 		BufferedImage image = ImageIO.read(inputStream);
 		/**
-		 * »ñÈ¡»­±Ê
+		 * è·å–ç”»ç¬”
 		 */
 		Graphics2D g = (Graphics2D) image.getGraphics();
 		/**
-		 * »ñÈ¡»­±ÊµÄÑÕÉ«
+		 * è·å–ç”»ç¬”çš„é¢œè‰²
 		 */
 		g.setColor(Color.RED);
 		/**
-		 * ÉèÖÃ»­±ÊµÄ´ÖÏ¸
+		 * è®¾ç½®ç”»ç¬”çš„ç²—ç»†
 		 */
 		g.setStroke(new BasicStroke(3.0f));
 		/**
-		 * Ïû³ı¾â³İ
+		 * æ¶ˆé™¤é”¯é½¿
 		 */
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		/**
-		 * ²éÑ¯Á÷³Ì¶¨ÒåÎÄ¼ş
+		 * æŸ¥è¯¢æµç¨‹å®šä¹‰æ–‡ä»¶
 		 */
 		 BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());  
 		 /**
-		  * »ñÈ¡µ±Ç°Á÷³ÌÊµÀı»î¶¯µÄ½Úµã
+		  * è·å–å½“å‰æµç¨‹å®ä¾‹æ´»åŠ¨çš„èŠ‚ç‚¹
 		  */
 		 List<String> activityIds = runtimeService.getActiveActivityIds(id);  
 		 /**
-		  * Ñ­»·Á÷³ÌÊµÀı»î¶¯µÄ½Úµã
+		  * å¾ªç¯æµç¨‹å®ä¾‹æ´»åŠ¨çš„èŠ‚ç‚¹
 		  */
 		 for(String activityId : activityIds){
 			 /*<bpmndi:BPMNShape bpmnElement="receivetask1" id="BPMNShape_receivetask1">
@@ -98,16 +98,16 @@ public class SeeProcessDiagramServlet extends HttpServlet {
 		      </bpmndi:BPMNShape> */
 			 GraphicInfo gi = bpmnModel.getGraphicInfo(activityId);
 			 /**
-			  * »æÖÆÔ²½Ç¾ØĞÎ
+			  * ç»˜åˆ¶åœ†è§’çŸ©å½¢
 			  */
 			 g.drawRoundRect((int)gi.getX(), (int)gi.getY(), (int)gi.getWidth(), (int)gi.getHeight(), 10, 10);
 		 }
 		/**
-		 * ÉèÖÃÏìÓ¦µÄÊı¾İÊÇÍ¼Æ¬
+		 * è®¾ç½®å“åº”çš„æ•°æ®æ˜¯å›¾ç‰‡
 		 */
 		response.setContentType("images/png");
 		/**
-		 * Ïòä¯ÀÀÆ÷Êä³öÍ¼Æ¬
+		 * å‘æµè§ˆå™¨è¾“å‡ºå›¾ç‰‡
 		 */
 		ImageIO.write(image, "png", response.getOutputStream());
 	}

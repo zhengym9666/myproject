@@ -11,8 +11,8 @@ import com.community.dao.ReceiptDetailDAO;
 import com.community.service.interfaces.IReceiptDetailService;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ27ÈÕ ÉÏÎç12:03:25
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ27æ—¥ ä¸Šåˆ12:03:25
 * @version 1.0 
 * @desrciption		
 */

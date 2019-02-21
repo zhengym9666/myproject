@@ -6,7 +6,8 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/applicationContext*</param-value>
+		<!--<param-value>classpath:spring/applicationContext*</param-value>-->
+		<param-value>classpath:spring/spring.xml</param-value>
 	</context-param>
 
 	<!-- 解决rest时put方式提交无法获取表单数据 -->

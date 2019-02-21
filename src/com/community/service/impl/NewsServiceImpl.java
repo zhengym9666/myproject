@@ -12,7 +12,7 @@ import com.community.util.PageBean;
  * 
  * @author zym
  *
- * 2018Äê12ÔÂ24ÈÕ
+ * 2018å¹´12æœˆ24æ—¥
  */
 @Service("newsService")
 public class NewsServiceImpl implements INewsService {
@@ -35,12 +35,12 @@ public class NewsServiceImpl implements INewsService {
 		pageBean.setData(newsMapper.queryPageNews(collegeId,clubId,start, size));
 		pageBean.setCurrentPage(currentPage);
 		
-//		×Ü¼ÇÂ¼Êı
+//		æ€»è®°å½•æ•°
 		pageBean.setTotalCount(queryTotalCount(collegeId,clubId));
-//		Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+//		æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
 		pageBean.setPageSize(pageSize);
 		
-//		Ê×Ò³    
+//		é¦–é¡µ    
 		pageBean.setFirstPage(1);
 		
 		return pageBean;

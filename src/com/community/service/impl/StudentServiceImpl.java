@@ -1,5 +1,7 @@
 package com.community.service.impl;
 
+import com.community.bean.User;
+import com.community.util.MybatisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,30 +9,51 @@ import com.community.bean.Student;
 import com.community.dao.StudentDAO;
 import com.community.service.interfaces.IStudentService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÏÂÎç12:09:33
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸‹åˆ12:09:33
 * @version 1.0 
 * @desrciption		
 */
 @Service("studentService")
-public class StudentServiceImpl implements IStudentService {
+public class StudentServiceImpl extends AbsServiceImpl<StudentDAO> implements IStudentService {
 	
-	@Autowired
-	StudentDAO studentMapper;
-
 	@Override
 	public Student getStudentInfoById(String stuNum) {
-		// TODO Auto-generated method stub
-		return studentMapper.getStudentInfoById(stuNum);
+		return mapper.getStudentInfoById(stuNum);
 	}
 
 	@Override
 	public Student getGeneralInfoByClubId(String clubId) {
-		// TODO Auto-generated method stub
-		return studentMapper.getGeneralInfoByClubId(clubId);
+		return mapper.getGeneralInfoByClubId(clubId);
+}
+
+	@Override
+	public Student getUserByName(String username) {
+		return mapper.getUserByName(username);
 	}
 
-	
+	@Override
+	public List<Student> getFriendList(String collectionId) {
+		return mapper.getFriendList(collectionId);
+	}
 
+	@Override
+	public List<Student> getFriendListByStudentId(List<String> studentIds) {
+		return mapper.getFriendListByStudentId(studentIds);
+	}
+
+	public static void main(String[] args) throws Exception {
+		MybatisUtil mybatisUtil=new MybatisUtil();
+		StudentServiceImpl service = mybatisUtil.getMapperServiceImplObject(StudentDAO.class, StudentServiceImpl.class);
+		List<String> students=new ArrayList<String>();
+		students.add("123");
+		students.add("124");
+		List<Student> friendListByStudentId = service.getFriendListByStudentId(students);
+		mybatisUtil.commit();
+		System.out.println(friendListByStudentId);
+	}
 }

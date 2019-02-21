@@ -32,7 +32,7 @@ String huodongbianhao=request.getParameter("huodongbianhao");String huodongmingc
 //gdsossselse{
 
 	
-  	  	String sql="insert into jiaruhuodong(huodongbianhao,huodongmingcheng,huodongriqi,shetuan,jiaruren,beizhu) values('"+huodongbianhao+"','"+huodongmingcheng+"','"+huodongriqi+"','"+shetuan+"','"+jiaruren+"','"+beizhu+"') ";
+  	  	String sql="insert into jiaruhuodong(huodongbianhao,huodongmingcheng,huodongriqi,shetuan,jiaruren,beizhu) bean('"+huodongbianhao+"','"+huodongmingcheng+"','"+huodongriqi+"','"+shetuan+"','"+jiaruren+"','"+beizhu+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('操作成功!请待社长审核!');location.href='index.jsp';</script>");

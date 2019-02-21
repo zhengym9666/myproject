@@ -32,7 +32,7 @@ String biaoti=request.getParameter("biaoti");String leibie=request.getParameter(
 //else{
 
 	
-  	  	String sql="insert into xinwentongzhi(biaoti,leibie,neirong,tianjiaren,shouyetupian,dianjilv) values('"+biaoti+"','"+leibie+"','"+neirong+"','"+tianjiaren+"','"+shouyetupian+"','"+dianjilv+"') ";
+  	  	String sql="insert into xinwentongzhi(biaoti,leibie,neirong,tianjiaren,shouyetupian,dianjilv) bean('"+biaoti+"','"+leibie+"','"+neirong+"','"+tianjiaren+"','"+shouyetupian+"','"+dianjilv+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('Ìí¼Ó³É¹¦!!');location.href='xinwentongzhi_add.jsp?lb="+leibie+"';</script>");
