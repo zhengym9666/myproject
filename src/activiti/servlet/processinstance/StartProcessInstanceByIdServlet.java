@@ -71,7 +71,7 @@ public class StartProcessInstanceByIdServlet{
 	
 	@Autowired
 	ITaskService taskService;
-	
+
 	@Autowired
 	IReceiptOperLogService receiptOperLogService;
 	
@@ -79,7 +79,7 @@ public class StartProcessInstanceByIdServlet{
 	public void StartProcess(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 		/** 接收流程定义id */
-		String pdId = request.getParameter("pdId");	
+		String pdId = request.getParameter("pdId");
 		String receiptman_id = (String) request.getSession().getAttribute("userId");
 		String receiptman_name = (String) request.getSession().getAttribute("userName");
 		String clubId = (String) request.getSession().getAttribute("clubId");
@@ -113,19 +113,19 @@ public class StartProcessInstanceByIdServlet{
 				receiptList.add(receiptItem);
 			}
 		}
-		
+
 		//获取社员所在部门
 		String departmentId = groupMemberService.getDepartmentId(receiptman_id, clubId);
-		
+
 		//根据部门编号获取部门信息
 		Department deptInfo = deparmentService.queryDepartmentById(departmentId);
-		
+
 		//获取部长学号作为第一审批人
 		String one_autitor = deptInfo.getMinister();
-		
+
 		//获取社团会长编号
 		//String generalId = clubService.getGeneralIdByClubId(clubId);	
-		
+
 		//会长学号作为第二审批人
 		//Student generalInfo = studentService.getStudentInfoById(generalId);
 		Club clubBean = clubService.getClubById(clubId);
@@ -142,27 +142,27 @@ public class StartProcessInstanceByIdServlet{
 		receiptBean.setSubmit_time(submit_time);
 		receiptBean.setReason(receipt_reason);
 		receiptBean.setState(0);
-		
-				
+
+
 		/** 获取流程引擎 */
 		ProcessEngine pe = ProcessEngineUtils.getProcessEngine();
 		/** 获取RuntimeService */
 		RuntimeService rs = pe.getRuntimeService();
-		
+
 		//设置流程变量
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("day", 3);
-		
+
 		//第一个节点流程变量需要启动时就要设置
 		Map<String, Object> params = new HashMap<String,Object>();
 		params.put("one_autitor",one_autitor);
-		
+
 		/**设置邮件相关的流程变量 */
 	/*	params.put("to", "z1039230702@163.com");
 		params.put("from", "fkjava8888@163.com");
 		params.put("subject", "订单审核-通知");*/
 		params.put("status", 2);
-		
+
 		/** 根据流程定义id开启流程实例 */
 		ProcessInstance pi = rs.startProcessInstanceById(pdId,params);
 		System.out.println(pi);
@@ -181,10 +181,10 @@ public class StartProcessInstanceByIdServlet{
 		OperLogInfo.setOper_type(0);
 		OperLogInfo.setReceipt_type(receipt_reason);
 		receiptOperLogService.saveOperInfo(OperLogInfo);
-		
+
 		//第二个节点可以启动好之后设置流程变量
 		//rs.setVariable(pi.getId(), "one_autitor", "1515200005");
-		
+
 		/*获取流程变量*/
 		//System.out.println(rs.getVariable(pi.getId(), "userId"));
 		//System.out.println(rs.getVariables(pi.getId()));
@@ -207,7 +207,7 @@ public class StartProcessInstanceByIdServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		/** 转发到查看流程图 */
 		//response.sendRedirect(request.getContextPath()+"/seeProcessdiagram.action?piId="+pi.getId());
 /*		request.getRequestDispatcher("seeProcessdiagram.action").forward(request, response);*/

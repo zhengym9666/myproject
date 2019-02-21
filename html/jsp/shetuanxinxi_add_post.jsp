@@ -32,7 +32,7 @@ out.print("<script>alert('该社团名称已经存在,请换其他社团名称!');window.history.
 else{
 
 	
-  	  	String sql="insert into shetuanxinxi(shetuanmingcheng,jianjie,xingzhi,chuangshiren,fuzeren,chuangbanriqi,guakaodanwei,renshu) values('"+shetuanmingcheng+"','"+jianjie+"','"+xingzhi+"','"+chuangshiren+"','"+fuzeren+"','"+chuangbanriqi+"','"+guakaodanwei+"','"+renshu+"') ";
+  	  	String sql="insert into shetuanxinxi(shetuanmingcheng,jianjie,xingzhi,chuangshiren,fuzeren,chuangbanriqi,guakaodanwei,renshu) bean('"+shetuanmingcheng+"','"+jianjie+"','"+xingzhi+"','"+chuangshiren+"','"+fuzeren+"','"+chuangbanriqi+"','"+guakaodanwei+"','"+renshu+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('添加成功!!');location.href='shetuanxinxi_add.jsp';</script>");

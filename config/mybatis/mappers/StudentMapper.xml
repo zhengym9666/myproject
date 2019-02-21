@@ -10,7 +10,6 @@
         <result column="stuName" property="stuName"/>
         <result column="gender" property="gender"/>
         <result column="collegeId" property="collegeId"/>
-        <result column="grade" property="grade"/>
         <result column="email" property="email"/>
         <result column="phone" property="phone"/>
     </resultMap>
@@ -20,5 +19,17 @@
     
     <select id="getGeneralInfoByClubId" resultMap="BaseResultMap" parameterType="String">
     	SELECT * FROM STUDENT where stuNum = (select generalId from CLUB where clubId = #{clubId})
+    </select>
+    <select id="getUserByName" resultMap="BaseResultMap" parameterType="String">
+    	SELECT * FROM STUDENT where stuNum = #{stuNum}
+    </select>
+    <select id="getFriendList" resultType="student" parameterType="String">
+        SELECT * FROM STUDENT where collegeId = #{collegeId}
+    </select>
+    <select id="getFriendListByStudentId" resultType="student">
+        SELECT * FROM STUDENT where stuNum in
+        <foreach collection="list" item="stuNum" index="index" open="(" close=")" separator=",">
+            #{stuNum}
+        </foreach>
     </select>
 </mapper>

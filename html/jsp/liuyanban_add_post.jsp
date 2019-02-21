@@ -26,7 +26,7 @@ String cheng=request.getParameter("cheng");String xingbie=request.getParameter("
 
 
 	
-  	  	String sql="insert into liuyanban(cheng,xingbie,QQ,youxiang,dianhua,neirong) values('"+cheng+"','"+xingbie+"','"+QQ+"','"+youxiang+"','"+dianhua+"','"+neirong+"') ";
+  	  	String sql="insert into liuyanban(cheng,xingbie,QQ,youxiang,dianhua,neirong) bean('"+cheng+"','"+xingbie+"','"+QQ+"','"+youxiang+"','"+dianhua+"','"+neirong+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('Ìí¼Ó³É¹¦!!');location.href='lyblist.jsp';</script>");

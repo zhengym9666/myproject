@@ -10,8 +10,8 @@ import com.community.dao.DepartmentDAO;
 import com.community.service.interfaces.IDepartmentService;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÉÏÎç10:48:36
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸Šåˆ10:48:36
 * @version 1.0 
 * @desrciption		
 */

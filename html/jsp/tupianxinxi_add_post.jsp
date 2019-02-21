@@ -32,7 +32,7 @@ String tupianmingcheng=request.getParameter("tupianmingcheng");String tupian=req
 //gdsossselse{
 
 	
-  	  	String sql="insert into tupianxinxi(tupianmingcheng,tupian) values('"+tupianmingcheng+"','"+tupian+"') ";
+  	  	String sql="insert into tupianxinxi(tupianmingcheng,tupian) bean('"+tupianmingcheng+"','"+tupian+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('Ìí¼Ó³É¹¦!!');location.href='tupianxinxi_add.jsp';</script>");

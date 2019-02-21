@@ -1,5 +1,7 @@
 package com.community.service.impl;
 
+import com.community.model.base.User;
+import com.community.util.MybatisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,28 +9,41 @@ import com.community.bean.GroupMember;
 import com.community.dao.GroupMemberDAO;
 import com.community.service.interfaces.IGroupMemberService;
 
+import java.util.List;
+
 /** 
-* @author  ◊˜’ﬂ :zhengym
-* @date ¥¥Ω® ±º‰£∫2019ƒÍ1‘¬25»’ …œŒÁ9:37:59
+* @author  ‰ΩúËÄÖ :zhengym
+* @date ÂàõÂª∫Êó∂Èó¥Ôºö2019Âπ¥1Êúà25Êó• ‰∏äÂçà9:37:59
 * @version 1.0 
 * @desrciption		
 */
 @Service("groupMemberService")
-public class GroupMemberServiceImpl implements IGroupMemberService {
+public class GroupMemberServiceImpl extends AbsServiceImpl<GroupMemberDAO> implements IGroupMemberService {
 
-	@Autowired
-	GroupMemberDAO groupMemberMapper;
-	
 	@Override
 	public String getDepartmentId(String stuNum, String clubId) {
-		// TODO Auto-generated method stub
-		return groupMemberMapper.getDepartmentId(stuNum, clubId);
+		return mapper.getDepartmentId(stuNum, clubId);
 	}
 
 	@Override
 	public GroupMember queryMemberInfo(String stuNum, String clubId) {
-		// TODO Auto-generated method stub
-		return groupMemberMapper.queryMemberInfo(stuNum, clubId);
+		return mapper.queryMemberInfo(stuNum, clubId);
 	}
 
+	@Override
+	public List<GroupMember> queryMemberListByClubId(String clubId) {
+		return mapper.queryMemberListByClubId(clubId);
+	}
+
+	@Override
+	public User getUserByName(String userName) {
+		return mapper.getUserByName(userName);
+	}
+
+	public static void main(String[] args) throws Exception {
+		MybatisUtil util=new MybatisUtil();
+		GroupMemberServiceImpl service = util.getMapperServiceImplObject(GroupMemberDAO.class, GroupMemberServiceImpl.class);
+		List<GroupMember> groupMember = service.queryMemberListByClubId("1010100");
+		System.out.println(groupMember);
+	}
 }

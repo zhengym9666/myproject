@@ -10,15 +10,14 @@ import com.community.bean.News;
  * 
  * @author zym
  *
- * 2018年12月24日
  */
 public interface NewsDAO {
-//	根据新闻id获取新闻信息
+	//鏍规嵁鏂伴椈id鑾峰彇鏂伴椈淇℃伅
 	public News queryNewsById(@Param("id")int id);
-	
-//	分页获取新闻信息
+
+	// 鍒嗛〉鑾峰彇鏂伴椈淇℃伅
 	public List<News> queryPageNews(@Param("collegeId")String collegeId,@Param("clubId")String clubId,@Param("start")int start,@Param("size")int size);
-	
-//	获取新闻总记录数
+
+	// 鑾峰彇鏂伴椈鎬昏褰曟暟
 	public int queryTotalCount(@Param("collegeId")String collegeId,@Param("clubId")String clubId);
 }

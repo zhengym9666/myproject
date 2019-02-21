@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Param;
  */
 
 public interface UserDAO {
-    //根据用户id查询用户
-    public User queryUserById(@Param("id")float id);
+    //鏍规嵁鐢ㄦ埛id鏌ヨ鐢ㄦ埛
+    public User queryUserById(@Param("id")String id);
 }

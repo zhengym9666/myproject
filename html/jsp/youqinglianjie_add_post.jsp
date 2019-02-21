@@ -32,7 +32,7 @@ String wangzhanmingcheng=request.getParameter("wangzhanmingcheng");String wangzh
 //else{
 
 	
-  	  	String sql="insert into youqinglianjie(wangzhanmingcheng,wangzhi) values('"+wangzhanmingcheng+"','"+wangzhi+"') ";
+  	  	String sql="insert into youqinglianjie(wangzhanmingcheng,wangzhi) bean('"+wangzhanmingcheng+"','"+wangzhi+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('Ìí¼Ó³É¹¦!!');location.href='youqinglianjie_add.jsp';</script>");

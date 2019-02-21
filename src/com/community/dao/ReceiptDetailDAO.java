@@ -8,9 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import com.community.bean.ReceiptDetail;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ26ÈÕ ÏÂÎç11:55:21
-* @version 1.0 
+* @author   ä½œè€… :zhengym
+* @version 1.0
 * @desrciption		
 */
 public interface ReceiptDetailDAO {

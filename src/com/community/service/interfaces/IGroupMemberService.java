@@ -1,10 +1,13 @@
 package com.community.service.interfaces;
 
 import com.community.bean.GroupMember;
+import com.community.model.base.User;
+
+import java.util.List;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÉÏÎç9:36:46
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸Šåˆ9:36:46
 * @version 1.0 
 * @desrciption		
 */
@@ -14,4 +17,8 @@ public interface IGroupMemberService {
 	
 	
 	public GroupMember queryMemberInfo(String stuNum,String clubId);
+
+	List<GroupMember> queryMemberListByClubId(String clubId);
+
+	User getUserByName(String userName);
 }

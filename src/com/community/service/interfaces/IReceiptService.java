@@ -8,8 +8,8 @@ import com.community.bean.Receipt;
 import com.community.util.PageBean;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÏÂÎç2:35:22
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸‹åˆ2:35:22
 * @version 1.0 
 * @desrciption		
 */

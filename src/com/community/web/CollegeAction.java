@@ -1,12 +1,17 @@
 package com.community.web;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.community.bean.Student;
+import com.community.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +21,7 @@ import com.community.bean.College;
 import com.community.service.interfaces.IClubService;
 import com.community.service.interfaces.ICollegeService;
 
-// @Controller×¢½â£ºÓÃÓÚ±ê¼ÇÆÕÍ¨µÄjavaÀà£¬×÷Îª¿ØÖÆÆ÷
+// @Controlleræ³¨è§£ï¼šç”¨äºæ ‡è®°æ™®é€šçš„javaç±»ï¼Œä½œä¸ºæ§åˆ¶å™¨
 @Controller
 @RequestMapping(value="/community")
 public class CollegeAction{
@@ -27,38 +32,39 @@ public class CollegeAction{
 	@Autowired
 	ICollegeService collegeService;
 	
-	// ModelAndView£ºÄ£ĞÍºÍÊÓÍ¼£¬ÓÃÓÚÉèÖÃÏìÓ¦µÄÄ£ĞÍÊı¾İ£¬ÓÃ»§ÉèÖÃÏìÓ¦µÄÊÓÍ¼
-	// @RequestMapping×¢½â£ºÅäÖÃÇëÇóµÄurl
+	// ModelAndViewï¼šæ¨¡å‹å’Œè§†å›¾ï¼Œç”¨äºè®¾ç½®å“åº”çš„æ¨¡å‹æ•°æ®ï¼Œç”¨æˆ·è®¾ç½®å“åº”çš„è§†å›¾
+	// @RequestMappingæ³¨è§£ï¼šé…ç½®è¯·æ±‚çš„url
 	@RequestMapping("/mathBuild.action")
-	//ÊıÑ§½¨Ä£Ò³Ãæ
+	//æ•°å­¦å»ºæ¨¡é¡µé¢
 	public String mathBuild(HttpServletRequest request,HttpSession session){
-		// 1.´´½¨ModelAndView¶ÔÏó
+		// 1.åˆ›å»ºModelAndViewå¯¹è±¡
 		ModelAndView mav = new ModelAndView();
 		String collegeId = request.getParameter("collegeId");
 		session.setAttribute("collegeId", collegeId);
-//		»ñÈ¡Ñ§ÔºµÄÉçÍÅÁĞ±í£¬·ÅÈësession
+//		è·å–å­¦é™¢çš„ç¤¾å›¢åˆ—è¡¨ï¼Œæ”¾å…¥session
 		List clublist = new ArrayList<Club>();
 		clublist = clubService.queryClubBycollegeId(collegeId);
 		session.setAttribute("clublist", clublist);
-//		»ñÈ¡Ñ§ÔºÃûºÍid£¬·ÅÈësession
+//		è·å–å­¦é™¢åå’Œidï¼Œæ”¾å…¥session
 		College collegeinfo = collegeService.queryCollegeById(collegeId);
 		session.setAttribute("collegeName", collegeinfo.getAbbr());
 		session.setAttribute("collegeId", collegeinfo.getId());
 		System.out.println(clublist);
 		
-		// 2.ÉèÖÃÏìÓ¦µÄÄ£ĞÍÊı¾İ
-		//addObject·½·¨£ºÉèÖÃÏàÓ¦µÄÄ£ĞÍÊı¾İ
-		// ²ÎÊıÒ»£ºÄ£ĞÍµÄÃû³Æ£¨hello£©
-		// ²ÎÊı¶ş£ºÄ£ĞÍÊı¾İ
+		// 2.è®¾ç½®å“åº”çš„æ¨¡å‹æ•°æ®
+		//addObjectæ–¹æ³•ï¼šè®¾ç½®ç›¸åº”çš„æ¨¡å‹æ•°æ®
+		// å‚æ•°ä¸€ï¼šæ¨¡å‹çš„åç§°ï¼ˆhelloï¼‰
+		// å‚æ•°äºŒï¼šæ¨¡å‹æ•°æ®
 		mav.addObject("hello", "springmvc!!!");
-		System.out.println("ºÇºÇºÇºÇºÇ");
-		// 3.ÉèÖÃÏìÓ¦µÄÊÓÍ¼
-		// setViewName·½·¨£ºÉèÖÃÏìÓ¦µÄÊÓÍ¼
-		// ²ÎÊı£ºÊÓÍ¼Ãû³Æ£¨jspÒ³ÃæµÄÎïÀíÂ·¾¶£©
+		System.out.println("å‘µå‘µå‘µå‘µå‘µ");
+		// 3.è®¾ç½®å“åº”çš„è§†å›¾
+		// setViewNameæ–¹æ³•ï¼šè®¾ç½®å“åº”çš„è§†å›¾
+		// å‚æ•°ï¼šè§†å›¾åç§°ï¼ˆjspé¡µé¢çš„ç‰©ç†è·¯å¾„ï¼‰
 		//mav.setViewName("/front/index.jsp");
 		return "redirect:/front/index.jsp";
 
 		//return mav;
 	}
+
 
 }

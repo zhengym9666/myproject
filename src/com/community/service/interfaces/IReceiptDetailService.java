@@ -6,13 +6,13 @@ import java.util.List;
 import com.community.bean.ReceiptDetail;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ27ÈÕ ÉÏÎç12:00:40
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ27æ—¥ ä¸Šåˆ12:00:40
 * @version 1.0 
 * @desrciption		
 */
 public interface IReceiptDetailService {
-	//±£´æ±¨ÏúÏêÇé
+	//ä¿å­˜æŠ¥é”€è¯¦æƒ…
 	public void saveReceiptDetail(List<ReceiptDetail> receiptList);
 	
 	//¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯µ¥¸ö±¨Ïú

@@ -5,9 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import com.community.bean.Task;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê2ÔÂ8ÈÕ ÏÂÎç11:58:53
-* @version 1.0 
+* @author   ä½œè€… :zhengym
+* @version 1.0
 * @desrciption		
 */
 public interface TaskDAO {

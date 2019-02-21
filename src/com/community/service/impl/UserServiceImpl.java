@@ -19,12 +19,12 @@ public class UserServiceImpl implements IUserService {
     private UserDAO userMapper;
 
     @Override
-    public User queryUserById(float id) {
+    public User queryUserById(String id) {
         return userMapper.queryUserById(id);
     }
 
     public static void main(String[] args) {
-        User user = new UserServiceImpl().queryUserById(1L);
+        User user = new UserServiceImpl().queryUserById("123");
         System.out.println(user);
     }
 }

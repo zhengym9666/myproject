@@ -1,13 +1,15 @@
 package com.community.dao;
 
+import com.community.model.base.User;
 import org.apache.ibatis.annotations.Param;
 
 import com.community.bean.GroupMember;
 
-/** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÉÏÎç9:24:29
-* @version 1.0 
+import java.util.List;
+
+/**
+ * @author  ä½œè€… :zhengym
+ * @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸Šåˆ9:24:29* @version 1.0
 * @desrciption		
 */
 public interface GroupMemberDAO {
@@ -15,4 +17,8 @@ public interface GroupMemberDAO {
 	public String getDepartmentId(@Param("stuNum")String stuNum,@Param("clubId")String clubId);
 	
 	public GroupMember queryMemberInfo(@Param("stuNum")String stuNum,@Param("clubId")String clubId);
+
+    User getUserByName(String userName);
+
+    List<GroupMember> queryMemberListByClubId(String clubId);
 }

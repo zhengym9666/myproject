@@ -56,7 +56,7 @@ public class db {
 	  
 	  public static void main(String[] args) {
 		db testdb = new db();
-		System.out.println("²âÊÔÊı¾İ¿âÁ¬½Ó");
+		System.out.println("æµ‹è¯•æ•°æ®åº“è¿æ¥");
 	}
 	  
 }

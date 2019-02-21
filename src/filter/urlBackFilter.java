@@ -22,7 +22,7 @@ public class urlBackFilter implements Filter{
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("³õÊ¼»¯µÚ¶ş¸ö¹ıÂËÆ÷");
+		System.out.println("åˆå§‹åŒ–ç¬¬äºŒä¸ªè¿‡æ»¤å™¨");
 	}
 	
 	@Override

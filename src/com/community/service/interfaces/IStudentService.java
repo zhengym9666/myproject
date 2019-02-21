@@ -1,17 +1,27 @@
 package com.community.service.interfaces;
 
 import com.community.bean.Student;
+import com.community.bean.User;
+
+import java.util.List;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê1ÔÂ25ÈÕ ÏÂÎç12:08:17
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸‹åˆ12:08:17
 * @version 1.0 
 * @desrciption		
 */
 public interface IStudentService {
-	//¸ù¾İÑ§ºÅ»ñÈ¡Ñ§ÉúĞÅÏ¢
+	//æ ¹æ®å­¦å·è·å–å­¦ç”Ÿä¿¡æ¯
 	public Student getStudentInfoById(String stuNum);
 	
-	//¸ù¾İÉçÍÅid»ñÈ¡»á³¤ĞÅÏ¢
+	//æ ¹æ®ç¤¾å›¢idè·å–ä¼šé•¿ä¿¡æ¯
 	public Student getGeneralInfoByClubId(String clubId);
+
+	//æ ¹æ®å­¦ç”Ÿåè·å–ä¿¡æ¯
+	public Student getUserByName(String username);
+
+    List<Student> getFriendList(String userGroupIopId);
+
+    List<Student> getFriendListByStudentId(List<String> studentIds);
 }

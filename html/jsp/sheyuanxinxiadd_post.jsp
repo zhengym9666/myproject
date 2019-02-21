@@ -32,7 +32,7 @@ out.print("<script>alert('该学号已经存在,请换其他学号!');window.history.go(-1);<
 else{
 
 	
-  	  	String sql="insert into sheyuanxinxi(xuehao,xingming,mima,zhuanye,banji,sushe,lianxifangshi,zhaopian,beizhu,shetuan,shifoushechang) values('"+xuehao+"','"+xingming+"','"+mima+"','"+zhuanye+"','"+banji+"','"+sushe+"','"+lianxifangshi+"','"+zhaopian+"','"+beizhu+"','"+shetuan+"','"+shifoushechang+"') ";
+  	  	String sql="insert into sheyuanxinxi(xuehao,xingming,mima,zhuanye,banji,sushe,lianxifangshi,zhaopian,beizhu,shetuan,shifoushechang) bean('"+xuehao+"','"+xingming+"','"+mima+"','"+zhuanye+"','"+banji+"','"+sushe+"','"+lianxifangshi+"','"+zhaopian+"','"+beizhu+"','"+shetuan+"','"+shifoushechang+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('注册成功!请待管理员审核后方可登陆!');location.href='index.jsp';</script>");

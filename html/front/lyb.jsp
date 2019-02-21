@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 .STYLE1 {
 	color: #FFFFFF;
 	font-weight: bold;
+  margin: auto auto;
 }
 .STYLE3 {color: #086BD6; font-weight: bold; }
 .STYLE8 {color: #185838;

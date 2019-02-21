@@ -56,7 +56,6 @@
 <script type="text/javascript" src="../jquery-1.11.1.min.js"></script>
 	<script>
  		$(function(){
- 			debugger;
  			$("li a").eq(0).css("background","#026fe8");
  			$("li a").eq(0).css("color","#fff");
 			$("#navigation li").mouseover(function(){

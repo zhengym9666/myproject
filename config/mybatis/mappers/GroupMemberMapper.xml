@@ -22,9 +22,12 @@
         from GROUPMEMBER
         where stuNum = #{stuNum} and clubId = #{clubId}
     </select>
-	
+
 	<select id="queryMemberInfo" resultMap="BaseResultMap" parameterType="String">
 		select * from GROUPMEMBER where stuNum = #{stuNum} and clubId = #{clubId}
 	</select>
-		
+	<select id="queryMemberListByClubId" resultType="groupMember">
+		select * from GROUPMEMBER where clubId = #{clubId}
+	</select>
+
 </mapper>

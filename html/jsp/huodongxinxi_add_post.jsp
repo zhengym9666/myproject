@@ -32,7 +32,7 @@ String huodongbianhao=request.getParameter("huodongbianhao");String huodongmingc
 //gdsossselse{
 
 	
-  	  	String sql="insert into huodongxinxi(huodongbianhao,huodongmingcheng,huodongzhuti,fuzeren,zhubandanwei,chengbandanwei,huodongriqi,wupinjieyong,shetuan,beizhu) values('"+huodongbianhao+"','"+huodongmingcheng+"','"+huodongzhuti+"','"+fuzeren+"','"+zhubandanwei+"','"+chengbandanwei+"','"+huodongriqi+"','"+wupinjieyong+"','"+shetuan+"','"+beizhu+"') ";
+  	  	String sql="insert into huodongxinxi(huodongbianhao,huodongmingcheng,huodongzhuti,fuzeren,zhubandanwei,chengbandanwei,huodongriqi,wupinjieyong,shetuan,beizhu) bean('"+huodongbianhao+"','"+huodongmingcheng+"','"+huodongzhuti+"','"+fuzeren+"','"+zhubandanwei+"','"+chengbandanwei+"','"+huodongriqi+"','"+wupinjieyong+"','"+shetuan+"','"+beizhu+"') ";
   	  	
   	  	connDbBean.executeUpdate(sql);
   	  	out.print("<script>alert('Ìí¼Ó³É¹¦!!');location.href='huodongxinxi_add.jsp';</script>");

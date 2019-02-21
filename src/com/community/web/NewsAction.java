@@ -39,14 +39,14 @@ public class NewsAction {
 		request.setAttribute("title", request.getParameter("title"));
 		request.setAttribute("content",request.getParameter("content"));
 		
-//		ÉçÍÅid
+//		ç¤¾å›¢id
 		String name = (String) request.getAttribute("id");
 		String head = (String) request.getAttribute("head");
-//		Ñ§Ôºid
+//		å­¦é™¢id
 		String collegeId = (String) request.getAttribute("collegeId");
-//		±êÌâ
+//		æ ‡é¢˜
 		String title = (String) request.getAttribute("title");
-//		ÄÚÈİ
+//		å†…å®¹
 		String content = (String) request.getAttribute("content");
 			
 		System.out.println("head:"+head+"id:"+name+"collegeId:"+collegeId+"title:"+title+"content:"+content);
@@ -63,7 +63,7 @@ public class NewsAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//·µ»Ø500
+		//è¿”å›500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 	
@@ -72,7 +72,7 @@ public class NewsAction {
 		String collegeId = (String) request.getSession().getAttribute("collegeId");
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
-//		»ñÈ¡ÉçÍÅÃû³Æ×÷ÎªĞÂÎÅÍ·
+//		è·å–ç¤¾å›¢åç§°ä½œä¸ºæ–°é—»å¤´
 		String clubName = request.getParameter("clubname");
 		int currentPage;
 		if(currentPage0==null || currentPage0.equals("")){

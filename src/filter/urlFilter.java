@@ -25,7 +25,7 @@ public class urlFilter implements Filter{
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("³õÊ¼»¯¹ıÂËÆ÷");
+		System.out.println("åˆå§‹åŒ–è¿‡æ»¤å™¨");
 	}
 	@Override
 	public void doFilter(ServletRequest ServletRequest, ServletResponse ServletResponse, FilterChain chain)
@@ -41,10 +41,10 @@ public class urlFilter implements Filter{
 		
 		
 		if(servletPath==null || !servletPath.toLowerCase().endsWith(".jsp")){
-//			·Çjsp½áÎ²µÄÖ±½ÓÌø¹ı
+//			éjspç»“å°¾çš„ç›´æ¥è·³è¿‡
 			chain.doFilter(request, response);
 		}
-		//Æ´×°url
+		//æ‹¼è£…url
 		if(servletPath.toLowerCase().contains("front")){
 //			servletPath = url;
 
@@ -53,7 +53,7 @@ public class urlFilter implements Filter{
 			
 		}
 		System.out.println(servletPath);
-		System.out.println("ÉÏÏÂÎÄÂ·¾¶£º"+request.getContextPath());
+		System.out.println("ä¸Šä¸‹æ–‡è·¯å¾„ï¼š"+request.getContextPath());
 		/*chain.doFilter(request, response);*/
 		String targetUrl = "/front"+url;
 		/*request.getRequestDispatcher(targetUrl).forward(request, response);*/
