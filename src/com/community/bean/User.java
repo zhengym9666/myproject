@@ -9,23 +9,23 @@ import net.sf.json.JSONObject;
 
 public class User{
     /**
-     * ÓÃ»§Î¨Ò»id
+     * ç”¨æˆ·å”¯ä¸€id
      */
     private String userId;
     /**
-     * ÁÄÌìµÄÃû×Ö
+     * èŠå¤©çš„åå­—
      */
     private String userRealName;
     /**
-     * ÊôÓÚÄÄ¸ö×éÖ¯,ÓÃÓÚ»ñÈ¡ºÃÓÑÁĞ±í£¬×éÖ¯ĞÅÏ¢
+     * å±äºå“ªä¸ªç»„ç»‡,ç”¨äºè·å–å¥½å‹åˆ—è¡¨ï¼Œç»„ç»‡ä¿¡æ¯
      */
     private String userGroupTopId;
     /**
-     * ÓÃ»§½ÇÉ« 1¹ÜÀíÔ±£¬2ÆÕÍ¨³ÉÔ±
+     * ç”¨æˆ·è§’è‰² 1ç®¡ç†å‘˜ï¼Œ2æ™®é€šæˆå‘˜
      */
     private int userRole;
     /**
-     * ÓÃ»§Í·Ïñurl
+     * ç”¨æˆ·å¤´åƒurl
      */
     private String userImgUrl;
 

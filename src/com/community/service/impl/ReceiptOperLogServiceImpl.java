@@ -12,8 +12,8 @@ import com.community.service.interfaces.IReceiptOperLogService;
 import com.community.util.PageBean;
 
 /** 
-* @author  ×÷Õß :zhengym
-* @date ´´½¨Ê±¼ä£º2019Äê2ÔÂ14ÈÕ ÏÂÎç4:41:42
+* @author  ä½œè€… :zhengym
+* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´2æœˆ14æ—¥ ä¸‹åˆ4:41:42
 * @version 1.0 
 * @desrciption		
 */
@@ -35,7 +35,7 @@ public class ReceiptOperLogServiceImpl implements IReceiptOperLogService {
 		pageBean.setCurrentPage(currentPage);
 		pageBean.setPageSize(pageSize);
 		List<ReceiptOperLog> ReceiptOperLogList = receiptOperLogMapper.queryAllOperInfo(receiptman_id, clubId, start, size);
-		//¸ù¾İÈÕÖ¾±í±¨ÏúÊµÀı»ñÈ¡ÏàÓ¦±¨Ïúµ¥ÊµÀı
+		//æ ¹æ®æ—¥å¿—è¡¨æŠ¥é”€å®ä¾‹è·å–ç›¸åº”æŠ¥é”€å•å®ä¾‹
 		for(ReceiptOperLog operLogItem:ReceiptOperLogList){
 			operLogItem.setReceipt_state(receiptMapper.queryOneReceiptByProcInstId(operLogItem.getProc_inst_id()).getState());
 		}

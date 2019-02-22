@@ -10,18 +10,18 @@ import com.community.bean.Club;
  * 
  * @author zym
  *
- * 2018Äê12ÔÂ27ÈÕ
+ * 2018å¹´12æœˆ27æ—¥
  */
 
 public interface ClubDAO {
-    //	¸ù¾İÑ§Ôºid»ñÈ¡ÉçÍÅÁĞ±í
+    //	æ ¹æ®å­¦é™¢idè·å–ç¤¾å›¢åˆ—è¡¨
 	public List<Club> queryClubBycollegeId(@Param("collegeId")String collegeId);
 
-    //æ ¹æ®ç¤¾å›¢idè·å–ä¼šé•¿id
+    //æ ¹æ®ç¤¾å›¢IDè·å–ç¤¾é•¿ID
 	public String getGeneralIdByClubId(@Param("clubId")String clubId);
 
     Club queryUserGroup(String clubId);
 
-	//¸ù¾İÉçÍÅid»ñÈ¡»á³¤id
+	//æ ¹æ®ç¤¾å›¢idè·å–ä¼šé•¿id
 	public Club getClubById(@Param("clubId")String clubId);
 }
