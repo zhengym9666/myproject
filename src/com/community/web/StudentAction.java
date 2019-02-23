@@ -6,6 +6,7 @@ import com.community.bean.GroupMember;
 import com.community.bean.Student;
 import com.community.bean.UserData;
 import com.community.model.base.HOpCodeUCenter;
+import com.community.model.base.Token;
 import com.community.model.base.UCErrorPack;
 import com.community.service.interfaces.IGroupMemberService;
 import com.community.service.interfaces.IStudentService;
@@ -41,6 +42,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/student")
 public class StudentAction {
+    public static final String ADMIN_USER_ID="123456";
     @Autowired
     IStudentService studentService;
     @Autowired
@@ -100,18 +102,33 @@ public class StudentAction {
     public ResponseEntity<Map> queryFriendList(HttpServletRequest request, HttpSession session) throws IOException {
         Map map = new HashMap();;
         List<User> userList=new ArrayList<>();
+        String token = request.getHeader("token");
         JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
         String hOpCode=ob.getString("hOpCode");
         try {
+            Token tokenObj=tokenService.getTokenByToken(token);
+
+
             //获取当前社团ID
             String cludId=ob.getString("userGroupTopId");
-            List<GroupMember> groupMembers = groupMemberService.queryMemberListByClubId(cludId);
-            List<String> studentIds=new ArrayList<>();
-            for (GroupMember groupMember:groupMembers){
-                studentIds.add(groupMember.getStuNum());
-            }
 
-            List<Student> stuList = studentService.getFriendListByStudentId(studentIds);
+
+            List<Student> stuList=null;
+            //判断是否是管理员,获取所有学生
+            if(ADMIN_USER_ID.equals(tokenObj.getUserId())){
+                stuList=studentService.getFriendListByAdmin();
+            }else{
+                List<GroupMember> groupMembers = groupMemberService.queryMemberListByClubId(cludId);
+                List<String> studentIds=new ArrayList<>();
+                for (GroupMember groupMember:groupMembers){
+                    studentIds.add(groupMember.getStuNum());
+                }
+                //Student adminStudent = studentService.getStudentInfoById(ADMIN_USER_ID);
+                /*if(adminStudent!=null){
+                    studentIds.add(adminStudent.getStuNum());
+                }*/
+                stuList = studentService.getFriendListByStudentId(studentIds);
+            }
             //List<Student> stuList = studentService.getFriendList(cludId);
             if (userList != null) {
                 for (int i = 0; i < stuList.size(); i++) {
@@ -124,6 +141,7 @@ public class StudentAction {
         }catch (Exception e){
             map.put("user",userList);
             map.put("hOpCode",0);
+            log.error("获取用户所在的好友失败：",e);
         }
         finally {
             map.put("user",userList);

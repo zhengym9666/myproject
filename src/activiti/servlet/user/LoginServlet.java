@@ -2,11 +2,14 @@ package activiti.servlet.user;
 
 
 import com.alibaba.fastjson.JSON;
+import com.community.config.UserConfig;
+import com.community.model.base.HOpCodeUCenter;
 import com.community.model.base.Token;
 import com.community.model.base.UCErrorPack;
 import com.community.model.base.User;
 import com.community.service.impl.TokenServiceImpl;
 import com.community.service.interfaces.ITokenService;
+import com.community.util.EntityToJsonUtil;
 import com.community.util.TimeUtils;
 import com.community.web.TokenAction;
 import com.community.web.UserAction;
@@ -15,6 +18,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,6 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
 import java.util.logging.Logger;
 
 
@@ -151,6 +156,61 @@ public class LoginServlet{
 		/*HttpPacket packet = new HttpPacket(httpPacket.hSession.headParam.hOpCode, builder.build());
 		return packet;*/
 	}
+
+    @RequestMapping("/getAdminToken.action")
+    public ResponseEntity<Map> getAdminTokenHandle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    com.alibaba.fastjson.JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
+        String hOpCode = ob.getString("hOpCode");
+        String userId = ob.getString("userName");
+        String userPassword = ob.getString("userPassword");
+        Student student = studentService.getStudentInfoById(userId);
+        JSONObject returnJson = new JSONObject();
+        try {
+            if (student == null) {
+                returnJson.put("status", 0);
+                returnJson.put("msg", "该用户不存在");
+                return ResponseEntity.ok(returnJson);
+            }
+            // 判断密码
+            if (!userPassword.equals(student.getStuPass())) {
+                returnJson.put("status", 0);
+                returnJson.put("msg", "密码不正确");
+                return ResponseEntity.ok(returnJson);
+            }
+            Token token = tokenService.getTokenByUserId(student.getStuNum());
+            if (token == null) {
+                token = tokenService.createToken(userId);
+                if (token == null) {
+                    token = tokenService.getTokenByUserId(userId);
+                }
+            } else {
+                Date date = new Date();
+                // 判断是否过期
+                if (date.getTime() > token.getTokenExpireTime().getTime()) {
+                    tokenService.deleteToken(token.getTokenId());
+                    token = tokenService.createToken(userId);
+                    if (token == null) {
+                        token = tokenService.getTokenByUserId(userId);
+                    }
+                } else {
+                    tokenService.updateToken(token.getTokenId());
+                }
+            }
+            if (token == null) {
+                returnJson.put("status", 0);
+                returnJson.put("msg", "创建token失败");
+                return ResponseEntity.ok(returnJson);
+            }
+            returnJson.put("tokenId",token.getTokenId());
+        }catch (Exception e){
+            returnJson.put("msg",e.getMessage());
+            returnJson.put("status", 0);
+            log.error(JSON.toJSONString(returnJson));
+        }finally {
+            returnJson.put("status", 1);
+            return ResponseEntity.ok(returnJson);
+        }
+    }
 
 	public static void main(String[] args) {
 		UCError errorPack = UCErrorPack.create(UCErrorCode.ERROR_CODE_4,"213");

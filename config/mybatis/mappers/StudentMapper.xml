@@ -32,4 +32,9 @@
             #{stuNum}
         </foreach>
     </select>
+    <select id="getFriendListByAdmin" resultType="student">
+        SELECT * FROM STUDENT
+    </select>
+
+
 </mapper>

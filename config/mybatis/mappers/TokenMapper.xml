@@ -267,4 +267,8 @@
         token_expire_time = #{tokenExpireTime,jdbcType=TIMESTAMP}
         where token_id = #{tokenId,jdbcType=VARCHAR}
     </update>
+    <select id="getTokenByToken"  parameterType="String" resultMap="BaseResultMap" resultType="com.community.model.base.Token">
+        SELECT * FROM token where token_id=#{token_id}
+    </select>
+
 </mapper>

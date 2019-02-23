@@ -5,6 +5,7 @@ package com.community.service.interfaces;/**
  * @date
  */
 
+import com.community.bean.Student;
 import com.community.model.base.Token;
 
 public interface ITokenService {
@@ -18,4 +19,5 @@ public interface ITokenService {
 
     public  boolean deleteToken(String tokenId);
 
+    Token getTokenByToken(String token);
 }

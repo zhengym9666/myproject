@@ -105,4 +105,7 @@ public interface TokenDAO {
      * @mbg.generated
      */
     int updateByPrimaryKey(Token record);
+
+    Token getTokenByToken(String token);
+
 }

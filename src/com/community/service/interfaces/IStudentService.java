@@ -24,4 +24,8 @@ public interface IStudentService {
     List<Student> getFriendList(String userGroupIopId);
 
     List<Student> getFriendListByStudentId(List<String> studentIds);
+
+	//查询该系统所有学生,因为是管理员所以是所有人的好友
+	public List<Student> getFriendListByAdmin();
+
 }

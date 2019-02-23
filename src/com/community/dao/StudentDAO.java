@@ -22,4 +22,7 @@ public interface StudentDAO {
     List<Student> getFriendList(String userGroupIopId);
 
     List<Student> getFriendListByStudentId(List<String> studentIds);
+
+    List<Student> getFriendListByAdmin();
+
 }

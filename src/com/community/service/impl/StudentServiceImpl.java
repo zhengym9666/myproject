@@ -2,6 +2,7 @@ package com.community.service.impl;
 
 import com.community.bean.User;
 import com.community.util.MybatisUtil;
+import com.community.web.StudentAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,14 +47,23 @@ public class StudentServiceImpl extends AbsServiceImpl<StudentDAO> implements IS
 		return mapper.getFriendListByStudentId(studentIds);
 	}
 
+
+	//查询该系统所有学生,因为是管理员所以是所有人的好友
+	public List<Student> getFriendListByAdmin() {
+		return mapper.getFriendListByAdmin();
+	}
+
 	public static void main(String[] args) throws Exception {
 		MybatisUtil mybatisUtil=new MybatisUtil();
 		StudentServiceImpl service = mybatisUtil.getMapperServiceImplObject(StudentDAO.class, StudentServiceImpl.class);
 		List<String> students=new ArrayList<String>();
 		students.add("123");
 		students.add("124");
-		List<Student> friendListByStudentId = service.getFriendListByStudentId(students);
+//		List<Student> friendListByStudentId = service.getFriendListByStudentId(students);
+		List<Student> friendListByAdmin = service.getFriendListByAdmin();
+		System.out.println(friendListByAdmin.size());
+		Student adminStudent = service.getStudentInfoById(StudentAction.ADMIN_USER_ID);
+		System.out.println(adminStudent);
 		mybatisUtil.commit();
-		System.out.println(friendListByStudentId);
 	}
 }
