@@ -21,4 +21,6 @@ public interface IGroupMemberService {
 	List<GroupMember> queryMemberListByClubId(String clubId);
 
 	User getUserByName(String userName);
+	
+	public void saveMemberInfo(GroupMember memberInfo);
 }

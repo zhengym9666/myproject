@@ -1,5 +1,7 @@
 package com.community.service.interfaces;
 
+import java.util.List;
+
 import com.community.bean.College;
 
 /**
@@ -11,4 +13,6 @@ import com.community.bean.College;
 
 public interface ICollegeService {
 	public College queryCollegeById(String collegeId);
+	
+	public List<College> queryAllCollege();
 }

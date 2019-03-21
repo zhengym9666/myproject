@@ -27,4 +27,10 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		return departmentMapper.queryDepartmentById(departmentId);
 	}
 
+	@Override
+	public List<Department> queryDepartmentByClubId(String clubId) {
+		// TODO Auto-generated method stub
+		return departmentMapper.queryDepartmentByClubId(clubId);
+	}
+
 }

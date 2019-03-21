@@ -1,17 +1,12 @@
-<%@ page language="java"  pageEncoding="gb2312"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<%@ page language="java" import="java.sql.*" %>
-<jsp:useBean id="connDbBean" scope="page" class="db.db"/>
+<%@ page language="java"  pageEncoding="utf-8"%>
 <html>
 <head>
-    
-<title>æ´∆∑…ÁÕ≈π‹¿ÌœµÕ≥</title>
+    <script type="text/javascript">
+        var rootPath = "<%=request.getContextPath()%>";
+    </script>
+<title>Á≤æÂìÅÁ§æÂõ¢ÁÆ°ÁêÜÁ≥ªÁªü</title>
 <style type="text/css">
-<!--
-*{overflow:hidden; font-size:9pt;}
+*{ font-size:9pt;}
 body {
 	margin-left: 0px;
 	margin-top: 0px;
@@ -24,65 +19,180 @@ body {
 .STYLE5 {color: #CCFFCC;
 	font-size: 26pt;
 }
-.STYLE7 {color: #FFFFFF}
--->
+.STYLE7 {
+	color: #FFFFFFÔºõ
+		
+	}
+.table-left{
+	width:74px;
+	height:30px;
+}
+.table-left span{
+	color:#FFFFFF;
+	font-size:13px;
+}
+.table-right{
+	width:280px;
+	height:22px;
+}
+.table-right input{
+	border:solid 1px #5a88a5;
+	border-radius:4px;
+	width:145px;
+	height:94%;
+	background-color:#f4f9fdf5;
+}
+#loadImage{
+    position:  absolute;
+    margin-left: 2px;
+    margin-top: -2px;
+	
+}
+.submitbtn{
+	width:200px;
+	height:35px;
+	position:absolute;
+	margin-top:142px;
+	margin-left:78px;
+}
+.submitbtn input{
+	width:60px;
+	height:28px;
+	border:none;
+	background:#1c922c;
+	color:#fff;
+	border-radius:4px;
+}
+.submitbtn input:hover{
+	cursor:pointer;
+}
+.submitbtn input[type="reset"]{
+	background:#626763;
+	margin-left:10px;
+}
+#collegeName,#clubName{
+	caret-color: transparent;
+}
+#collegeName:hover,#clubName:hover{
+	cursor:pointer;
+}
+#collegeul,#clubul{
+	position:  absolute;
+    left: 610px;
+    color: #000;
+    border: 1px #a4a6a7 solid;
+    width: 103px;
+    background: #dce0e2;
+    margin-top: 12px;
+    z-index: 99;
+    display:none;
+}
+ul li{
+	list-style:none;
+	height:23px;
+	line-height:23px;
+	color:#333;
+	font-size:13px;
+	margin-left:-40px;
+	text-align:center;
+}
+ul li:hover{
+	background:#d4cfcf;
+	cursor:pointer;
+}
+#clubul{
+	position:  absolute;
+}
+.ui-down{
+	background:url(./css/qttop/images/down.png) no-repeat;
+	background-size:14px;
+	background-position-x:125px;
+	background-position-y:6px;
+}
+.verify-sub-block{
+	overflow:visible;
+}
+#mpanel4{
+	margin-top:50px;
+	margin-left:-20px;
+	position:absolute;
+	z-index:99;
+	display:none;
+}
 </style>
 
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>
-<script language="javascript">
-function check()
-{
-	if(document.form1.username.value=="" || document.form1.pwd.value=="" || document.form1.rand.value=="")
-	{
-		alert('«Î ‰»ÎÕÍ’˚');
-		return false;
-	}
-}
-function loadimage(){ 
-document.getElementById("randImage").src = "image.jsp?"+Math.random(); 
-} 
-</script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" type="text/css" href="verify/css/verify.css">
+</head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <p>&nbsp;</p>
 <table width="64%" height="56" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="56"><div style="font-family:ÀŒÃÂ; color:#FFFFFF; filter:Glow(Color=#000000,Strength=2); WIDTH: 100%; FONT-WEIGHT: bold; FONT-SIZE: 19pt; margin-top:5pt">
-      <div align="center" class="STYLE5">æ´∆∑…ÁÕ≈π‹¿ÌœµÕ≥</div>
+    <td height="56"><div style="font-family:ÂÆã‰Ωì; color:#FFFFFF; filter:Glow(Color=#000000,Strength=2); WIDTH: 100%; FONT-WEIGHT: bold; FONT-SIZE: 19pt; margin-top:5pt">
+      <div align="center" class="STYLE5">ÂπøÂ∑ûÂ§ßÂ≠¶Â≠¶ÁîüÁ§æÂõ¢ÁÆ°ÁêÜÁ≥ªÁªü</div>
     </div></td>
   </tr>
 </table>
-<table width="907" height="433" border="0" align="center" cellpadding="0" cellspacing="0" background="images/hsgbg2.jpg" id="__01">
+<table width="907" height="433" border="0" align="center" background="images/hsgbg2.jpg" id="__01">
   <tr>
     <td height="134" colspan="3">&nbsp;</td>
   </tr>
   <tr>
     <td width="317" rowspan="2">&nbsp;</td>
-    <td width="252" height="152"><table width="195" border="0" align="right" cellpadding="0" cellspacing="0">
-      <form name="form1" method="post" action="adminyanzheng.jsp">
+    <td width="295" height="152"><table width="261" border="0" align="right">
         <tr>
-          <td width="44" height="30"><span class="STYLE7">”√ªß:</span></td>
-          <td width="142" height="30"><input name="username" type="text" id="username" style="width:100px; height:16px; border:solid 1px #000000; color:#666666"></td>
+          <td class="table-left"><span>Â≠¶Âè∑Ôºö</span></td>
+          <td class="table-right"><input name="stuId" type="text" id="stuId"></td>
         </tr>
         <tr>
-          <td height="30"><span class="STYLE7">√‹¬Î:</span></td>
-          <td height="30"><input name="pwd" type="password" id="pwd" style="width:100px; height:16px; border:solid 1px #000000; color:#666666"></td>
+          <td class="table-left"><span>Â≠¶Èô¢Ôºö</span></td>
+          <td class="table-right">
+          <input type="hidden" id="collegeId">
+          <input name="college" type="text" id="collegeName" class="ui-down">
+          </td>
+          <td>
+          	<ul id="collegeul">
+<!--           		<li>Áà±Á•ûÁöÑÁÆ≠</li>
+          		<li>Áà±Á•ûÁöÑÁÆ≠</li>
+          		<li>Áà±Á•ûÁöÑÁÆ≠</li>
+          		<li>Áà±Á•ûÁöÑÁÆ≠</li> -->
+          	</ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-left"><span>Á§æÂõ¢Ôºö</span></td>
+          <td class="table-right">
+          <input type="hidden" id="clubId">
+          <input name="club" type="text" id="clubName" class="ui-down">
+          </td>
+          <td>
+          	<ul id="clubul">
+          	</ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-left"><span>ÂØÜÁ†ÅÔºö</span></td>
+          <td class="table-right"><input name="pwd" type="password" id="password"></td>
+        </tr>
+        <tr>
+        	
         </tr>
         <tr style="display:none">
-          <td height="30"><span class="STYLE7">»®œﬁ:</span></td>
+          <td height="30"><span class="STYLE7">ÊùÉÈôê:</span></td>
           <td height="30"><select name="cx" id="cx">
-            <option value="π‹¿Ì‘±">π‹¿Ì‘±</option>
+            <option value="ÁÆ°ÁêÜÂëò">ÁÆ°ÁêÜÂëò</option>
           </select>
                 <input name="login" type="hidden" id="login" value="1"></td>
         </tr>
 		 <tr>
-          <td height="30"><span class="STYLE7">—È÷§¬Î:</span></td>
-          <td height="30"><input type="text" name="rand" id="rand" size="5">
-              <a href="javascript:loadimage();"><img alt="ø¥≤ª«Â«Îµ„Œ“£°" name="randImage" id="randImage" src="image.jsp" width="60" height="20" border="1" align="absmiddle"></a></tr>
+ 
+          <div id="mpanel4">
+          </div>
         <tr>
-          <td height="30" colspan="2"><input type="submit" name="Submit" value="µ«¬Ω" onClick="return check();">
-                <input type="reset" name="Submit2" value="÷ÿ÷√"></td>
-        </tr>
-      </form>
+          <div class="submitbtn">
+          		<input type="submit" name="Submit" value="ÁôªÈôÜ" onClick="showVertify();">
+                <input type="reset" name="Submit2" value="ÈáçÁΩÆ"></td>
+        </div>
     </table></td>
     <td width="338" rowspan="2">&nbsp;</td>
   </tr>
@@ -91,5 +201,159 @@ document.getElementById("randImage").src = "image.jsp?"+Math.random();
   </tr>
 </table>
 </body>
+<script type="text/javascript" src="./front/jquery-1.11.1.min.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="verify/js/verify.js" ></script>
+<script>
+	$(function(){
+		$("#collegeName").click(function(){
+			$("#collegeul").toggle();
+		})
+		
+		$("#clubName").click(function(){
+			$("#clubul").toggle();
+		});
+		
+		initVerify();
+		
+		$.ajax({
+    		url:rootPath+"/community/queryAllCollege.action",
+    		type:'post',
+    		data:{},
+    		dataType:'JSON',
+    		success:function(response){
+    			$.each(response.data,function(i,item){
+    				$("#collegeul").append('<li value='+item.id+' onclick=choseCollege('+item.id+',"'+item.fullname+'")>'+item.fullname+'</li>');
+    			});
+    			
+    		},
+    		error:function(){
+    			
+    		}
+    	});
+	
+		
+	});
+	
+	
+	var choseCollege = function(collegeId,collegeName){
+		$("#collegeName").val(collegeName);
+		$("#collegeId").val(collegeId);
+		$("#collegeul").toggle();
+		$("#clubul").html('');
+		$.ajax({
+			url:rootPath+"/community/queryAllClub.action",
+			type:'post',
+			data:{collegeId:collegeId},
+			dataType:'JSON',
+			success:function(response){
+				$.each(response.data,function(i,item){
+					$("#clubul").append('<li onclick=choseClub('+item.clubId+',"'+item.clubName+'")>'+item.clubName+'</li>');
+				})
+			},
+			error:function(){
+				
+			}
+		})
+	};
+	
+	var choseClub = function(clubId,clubName){
+		$("#clubId").val(clubId);
+		$("#clubName").val(clubName);
+		$("#clubul").toggle();
+	};
+	
+	function showVertify(){
+		$('#mpanel4').show();
+	};
+	
+	function initVerify(){
+		$('#mpanel4').slideVerify({
+	    	type : 2,		//Á±ªÂûã
+			vOffset : 5,	//ËØØÂ∑ÆÈáèÔºåÊ†πÊçÆÈúÄÊ±ÇËá™Ë°åË∞ÉÊï¥
+	        vSpace : 5,	//Èó¥Èöî
+	        imgName : ['1.jpg', '2.jpg'],
+	        imgSize : {
+	        	width: '400px',
+	        	height: '200px',
+	        },
+	        blockSize : {
+	        	width: '40px',
+	        	height: '40px',
+	        },
+	        barSize : {
+	        	width : '400px',
+	        	height : '40px',
+	        },
+	        ready : function() {
+	    	},
+	        success : function() {
+	        	var stuId = $("#stuId").val();
+	        	var collegeId = $("#collegeId").val();
+	        	var clubId = $("#clubId").val();
+	        	var password = $("#password").val();
+	        	$.ajax({
+	        		url:rootPath+"/admin/LoginAction.action",
+	        		type:'post',
+	        		data:{
+	        			stuId:stuId,
+	        			collegeId:collegeId,
+	        			clubId:clubId,
+	        			password:password
+	        		},
+	        		dataType:'JSON',
+	        		success:function(response){
+	        			if(response.resultFlag){
+	        				
+	        				var args = [{ Key:'stuNum' , Value: response.stuNum }, { Key: 'collegeId', Value: response.collegeId}, { Key: 'clubId', Value: response.clubId}, { Key: 'memInfo', Value: JSON.stringify(response.memInfo)}];
+	        	            OpenWindowWithPost(response.adminUrl,
+	        	            "", "NewFile", args);
+	        				/* window.open(response.adminUrl); */
+	        			}else{
+	        				alert(response.Msg);
+	        				$('#mpanel4').hide();
+	        			}
+	        			
+	        		},
+	        		error:function(){
+	        			alert("ËØ∑Ê±ÇÂá∫Èîô");
+	        		}
+	        	});
+	        },
+	        error : function() {
+//	        	alert('È™åËØÅÂ§±Ë¥•ÔºÅ');
+	        }
+	        
+	    });
+	}
+	
+	 function OpenWindowWithPost(url, windowoption, name, params) {
+         var form = document.createElement("form");
+         form.setAttribute("method", "post");
+         form.setAttribute("action", url);
+         form.setAttribute("target", name);
+
+         for (var i in params) {
+             var input = document.createElement('input');
+             input.type = 'hidden';
+             input.name = params[i].Key;
+             input.value = params[i].Value;
+             form.appendChild(input);
+         }
+
+         console.log(params[3].Key);
+         console.log(params[3].Value);
+         document.body.appendChild(form);
+
+         //note I am using a post.htm page since I did not want to make double request to the page 
+         //it might have some Page_Load call which might screw things up.
+         window.open("post.htm", name, windowoption);
+
+         form.submit();
+
+         document.body.removeChild(form);
+     }
+	
+</script>
 </html>
 

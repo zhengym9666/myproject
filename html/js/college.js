@@ -10,7 +10,6 @@
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 		var url=projectName+"/community/mathBuild.action?collegeId="+collegeId;
 		var href = $(this).attr("href");
-		alert(url);
 		$(this).attr("href",url);
 		
 /*		$.ajax({

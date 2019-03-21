@@ -13,5 +13,8 @@ import com.community.bean.Department;
 * @desrciption		
 */
 public interface DepartmentDAO {
+	
 	public Department queryDepartmentById(@Param("departmentId")String departmentId);
+	
+	public List<Department> queryDepartmentByClubId(@Param("clubId")String clubId);
 }

@@ -113,7 +113,7 @@
 				<div class="onerecord">
 				<input type="hidden" value="${logItem.proc_inst_id }"/>
 					<span>【审批通知】</span>
-					${logItem.receipt_type }报销单已通过最后审批！审批时间：<fmt:formatDate value="${logItem.oper_time }" pattern="yyyy年MM月dd号 HH:mm:ss"/>
+					${logItem.receipt_type }报销单已通过财务审批！审批时间：<fmt:formatDate value="${logItem.oper_time }" pattern="yyyy年MM月dd号 HH:mm:ss"/>
 					<div class="operbox">
 						<a href="${pageContext.request.contextPath }/receipt/lookOneReceipt.action?procInstId=${logItem.proc_inst_id }&backPage=1">查看</a>
 					</div>

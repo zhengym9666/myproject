@@ -30,4 +30,8 @@
 		select * from GROUPMEMBER where clubId = #{clubId}
 	</select>
 
+	<insert id="saveMemberInfo" parameterType="com.community.bean.GroupMember">
+		insert into GROUPMEMBER(stuNum,stuName,clubId,departmentId,rank,job,state,applyTime) values
+		(#{stuNum},#{stuName},#{clubId},#{departmentId},#{rank},#{job},#{state},#{applyTime})
+	</insert>
 </mapper>

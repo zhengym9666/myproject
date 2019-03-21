@@ -151,7 +151,7 @@ public class StartProcessInstanceByIdServlet{
 
 		//设置流程变量
 		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("day", 3);
+
 
 		//第一个节点流程变量需要启动时就要设置
 		Map<String, Object> params = new HashMap<String,Object>();

@@ -24,5 +24,7 @@ public interface StudentDAO {
     List<Student> getFriendListByStudentId(List<String> studentIds);
 
     List<Student> getFriendListByAdmin();
+    
+    public void saveStudentInfo(Student studentInfo);
 
 }

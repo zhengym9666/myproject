@@ -12,4 +12,6 @@ import com.community.bean.Department;
 */
 public interface IDepartmentService {
 	public Department queryDepartmentById(String departmentId);
+	
+	public List<Department> queryDepartmentByClubId(String clubId);
 }

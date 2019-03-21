@@ -15,6 +15,10 @@
 	<sql id="Base_Column_List" >
         id,abbr,fullname,intro
     </sql>
+    <select id="queryAllCollege" resultMap="BaseResultMap">
+    	select * from COLLEGE
+    </select>
+    
     <select id="queryCollegeById" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
