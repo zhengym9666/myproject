@@ -11,7 +11,7 @@ var rootPath = "<%=request.getContextPath()%>";
 
 <style>
 	span{
-		color:#eee;
+		color:#0a0a0a;
 	}
 	.head{
 		height:39px;
@@ -97,7 +97,7 @@ var rootPath = "<%=request.getContextPath()%>";
 <body>
 
 <div>
-<table width="936" border="1" style="margin:0 58px;">
+<table width="936" border="1" cellspacing="0" style="margin:0 58px;border:0.5px #08a5e638 solid;">
 		<tr class="head"><th colspan="3"><span>报名表</span></th></tr>
 		<tr class="baseInfo">
 			<td><span>学号：</span><input type="text" id="stuNum"/></td>
