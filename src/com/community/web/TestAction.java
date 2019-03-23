@@ -73,4 +73,6 @@ public class TestAction {
         }
         return new String(buffer, charEncoding);
     }
+
+    public void test(){}
 }
