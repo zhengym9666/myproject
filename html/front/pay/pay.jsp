@@ -13,7 +13,7 @@
 	#paywrapper{
 		width:735px;
 		height:345px;
-		background:#ddd;
+		background:#439cd826;
 		border:1px solid #ddd;
 		margin:55px auto;
 		color:#da1a1a;

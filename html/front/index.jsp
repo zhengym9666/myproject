@@ -52,7 +52,7 @@
 		.wrapper {
 			background-size: 100% 100%;
 			height: 100%;
-			background-color: hsla(0, 0%, 10%, 1.00);
+			background-color: hsla(0, 2%, 70%, 0.26);
 		}
 
 		.wrapper {
@@ -65,7 +65,7 @@
 			z-index: 100;
 			left: 0;
 			right: 0;
-			background: rgba(0, 0, 0, 0.5);
+			background: rgba(7, 111, 136, 0.13);
 		}
 
 		.head-main {

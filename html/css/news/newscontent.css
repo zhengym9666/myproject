@@ -5,7 +5,7 @@ body{
 .head{
 	width:100%;
 	height:35px;
-	border-bottom:1px solid #666;
+	border-bottom:1px solid #19699e;
 }
 .head span{
 	display:block;
@@ -22,20 +22,22 @@ body{
 .curpos span{
 	display:inline;
 	font-size:12px;
-	color:#aaa;
+	color:#3a3a3a;
 	width:200px;
 	height:35px;
 }
 .title p{
-	color:#ff8000;
+	color:#0c7ec7;
 	font-size:1.2em;
 	text-align:center;
+	font-weight:700;
 }
 .content{
 	margin-bottom:20px;
+	color:#000;
 }
 .content p{
-	color:#fff;
+	/* color:#fff; */
 }
 .content img{
 	display:block;
@@ -69,7 +71,7 @@ body{
 }
 .info{
 	width:300px;
-	color:#aaa;
+	color:#4e5050d9;
 	font-size:12px;
 	margin:0 auto;
 	margin-bottom:20px;

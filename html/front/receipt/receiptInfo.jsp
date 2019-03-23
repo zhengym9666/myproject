@@ -154,8 +154,8 @@
 	</div>
 	<div id="receiptItems">
 	<p>报销条项：</p>
-		<table border="1" align="center" width="80%" id="receiptTab">
-			<tr >
+		<table border="1" align="center" width="80%" cellspacing="0" id="receiptTab">
+			<tr>
 				<th style="width:20%;">时间</th>
 				<th style="width:26%;">原因</th>
 				<th>内容</th>
@@ -221,7 +221,7 @@
 			var index = $(".calender").index(this);
 		    var top = $("#laydate_box").css('top');
 		    if(index==0){
-		    	$("#laydate_box").css('top',"155px");
+		    	$("#laydate_box").css('top',"172px");
 		    }else{
 			    topVal = parseInt(top.replace(/[^0-9]/ig,""));
 			    top = topVal+34*index+"px";
@@ -243,7 +243,7 @@
 			$("#receiptTab").append(opnew);
 			var top = $("#totalbox").css('top');
 			topVal = parseInt(top.replace(/[^0-9]/ig,""));
-			top = topVal+32+"px";
+			top = topVal+40+"px";
 			$("#totalbox").css('top',top);
 	
 			var sum = 0;

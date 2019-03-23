@@ -5,7 +5,7 @@
 	}
 	.title span{
 		font-size:13px;
-		color:#a9abad;
+		color:#595a5a;
 	}
 	.recordbox{
 		width:70%;
@@ -93,13 +93,23 @@
 	width:80%;
 	display: table;
 	border-collapse: separate;
-	border-spacing: 2px;
-	border-color: grey;
+	border-color: #7cc9f15c;
 	margin-left:74px;
+}
+#receiptTab th{
+	height:32px;
+	background:#d1ecf7;
+}
+#receiptCol{
+	height:40px;
+}
+#receiptCol input{
+	background:#ebeaea;
+	border:none;
 }
 #receiptform input{
 	width:93%;
-	height:19px;
+	height:25px;
 }
 #calender{
 	width:55%;
@@ -110,7 +120,7 @@
 	position:relative;
 	height:430px;
 	margin-left:23px;
-	color:#ccc;
+	color:#171717;
 }
 #receiptform{
 	top:10px;
