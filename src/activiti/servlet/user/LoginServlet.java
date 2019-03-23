@@ -101,12 +101,12 @@ public class LoginServlet{
                 return;
             }
             // 判断密码
-            if (!pwd.equals(student.getStuPass())) {
+           /* if (!pwd.equals(student.getStuPass())) {
                 ucError = UCErrorPack.create(UCErrorCode.ERROR_CODE_6, "0");
                 returnJson.put("status", 0);
                 returnJson.put("msg", "密码不正确");
                 return;
-            }
+            }*/
             Token token = tokenService.getTokenByUserId(student.getStuNum());
             if (token == null) {
                 token = tokenService.createToken(userId);
@@ -172,11 +172,11 @@ public class LoginServlet{
                 return ResponseEntity.ok(returnJson);
             }
             // 判断密码
-            if (!userPassword.equals(student.getStuPass())) {
+           /* if (!userPassword.equals(student.getStuPass())) {
                 returnJson.put("status", 0);
                 returnJson.put("msg", "密码不正确");
                 return ResponseEntity.ok(returnJson);
-            }
+            }*/
             Token token = tokenService.getTokenByUserId(student.getStuNum());
             if (token == null) {
                 token = tokenService.createToken(userId);
