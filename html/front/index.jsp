@@ -389,9 +389,9 @@ scrolling="no" style="position:fixed;top:115px;">
                 },
                 dataType:'JSON',
                 success : function(response) {
-                    response = eval("("+response+")");
+                    //response = eval("("+response+")");
                 	console.log(response);
-                    response=JSON.parse(response);
+                    //response=JSON.parse(response);
                     console.log(response);
                     if(response.status){
                         window.location.href=rootPath+"/front/index.jsp";
