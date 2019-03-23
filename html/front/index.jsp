@@ -389,6 +389,7 @@ scrolling="no" style="position:fixed;top:115px;">
                 },
                 dataType:'JSON',
                 success : function(response) {
+                    response = eval("("+response+")");
                 	console.log(response);
                     response=JSON.parse(response);
                     console.log(response);
