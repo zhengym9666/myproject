@@ -21,4 +21,6 @@ public interface GroupMemberDAO {
     User getUserByName(String userName);
 
     List<GroupMember> queryMemberListByClubId(String clubId);
+    
+    public void saveMemberInfo(GroupMember memberInfo);
 }

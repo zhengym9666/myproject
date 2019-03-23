@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.community.bean.Student;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.bean.Club;
@@ -66,5 +68,40 @@ public class CollegeAction{
 		//return mav;
 	}
 
-
+	@RequestMapping("/queryAllCollege.action")
+	@ResponseBody
+	public Map<String,Object> queryAllCollege(HttpServletRequest request,HttpServletResponse response){
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		List<College> collegeList = null;
+		
+		try {
+			collegeList = collegeService.queryAllCollege();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		resultMap.put("data", collegeList);
+		return resultMap;
+	}
+	
+	@RequestMapping("/queryAllClub.action")
+	@ResponseBody
+	public Map<String,Object> queryAllClub(HttpServletRequest request,HttpServletResponse response){
+		
+		String collegeId = request.getParameter("collegeId");
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		List<Club> clublist = new ArrayList<Club>();
+		
+		try {
+			clublist = clubService.queryClubBycollegeId(collegeId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		resultMap.put("data", clublist);
+		return resultMap;
+	}
+	
 }

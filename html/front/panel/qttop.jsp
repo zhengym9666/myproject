@@ -43,7 +43,6 @@
 			<li><a id="chat">畅聊空间</a></li>
 			<li><a href="#">交会费</a></li>
 			<li><a href="#">活动报销</a></li>
-			<li><a href="./login.jsp">后台</a></li>
 		</ul>
 		<div id="login">登录</div>
 		<div class="blank" style="position:absolute;right:0">欢迎您，郑永梅</div>

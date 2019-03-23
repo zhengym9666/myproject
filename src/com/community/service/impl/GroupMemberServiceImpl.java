@@ -46,4 +46,10 @@ public class GroupMemberServiceImpl extends AbsServiceImpl<GroupMemberDAO> imple
 		List<GroupMember> groupMember = service.queryMemberListByClubId("1010100");
 		System.out.println(groupMember);
 	}
+
+	@Override
+	public void saveMemberInfo(GroupMember memberInfo) {
+		// TODO Auto-generated method stub
+		mapper.saveMemberInfo(memberInfo);
+	}
 }

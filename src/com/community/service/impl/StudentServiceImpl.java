@@ -66,4 +66,10 @@ public class StudentServiceImpl extends AbsServiceImpl<StudentDAO> implements IS
 		System.out.println(adminStudent);
 		mybatisUtil.commit();
 	}
+
+	@Override
+	public void saveStudentInfo(Student studentInfo) {
+		// TODO Auto-generated method stub
+		mapper.saveStudentInfo(studentInfo);
+	}
 }

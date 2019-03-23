@@ -24,5 +24,8 @@
         where id = #{departmentId}
     </select>
 	
+	<select id="queryDepartmentByClubId" resultMap="BaseResultMap" parameterType="String">
+		select * from DEPARTMENT where clubId = #{clubId}
+	</select>
 		
 </mapper>

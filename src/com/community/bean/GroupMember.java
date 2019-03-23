@@ -13,12 +13,14 @@ public class GroupMember {
 	private String stuName;
 	private String clubId;
 	private String departmentId;
-	private String rank;
+	private int rank;
 	private String job;
-	private String state;
+	private int state;
 	private Date joinTime;
 	private Date exitTime;
+	private Date applyTime;
 	private int id;
+	private int isFee;
 
 	public String getStuNum() {
 		return stuNum;
@@ -52,11 +54,11 @@ public class GroupMember {
 		this.departmentId = departmentId;
 	}
 
-	public String getRank() {
+	public int getRank() {
 		return rank;
 	}
 
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 
@@ -68,11 +70,11 @@ public class GroupMember {
 		this.job = job;
 	}
 
-	public String getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -98,6 +100,25 @@ public class GroupMember {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+
+	public Date getApplyTime() {
+		return applyTime;
+	}
+
+	public void setApplyTime(Date applyTime) {
+		this.applyTime = applyTime;
+	}
+
+	
+	public int getIsFee() {
+		return isFee;
+	}
+
+	public void setIsFee(int isFee) {
+		this.isFee = isFee;
 	}
 
 	@Override

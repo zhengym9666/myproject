@@ -185,7 +185,7 @@ a:focus { outline: none; }
 .submitbtn{
 	width:200px;
 	height:35px;
-	margin-top:18px;
+	margin-top:7px;
 	margin-left:60px;
 }
 .submitbtn input{
@@ -222,6 +222,7 @@ a:focus { outline: none; }
 	font-size:15px;
 	position:absolute;
 	background:#efeee8;
+	z-index:99;
 }
 #clublist li{
 	width:128px;

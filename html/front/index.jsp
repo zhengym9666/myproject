@@ -8,6 +8,9 @@
     <!-- <LINK href="././qtimages/style.css" type=text/css rel=stylesheet> -->
     <link href="../css/qttop/css/style.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../css/qttop/js/jquery.min.js"></script>
+	<script type="text/javascript">
+        var rootPath = "<%=request.getContextPath()%>";
+    </script>
 	<script language="javascript">
 		$(document).ready(function() {
 			/*	2nd example	*/
@@ -31,7 +34,7 @@
 
 	</script>
     <style type="text/css">
-        <!--
+        
         .STYLE1 {
             color: #FFFFFF;
             font-weight: bold;
@@ -149,36 +152,52 @@
 		#college {
 			margin-left: 150px;
 		}
-        -->
+        #mpanel2{
+        	position:relative;
+        }
+        .verify-code{
+        	position:absolute;
+        	left:143px;
+        }
+        .verify-code-area{
+        	width:69px;
+        	margin-left:60px;
+        	margin-top:-30px;
+        }
+        .verify-input-area input{
+        	width:69px;
+        	height:24px;
+        }
+        .verify-change-code{
+        	cursor:pointer;
+        }
     </style>
 </head>
 <body class = "wrapper">
-<div class="head">
+        <div class="head">
           <div class="head-main clearfix">
             <div class="logo">
-              <img src="../css/images/logo.png" alt=""/>
+              <img src="${pageContext.request.contextPath}/css/images/logo.png" alt="">
             </div>
             <div class="menuDiv">
               <ul class="menu clearfix">
-                <li>
+                <li> 
                   <a href="" class="active">
                   首页
                   </a>
                 </li>
                 <li>
-                  <a href="">
-                    注册
-                  </a>
+					<a href="../login.jsp">后台</a>
                 </li>
                 <li>
-                  <a href="">
-                    关于微梦
+                  <a href="http://www.gzhu.edu.cn/">
+                    关于广大
                   </a>
                 </li>
               </ul>
             </div>
             <div class="linkTel">
-              联系电话 : 203-88257936
+              联系电话 : 020-374273488
             </div>
           </div>
         </div>
@@ -191,7 +210,7 @@
 			<li><a id="chat">畅聊空间</a></li>
 			<li><a id="pay">交会费</a></li>
 			<li><a id="receipt">活动报销</a></li>
-			<li><a href="./login.jsp">后台</a></li>
+			<li><a id="join">我要加入</a></li>
 		</ul>
 		<div id="login">登录</div>
 		<c:if test="${not empty sessionScope.userName }">
@@ -221,13 +240,13 @@
 				<option>红十字会</option> -->
 			</ul>
 		</div>
-		<div class="row">
-			<span>验证码：</span>
-			<input type="text" id="validate" style="width:60px;" />
-			<img src="" alt=""/>
+		<div style="margin-left:10px;margin-top:28px;font-size:15px;color:#026fe8;">
+			<span style="font-weight:800;">验证码：</span>
+			<div id="mpanel2">
+       		</div>
 		</div>
 		<div class="submitbtn">
-			<input type="submit" id="loginsubmit" value="登录"/>
+			<input type="submit" id="check-btn" value="登录"/>
 			<input type="reset" value="重置"/>
 		</div>
 
@@ -237,6 +256,8 @@
 scrolling="no" style="position:fixed;top:115px;">
 
 </iframe>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../verify/js/verify.js" ></script>
    	<script>
 	var rootPath = '<%=request.getContextPath()%>';
 	$(function(){
@@ -244,11 +265,10 @@ scrolling="no" style="position:fixed;top:115px;">
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
-
 		var clubId;
 		//isLogin:0：不需要登录,不展开登录页面  1：需要登录，展开登录页面
         var isLogin=0;
-        <c:if test="${! empty param.isLogin}">isLogin="${param.isLogin}"</c:if>
+        /* <c:if test="${! empty param.isLogin}">isLogin="${param.isLogin}"</c:if> */
         if(typeof isLogin == "undefined" || isLogin == null || isLogin == ""){
             isLogin=0;//默认不需要登录
         }
@@ -256,9 +276,9 @@ scrolling="no" style="position:fixed;top:115px;">
             $("#loginbox").slideToggle("slow");
         }
 
-		$("#login").click(function(){
+		$("#login").on('mouseover',function(){
 			$("#loginbox").slideToggle("slow");
-		});
+		})
 
 
 		$("#choseClubName").click(function(){
@@ -297,7 +317,8 @@ scrolling="no" style="position:fixed;top:115px;">
                 },
                 dataType:'JSON',
                 success : function(response) {
-                    response=JSON.parse(response);
+                	response = eval("("+response+")");
+                    /* response=JSON.parse(response); */
                     if(response.status){
                         window.location.href=rootPath+"/front/index.jsp";
                     }else{
@@ -317,7 +338,9 @@ scrolling="no" style="position:fixed;top:115px;">
 		iframe.src = "./"+newsid+"/"+newsid+".jsp";
 		//获取对应选项的标签名称
 		$(".topmenu a").click(function(){
-            <c:if test="${empty sessionScope.token}">window.location.href=rootPath+"/front/index.jsp?isLogin=1"</c:if>
+			var navid = $(this).attr("id");
+			iframe.src="./"+navid+"/"+navid+".jsp";
+            /* <c:if test="${empty sessionScope.token}">window.location.href=rootPath+"/front/index.jsp?isLogin=1"</c:if>
 
 			var navid = $(this).attr("id");
 			if(navid=="receipt"){
@@ -328,7 +351,7 @@ scrolling="no" style="position:fixed;top:115px;">
 				}else{
 					iframe.src="./"+navid+"/"+navid+".jsp";
 				}
-			}
+			} */
 			if(navid=="chat"){
                 iframe.src="./"+navid+"/"+navid+".jsp?token=${sessionScope.token }";
             }
@@ -336,7 +359,56 @@ scrolling="no" style="position:fixed;top:115px;">
 
 	});
 
+	$('#mpanel2').codeVerify({
+		type : 1,
+    	width : '100px',
+    	height : '38px',
+    	fontSize : '14px',
+    	codeLength : 6,
+    	btnId : 'check-btn',
+    	ready : function() {
+    	},
+    	success : function() {
+    		var loginUrl = rootPath+"/login/LoginAction.action";
 
+			// $("#loginform").attr("action", loginUrl);
+
+            var username=$("#username").val();
+            var password=$("#password").val();
+            var clubId=$("#choseClubId").val();
+
+            $.ajax({
+                url : loginUrl,
+                type:'post',
+                async:true,
+                cache:false,
+                data : {
+                    username:username,
+                    password:password,
+                    clubId:clubId
+                },
+                dataType:'JSON',
+                success : function(response) {
+                	console.log(response);
+                    response=JSON.parse(response);
+                    console.log(response);
+                    if(response.status){
+                        window.location.href=rootPath+"/front/index.jsp";
+                    }else{
+                        alert("错误信息："+response.msg);
+                    }
+                },
+                error : function() {
+                    var obj = {};
+                    obj["Ptext"] = "系统出错";
+                    operationTipsFailed(obj);
+                }
+            });
+    	},
+    	error : function() {
+    		alert('验证码不匹配！');
+    	}
+    });
 	</script>
 </body>
 </html>

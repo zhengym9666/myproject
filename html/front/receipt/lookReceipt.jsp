@@ -125,7 +125,7 @@
 		</c:if>
 		<div class="proc"><span>第一审批人：</span>${oneReceiptMap.one_autitor }</div>
 		<div class="proc"><span>第二审批人：</span>${oneReceiptMap.second_autitor }</div>
-		<div class="proc"><span>最后审批人：</span>${oneReceiptMap.third_autitor }</div>
+		<div class="proc"><span>财务审批：</span>${oneReceiptMap.third_autitor }</div>
 	</div>
 	<div id="receiptProImg">
 		<p>流程图：</p>

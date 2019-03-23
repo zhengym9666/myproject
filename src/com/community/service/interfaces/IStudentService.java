@@ -27,5 +27,7 @@ public interface IStudentService {
 
 	//查询该系统所有学生,因为是管理员所以是所有人的好友
 	public List<Student> getFriendListByAdmin();
+	
+	 public void saveStudentInfo(Student studentInfo);
 
 }

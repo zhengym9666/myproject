@@ -10,8 +10,13 @@
         <result column="stuName" property="stuName"/>
         <result column="gender" property="gender"/>
         <result column="collegeId" property="collegeId"/>
+        <result column="grade" property="class_"/>
         <result column="email" property="email"/>
         <result column="phone" property="phone"/>
+        <result column="profession" property="profession"/>
+        <result column="interest" property="interest"/>
+        <result column="special" property="special"/>
+        <result column="head" property="head"/>
     </resultMap>
     <select id="getStudentInfoById" resultMap="BaseResultMap" parameterType="String">
     	SELECT * FROM STUDENT where stuNum = #{stuNum}
@@ -36,5 +41,9 @@
         SELECT * FROM STUDENT
     </select>
 
-
+	<insert id="saveStudentInfo" parameterType="com.community.bean.Student">
+		insert into STUDENT(stuNum,stuName,gender,collegeId,grade,email,phone,profession,interest,special,head)
+		values(#{stuNum},#{stuName},#{gender},#{collegeId},#{class_},#{email},#{phone},#{profession},#{interest},#{special},#{head})
+	</insert>
+	
 </mapper>

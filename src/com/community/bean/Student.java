@@ -20,6 +20,10 @@ public class Student implements java.io.Serializable {
 	private String stuName;
 	private String gender;
 	private String collegeId;
+	private String profession;
+	private String interest;
+	private String special;
+	private String head;
 	private String class_;
 	private String email;
 	private String phone;
@@ -140,6 +144,40 @@ public class Student implements java.io.Serializable {
 
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	
+	
+
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+
+	public String getInterest() {
+		return interest;
+	}
+
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+
+	public String getSpecial() {
+		return special;
+	}
+
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+
+	public String getHead() {
+		return head;
+	}
+
+	public void setHead(String head) {
+		this.head = head;
 	}
 
 	public Student(String stuNum, String stuName, String gender, String collegeId, String class_, String email, String phone, String stuPass, Integer state, String hOpCode) {
