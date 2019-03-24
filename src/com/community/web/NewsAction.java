@@ -116,6 +116,22 @@ public class NewsAction {
 		
 	}
 
+    /***
+     *原新闻内容
+     * <div style="text-align:center;">
+     * 	<img src="/admin/upload/2c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />
+     * 213121212<img src="/admin/upload/c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />213121212
+     * </div>
+     *
+     * 正在表达式：<img src="/[a-z]*\/upload
+     * 替换文本：<img src="http:localhost:xx/asb/upload
+     * 替换结果：
+     *
+     * <div style="text-align:center;">
+     * 	<img src="http:localhost:xx/asb/upload/2c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />
+     * 213121212<img src="http:localhost:xx/asb/upload/c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />213121212
+     * </div>
+     */
 	//由于调用的图片是后台的图片，所以地址不能写死，可以由后台进行配置
 	public String replaceImageUrl(String content){
 		return content.replaceAll("<img src=\"/[a-z]*/upload",
@@ -123,22 +139,7 @@ public class NewsAction {
 	}
 
 
-	/***
-	 *原新闻内容
-	 * <div style="text-align:center;">
-	 * 	<img src="/admin/upload/2c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />
-	 * 213121212<img src="/admin/upload/c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />213121212
-	 * </div>
-	 *
-	 * 正在表达式：<img src="/[a-z]*\/upload
-	 * 替换文本：<img src="http:localhost:xx/asb/upload
-	 * 替换结果：
-	 *
-	 * <div style="text-align:center;">
-	 * 	<img src="http:localhost:xx/asb/upload/2c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />
-	 * 213121212<img src="http:localhost:xx/asb/upload/c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />213121212
-	 * </div>
-	 */
+
 	//替换图片项目名
 	@Test
 	public void test(){
