@@ -37,18 +37,18 @@
 		
 	</div>
 	<div class="content">
-		<img alt="" src="${news.image }">
-			<%-- <%=request.getAttribute("content") %> --%>
+		<%--<img alt="" src="${news.image }">
+			&lt;%&ndash; <%=request.getAttribute("content") %> &ndash;%&gt;
 			${news.content }
 		<img alt="" src="${news.image }">
-			<%-- <%=request.getAttribute("content") %> --%>
+			&lt;%&ndash; <%=request.getAttribute("content") %> &ndash;%&gt;
 			${news.content }
 		<img alt="" src="${news.image }">
 		<p>
-			<%-- <%=request.getAttribute("content") %> --%>
+			&lt;%&ndash; <%=request.getAttribute("content") %> &ndash;%&gt;
 			${news.content }
-		</p>
-		
+		</p>--%>
+		${news.content }
 	</div>
 	</c:forEach>
 	

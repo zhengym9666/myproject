@@ -1,10 +1,13 @@
 package com.community.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.community.util.FilePropertiesUtil;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +26,10 @@ import com.community.util.PageBean;
 public class NewsAction {
 	@Autowired
 	private INewsService newsService;
-		
+	private String adminProjectName=FilePropertiesUtil.getString("project_name");
+	private String adminProjectProt=FilePropertiesUtil.getString("admin_port");
+	private String adminProjectHost=FilePropertiesUtil.getString("admin_host");
+
 	@RequestMapping("/news.action")
 	public String NewsView(){
 		System.out.println("hhhh");
@@ -69,6 +75,17 @@ public class NewsAction {
 	
 	@RequestMapping("queryNewsPage.action")
 	public String queryNewsPage(HttpServletRequest request){
+		//后台的项目名
+		if(adminProjectName==null){
+			adminProjectName="admin";
+		}
+		if(adminProjectProt==null){
+			//adminProjectProt="8081";
+		}
+		if(adminProjectHost==null){
+			//adminProjectHost="localhost";
+		}
+
 		String collegeId = (String) request.getSession().getAttribute("collegeId");
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
@@ -81,8 +98,15 @@ public class NewsAction {
 			currentPage = Integer.parseInt(currentPage0);
 		}
 		int pageSize = 1;
-		PageBean pageNews = newsService.queryPageNews(collegeId, clubId, currentPage, pageSize);
-		
+		PageBean<News> pageNews = newsService.queryPageNews(collegeId, clubId, currentPage, pageSize);
+		List<News> newList = pageNews.getData();
+		//替换新闻内容的图片链接
+		for(News news :newList){
+			String content = news.getContent();
+			news.setContent(replaceImageUrl(content));
+		}
+
+
 		request.setAttribute("pageNews", pageNews);
 		request.setAttribute("collegeId", collegeId);
 		request.setAttribute("clubId", clubId);
@@ -90,5 +114,22 @@ public class NewsAction {
 		System.out.println(pageNews);
 		return "forward:/front/news/newscontent.jsp";
 		
+	}
+
+	//由于调用的图片是后台的图片，所以地址不能写死，可以由后台进行配置
+	public String replaceImageUrl(String content){
+		return content.replaceAll("<img src=\"/.*/upload",
+				"<img src=\"http://"+adminProjectHost+":"+adminProjectProt+"/"+adminProjectName+"/upload");
+	}
+
+	//替换图片项目名
+	@Test
+	public void test(){
+		String content=" \n" +
+				"<div style=\"text-align:center;\">\n" +
+				"\t<img src=\"/admin/upload/c234de6e-3c21-4563-9db3-4243a690d32a.png\" alt=\"\" />213121212\n" +
+				"</div>";
+		content = content.replaceAll("<img src=\"/.*/upload", "<img src=\"http://localhost:xx/asb/upload");
+		System.out.println(content);
 	}
 }

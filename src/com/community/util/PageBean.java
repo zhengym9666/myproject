@@ -11,8 +11,8 @@ import com.community.bean.News;
  *
  * 2018年12月24日
  */
-public class PageBean {
-	private List data;//分页数据
+public class PageBean<T> {
+	private List<T> data;//分页数据
 	private int currentPage;//当前页
 	private int firstPage;//首页
 	private int prePage;//上一页
@@ -20,10 +20,10 @@ public class PageBean {
 	private int totalPage;//末页/总页数
 	private int totalCount;//总记录数
 	private int pageSize;//每页记录数
-	public List getData() {
+	public List<T> getData() {
 		return data;
 	}
-	public void setData(List data) {
+	public void setData(List<T> data) {
 		this.data = data;
 	}
 	public int getCurrentPage() {
