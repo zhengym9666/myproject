@@ -32,19 +32,19 @@ body{
 	text-align:center;
 	font-weight:700;
 }
-.content{
+.newscontent{
 	margin-bottom:20px;
 	color:#000;
 }
-.content p{
+.newscontent p{
 	/* color:#fff; */
 }
-.content img{
+.newscontent img{
 	display:block;
 	margin:0 auto;
 }
 .foot{
-	width:500px;
+	width:745px;
 	height:30px;
 	margin:0 auto;
 	color:#026fe8;
@@ -70,7 +70,7 @@ body{
 	right:0;
 }
 .info{
-	width:300px;
+	width:318px;
 	color:#4e5050d9;
 	font-size:12px;
 	margin:0 auto;

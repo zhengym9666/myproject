@@ -18,12 +18,12 @@
 			});
 
 			$("#menu2 li a").hover(function() {
-				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
-				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+				$(".out",	this).stop().animate({'top':	'40px'},	200); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		200); // move down - show
 
 			}, function() {
-				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
-				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+				$(".out",	this).stop().animate({'top':	'0px'},		200); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	200); // move up - hide
 			});
 
 		});
@@ -43,6 +43,7 @@
 			<li><a id="chat">畅聊空间</a></li>
 			<li><a href="#">交会费</a></li>
 			<li><a href="#">活动报销</a></li>
+			<li class="sideline" style="left: 0px; width: 36px; overflow: hidden;"></li>
 		</ul>
 		<div id="login">登录</div>
 		<div class="blank" style="position:absolute;right:0">欢迎您，郑永梅</div>

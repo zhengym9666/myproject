@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<div id="content" style="width:85%;height:80%;position:absolute;top:10px;;left:135px;">
-         <iframe width="100%" height="100%" frameborder="0" class="" src="" name="content" id="newscontent" style="overfolw-x:hidden">
+         <iframe width="110%" height="100%" frameborder="0" class="" src="" name="content" id="newscontent" style="overfolw-x:hidden">
                             	
 		</iframe>                   	
     </div> 

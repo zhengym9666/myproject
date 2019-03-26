@@ -78,10 +78,10 @@ body {
 }
 #collegeul,#clubul{
 	position:  absolute;
-    left: 610px;
+    left: 687px;
     color: #000;
     border: 1px #a4a6a7 solid;
-    width: 103px;
+    width: 102px;
     background: #dce0e2;
     margin-top: 12px;
     z-index: 99;

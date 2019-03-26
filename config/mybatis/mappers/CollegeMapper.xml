@@ -10,6 +10,8 @@
 	<result column="abbr" property="abbr"/>
 	<result column="fullname" property="fullname"/>
 	<result column="intro" property="intro"/>
+	<result column="url" property="url"/>
+	<result column="image" property="image"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List" >

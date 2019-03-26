@@ -104,4 +104,25 @@ public class CollegeAction{
 		return resultMap;
 	}
 	
+	@RequestMapping("/GetAllCollegeInfo.action")
+	@ResponseBody
+	public Map<String,Object> GetAllCollegeInfo(HttpServletRequest request){
+			
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+		List<College> colInfoList = collegeService.queryAllCollege();
+		
+		
+		if(colInfoList==null){
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "获取学院信息出错");
+			return resultMap;
+		}else{
+			resultMap.put("resultFlag", 1);
+			resultMap.put("data", colInfoList);
+			resultMap.put("count", colInfoList.size());
+			return resultMap;
+		}
+		
+	}
 }

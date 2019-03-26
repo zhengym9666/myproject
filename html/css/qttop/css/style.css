@@ -36,9 +36,10 @@ a:focus { outline: none; }
 }
 .blank{
 	width:200px;
-	background:#292727;
+	background:#026aad;
 	font-size:14px;
 	line-height:40px;
+	color:#fff;
 }
 .topmenu ul{
 			list-style: none;
@@ -47,7 +48,7 @@ a:focus { outline: none; }
 			width:960px;
 			height:40px;
 			position:absolute;
-			left:134px;
+			left:234px;
 }
 
 .topmenu ul li {
@@ -57,8 +58,8 @@ a:focus { outline: none; }
 	position: relative;
 	line-height: 40px;
 	text-align: center;
-	border-right:3px solid #00131b12;
-	background:#39749ebf;
+	border-right:3px solid #00131b00;
+	background:#f0efef36;
 }
 .topmenu ul li:last-child{
 	border-right:none;
@@ -120,16 +121,25 @@ a:focus { outline: none; }
 		/** 2nd example **/
 
 #menu2 {
-			background:#026aad;		
+			background:#f9f9f970;		
 }
 		
 #menu2 ul li a {
-			color: #f5f6f7;
+			color: #666;
+			font-size:17px;
 }
 
 #menu2 ul li a span.over {
 	color: #fff;
 	background-color: #026fe8;
+}
+
+.sideline{
+	position:absolute;
+	border:0;
+	height:2px;
+	background:#48a5f4 !important;
+	top:41px;
 }
 
 #topTitle{

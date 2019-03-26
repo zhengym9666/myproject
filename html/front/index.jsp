@@ -22,12 +22,12 @@
 			});
 
 			$("#menu2 li a").hover(function() {
-				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
-				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+				$(".out",	this).stop().animate({'top':	'40px'},	200); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		200); // move down - show
 
 			}, function() {
-				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
-				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+				$(".out",	this).stop().animate({'top':	'0px'},		200); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	200); // move up - hide
 			});
 
 		});
@@ -52,7 +52,7 @@
 		.wrapper {
 			background-size: 100% 100%;
 			height: 100%;
-			background-color: hsla(0, 2%, 70%, 0.26);
+			background-color: hsla(0, 2%, 70%, 0);
 		}
 
 		.wrapper {
@@ -211,6 +211,7 @@
 			<li><a id="pay">交会费</a></li>
 			<li><a id="receipt">活动报销</a></li>
 			<li><a id="join">我要加入</a></li>
+			<li class="sideline" style="left: -769px; width: 92px; overflow: hidden;"></li>
 		</ul>
 		<div id="login">登录</div>
 		<c:if test="${not empty sessionScope.userName }">
@@ -256,7 +257,7 @@
 scrolling="no" style="position:fixed;top:115px;">
 
 </iframe>
-	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/front/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../verify/js/verify.js" ></script>
    	<script>
 	var rootPath = '<%=request.getContextPath()%>';
@@ -355,6 +356,10 @@ scrolling="no" style="position:fixed;top:115px;">
 			if(navid=="chat"){
                 iframe.src="./"+navid+"/"+navid+".jsp?token=${sessionScope.token }";
             }
+			
+			var index = $(".topmenu a").index(this);
+			var slide = -769+160*index+"px";
+			$(".sideline").animate({left:slide},200);
 		});
 
 	});
