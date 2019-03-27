@@ -33,7 +33,7 @@
 			$(this).parent().append(strFace);
 			var offset = $(this).position();
 			var top = offset.top + $(this).outerHeight();
-			$('#'+id).css('top',top);
+			$('#'+id).css('top',"-218.7639px");
 			$('#'+id).css('left',offset.left);
 			$('#'+id).show();
 			e.stopPropagation();

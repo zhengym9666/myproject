@@ -52,12 +52,13 @@ span.emotion:hover {
 }
 
 .qqFace table td {
-    padding: 0px;
+    padding: 5px;
 }
 
 .qqFace table td img {
     cursor: pointer;
     border: 1px #fff solid;
+    width:30px;
 }
 
 .qqFace table td img:hover {

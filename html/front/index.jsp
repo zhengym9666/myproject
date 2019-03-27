@@ -56,7 +56,7 @@
 		}
 
 		.wrapper {
-			font-size: 16px;
+			font-size: 17px;
 		}
 
 		.head {

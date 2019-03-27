@@ -445,11 +445,12 @@ h1, h2, h3, h4, h5 {
 @charset "UTF-8";
 .window_P {
     width: 72%;
-    height: 550px;
+    height: 572px;
     background: #fff;
-    box-shadow: 0 0 20px #ddd; /*position:fixed;left:50%;top:50%;margin-top:-218px;margin-left:-365px;*/
-    border: 1px solid #ddd;
-    margin: 20px auto 0 auto
+    box-shadow: inset -1px -1px 20px 5px #a9d2e6; /*position:fixed;left:50%;top:50%;margin-top:-218px;margin-left:-365px;*/
+    border: 1px solid #a9d2e6;
+    border-radius:12px;
+    margin: 20px auto 0 auto;
 }
 
 .windowL_P {
@@ -468,12 +469,13 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     height: 30px;
     border-bottom: 1px solid #dddddd;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    padding-bottom:10px;
 }
 
 .windowL_P > dt > span, .windowR_P > dt > span {
     display: inline-block;
-    width: 100%;
+    width: 70%;
     height: 40px;
     box-sizing: border-box;
     padding-left: 12px;
@@ -578,11 +580,12 @@ h1, h2, h3, h4, h5 {
 .windowR_P {
     width: 80%;
     height: 100%;
+    position:relative;
 }
 
 .window_P .windowR_P > dt {
     width: 100%;
-    box-sizing: border-box;
+   /*  box-sizing: border-box; */
     padding-right: 38px;
     position: relative;
     /*height: 41px;*/
@@ -595,7 +598,7 @@ h1, h2, h3, h4, h5 {
     background: url("../images/close_icon.png") no-repeat center center;
     position: absolute;
     top: 5px;
-    right: 10px;
+    right: 49px;
     cursor: pointer;
 }
 
@@ -707,14 +710,16 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     padding-right: 12px;
     box-sizing: border-box;
-    text-align: right
+    text-align: right;
+    position:absolute;
+    bottom:10px;
 }
 
 .send_P {
     display: inline-block;
     width: 96px;
-    height: 24px;
-    line-height: 24px;
+    height: 33px;
+    line-height: 33px;
     text-align: center;
     color: #fff;
     font-size: 17px;
@@ -911,4 +916,83 @@ h1, h2, h3, h4, h5 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.sprite{
+	cursor:pointer;
+}
+.sprite.icon1{
+	background-image:url(../images/chatIcons.png);
+	background-size:321px;
+	width:30px;
+	height:27px;
+	margin-bottom:-7px;
+	background-position:-78px -473px;
+	margin-left:20px;
+}
+.sprite.icon2{
+	background-image:url(../images/chatIcons.png);
+	background-size:321px;
+	width:30px;
+	height:27px;
+	margin-bottom:-5px;
+	background-position:-211px -470px;
+	margin-left:26px;
+}
+.sprite.icon3{
+	background-image:url(../images/chatIcons.png);
+	background-size:401px;
+	width:34px;
+	height:27px;
+	margin-bottom:-5px;
+	background-position:-21px -674px;
+	margin-left:26px;
+}
+.sprite.icon4{
+	background-image:url(../images/chatIcons.png);
+	background-size:342px;
+	width:30px;
+	height:27px;
+	margin-bottom:-5px;
+	background-position:-159px -639px;
+	margin-left:26px;
+}
+.sprite.icon5{
+	background-image:url(../images/chatIcons.png);
+	background-size:401px;
+	width:34px;
+	height:27px;
+	margin-bottom:-5px;
+	background-position:-99px -749px;
+	margin-left:26px;
+}
+.sprite.icon6{
+	background-image:url(../images/chatIcons.png);
+	background-size:333px;
+	width:30px;
+	height:29px;
+	background-position:-16px -425px;
+	margin-left:26px;
+	position:absolute;
+	top:7px;
+}
+.sprite.icon7{
+	background-image:url(../images/chatIcons.png);
+	background-size:333px;
+	width:30px;
+	height:29px;
+	background-position:-155px -425px;
+	margin-left:88px;
+	position:absolute;
+	top:7px;
+}
+.sprite.icon8{
+	background-image:url(../images/chatIcons.png);
+	background-size:333px;
+	width:30px;
+	height:29px;
+	background-position:-79px -425px;
+	margin-left:148px;
+	position:absolute;
+	top:7px;
 }

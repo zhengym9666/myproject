@@ -50,14 +50,15 @@
         var port=window.location.port;
         var portIndex=curWwwPath.indexOf(port);
         var ip=curWwwPath.substring(7,portIndex-1);
-        anychat.loginChatProxy.url = "ws://"+ip+":8082/chat_server/ws"
+        anychat.loginChatProxy.url = "ws://"+ip+":8080/chat_server/ws"
         var talkMediator = new anychat.TalkMediator();
         //alert(anychat.loginChatProxy.url);
         talkMediator.initView();
     }
 </script>
-<body>
-<div class="window_P">
+<body style="background:url(images/chatbg.png) no-repeat;background-position-y:12px;">
+<div class="top" style="width:100%;"></div>
+<div class="window_P" style="">
     <dl class="windowL_P fl">
         <dt>
             <span>通讯录</span>
@@ -79,6 +80,9 @@
         <dt>
             <span class="title_P" id="toTypeName">无</span>
             <i class="closeBtn_P" id="talk_close"></i>
+            <a class="sprite icon6"></a>
+            <a class="sprite icon7"></a>
+            <a class="sprite icon8"></a>
         </dt>
         <dd class="talkCon_P" id="chatList">
 
@@ -87,7 +91,12 @@
             <div class="pr">
                 <a href="javascript:;"></a>
                 <a href="javascript:;" class="history_P"></a>
-                <span class="emotion" >表情</span>
+                <span class="emotion" ><img alt="表情" width="30px" style="margin-top:-10px;" src="././arclist/1.gif"></span>
+                <a class="sprite icon1"></a>
+                <a class="sprite icon2"></a>
+                <a class="sprite icon3"></a>
+                <a class="sprite icon4"></a>
+                <a class="sprite icon5"></a>
             </div>
         </dd>
         <dd class="textWin_P">
