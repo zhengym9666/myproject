@@ -16,7 +16,7 @@ public class Audit {
 	private String department;
 	private Date time;
 	private String reason;
-	private Integer total;
+	private Float total;
 	private Integer state;
 	private String procInstId;
 	private String audit_suggest;
@@ -58,10 +58,10 @@ public class Audit {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public Integer getTotal() {
+	public Float getTotal() {
 		return total;
 	}
-	public void setTotal(Integer total) {
+	public void setTotal(Float total) {
 		this.total = total;
 	}
 	public Integer getState() {

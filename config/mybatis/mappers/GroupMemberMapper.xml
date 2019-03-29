@@ -34,4 +34,13 @@
 		insert into GROUPMEMBER(stuNum,stuName,clubId,departmentId,rank,job,state,applyTime) values
 		(#{stuNum},#{stuName},#{clubId},#{departmentId},#{rank},#{job},#{state},#{applyTime})
 	</insert>
+	
+	<select id="getAuditor" parameterType="HashMap" resultMap="BaseResultMap">
+		select * from GROUPMEMBER
+		<where>
+			<if test="departmentId != null and departmentId !=''">and departmentId = #{departId}</if>
+			and clubId = #{clubId} and rank = #{rank} and state = 1
+		</where>
+		
+	</select>
 </mapper>

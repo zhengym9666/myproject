@@ -24,6 +24,7 @@ import org.activiti.engine.task.TaskQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.community.bean.Club;
 import com.community.bean.Department;
@@ -76,14 +77,15 @@ public class StartProcessInstanceByIdServlet{
 	IReceiptOperLogService receiptOperLogService;
 	
 	@RequestMapping("/startprocess.action")
-	public void StartProcess(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@ResponseBody
+	public Map<String, String>  StartProcess(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 		/** 接收流程定义id */
 		String pdId = request.getParameter("pdId");
 		String receiptman_id = (String) request.getSession().getAttribute("userId");
 		String receiptman_name = (String) request.getSession().getAttribute("userName");
 		String clubId = (String) request.getSession().getAttribute("clubId");
-		Integer amount = Integer.parseInt(request.getParameter("amount"));
+		Float amount = Float.parseFloat(request.getParameter("amount"));
 		String receipt_reason = request.getParameter("reason");
 		String receiptObj = request.getParameter("receiptObj");
 		JSONArray jsonArray = JSONArray.fromObject(receiptObj);
@@ -96,7 +98,7 @@ public class StartProcessInstanceByIdServlet{
 			if(!(jsonString.equals("{}"))){
 				ReceiptDetail receiptItem = new ReceiptDetail();
 				String spendTimeStr = jsonArray.getJSONObject(i).getString("spendTime");
-				Integer cost = Integer.parseInt(jsonArray.getJSONObject(i).getString("cost"));
+				Float cost = Float.parseFloat(jsonArray.getJSONObject(i).getString("cost"));
 				String reason = jsonArray.getJSONObject(i).getString("reason");
 				String detail = jsonArray.getJSONObject(i).getString("detail");
 				Date spendTime = new Date();
@@ -117,19 +119,15 @@ public class StartProcessInstanceByIdServlet{
 		//获取社员所在部门
 		String departmentId = groupMemberService.getDepartmentId(receiptman_id, clubId);
 
-		//根据部门编号获取部门信息
-		Department deptInfo = deparmentService.queryDepartmentById(departmentId);
+		//获取部门id获取部长（rank为2）学号作为第一审批人
+		String one_autitor = groupMemberService.getAuditor(departmentId, clubId, 2).getStuNum();
 
-		//获取部长学号作为第一审批人
-		String one_autitor = deptInfo.getMinister();
-
-		//获取社团会长编号
-		//String generalId = clubService.getGeneralIdByClubId(clubId);	
-
-		//会长学号作为第二审批人
-		//Student generalInfo = studentService.getStudentInfoById(generalId);
-		Club clubBean = clubService.getClubById(clubId);
-		 String second_autitor = clubBean.getGeneralId();
+		//会长学号（rank为3）作为第二审批人
+		String second_autitor = groupMemberService.getAuditor("", clubId, 3).getStuNum();
+		
+		//财务学号作为第三审批人
+		String third_autitor = groupMemberService.getAuditor("", clubId, 6).getStuNum();
+		
 		Date submit_time = new Date();
 		
 		Receipt receiptBean = new Receipt();
@@ -139,6 +137,7 @@ public class StartProcessInstanceByIdServlet{
 		receiptBean.setAmount(amount);
 		receiptBean.setOne_autitor(one_autitor);
 		receiptBean.setSecond_autitor(second_autitor);
+		receiptBean.setThird_autitor(third_autitor);
 		receiptBean.setSubmit_time(submit_time);
 		receiptBean.setReason(receipt_reason);
 		receiptBean.setState(0);
@@ -198,15 +197,8 @@ public class StartProcessInstanceByIdServlet{
 		resultMap.put("piId", pi.getId());
 		resultMap.put("oneAutName", oneAutName);
 		resultMap.put("secAuName", secAuName);
-		PrintWriter writer = response.getWriter();
-		try {
-			writer.print(JSONObject.fromObject(resultMap));
-			writer.flush();
-			writer.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		return resultMap;
 
 		/** 转发到查看流程图 */
 		//response.sendRedirect(request.getContextPath()+"/seeProcessdiagram.action?piId="+pi.getId());

@@ -1,11 +1,11 @@
 /*报销首页样式*/
  	.title p{
-		color:#026fe8;
+		color:#1d4dbd;
 		font-weight:700;
 	}
 	.title span{
 		font-size:13px;
-		color:#595a5a;
+		color:#373738;
 	}
 	.recordbox{
 		width:70%;
@@ -15,7 +15,7 @@
 	}
 	.onerecord{
 		margin-bottom:12px;
-		color:#ccc;
+		color:#000;
 	}
 	.onerecord span{
 		display:block;
@@ -23,15 +23,15 @@
 		font-weight:700;
 		width:231px;
 		height:28px;
-		border-bottom:1px solid #484646;
+		border-bottom:1px solid #062c9aab;
 		line-height:33px;
-		color:#6277ea;
+		color:#062c9aab;
 	}
 	.onerecord a{
 		display:inline-block;
 		width:45px;
 		height:26px;
-		background:#e2dbdb;
+		background:#0999d2;
 		line-height:26px;
 		font-size:12px;
 		text-align:center;
@@ -39,7 +39,7 @@
 		margin-right:10px;
 		cursor:pointer;
 		text-decoration:none;
-		color:#000;
+		color:#fbf9f9;
 	}
 	.operbox{
 		margin-top:-21px;
@@ -100,13 +100,14 @@
 	height:32px;
 	background:#d1ecf7;
 }
-#receiptCol{
+.receiptCol{
 	height:40px;
 }
-#receiptCol input{
-	background:#ebeaea;
+.receiptCol input{
+	background:#ffffff;
 	border:none;
 }
+
 #receiptform input{
 	width:93%;
 	height:25px;
@@ -118,7 +119,7 @@
 #receiptform,#receiptwrapper{
 	width:90%;
 	position:relative;
-	height:430px;
+	height:620px;
 	margin-left:23px;
 	color:#171717;
 }
@@ -127,6 +128,9 @@
 }
 #receiptform th{
 	font-size:15px;
+}
+#receiptItems input{
+	background:none;
 }
 #addCol{
 	margin-left:74px;
@@ -154,7 +158,7 @@ button{
 #totalbox{
 	width:200px;
 	height:28px;
-	margin-left:1022px;
+	margin-left:1132px;
 }
 #total{
 	width:75px;
@@ -163,7 +167,7 @@ button{
 	border:1px solid #040404;
 	position:absolute;
 	line-height:30px;
-	background:#e6cfcf;
+	background:#dadada;
 	color:#000;
 }
 /*提交返回页面样式*/
@@ -174,16 +178,17 @@ button{
 p.resultTitle{
 	color:#f50808;
 	font-weight:bold;
+	font-size:18px;
 }
 #submitResult div{
-	color:#fbecec;
-	font-size:14px;
+	color:#000;
+	font-size:17px;
 }
 #submitResult span{
 	font-weight:bold;
 }
 .auditFlow{
-	color:#cacad8;
+	color:#000;
 }
 #amount{
 	margin-right:20px;

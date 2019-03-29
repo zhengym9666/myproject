@@ -36,7 +36,7 @@
 				                    +'</a>'
 				                  +'<div class="info">'
 				                      +'<div class="inforCon">'
-				                        +'<div class="title" id="1010000" style="width:'+titleWidth+'px;height:'+titleHeight+'px;line-height:'+titleLnHeight+'px;">'+item.abbr+'</div>'
+				                        +'<div class="title" id="'+item.id+'" style="width:'+titleWidth+'px;height:'+titleHeight+'px;line-height:'+titleLnHeight+'px;">'+item.abbr+'</div>'
 				                      +'</div>'
 				                  +'</div>'
 				             +'</li>');

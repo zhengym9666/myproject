@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/front/receipt/css/demo.css">
 <style type="text/css">
 	#ReceiptItem{
-		color:#ccc;
+		color:#0c0c0c;
 		margin-left:200px;
 		margin-top:16px;
 		font-size:13px;
@@ -16,7 +17,7 @@
 	span,p,th{
 		font-size:16px;
 		font-weight:700;
-		color:#ccc;
+		color:#000;
 	}
 	#receiptmanInfo{
 		font-size:13px;
@@ -50,9 +51,6 @@
 	.proc span{
 		font-size:15px;
 	}
-	#diagram{
-		margin-top:-200px;
-	}
 	.backButton{
 		width:58px;
 		height:36px;
@@ -60,12 +58,15 @@
 		background:#2b7b05;
 		line-height:36px;
 		text-align:center;
-		color:#ccc;
-		margin:17px 320px;
+		color:#f1f1f1;
+		/* margin:17px 320px; */
 		border:none;
 		border-radius:5px;
 		font-size:14px;
 		text-decoration:none;
+		position:absolute;
+		bottom:8px;
+		right:695px;
 	}
 </style>
 <title>Insert title here</title>
@@ -79,10 +80,10 @@
 		</div>
 	
 	<div id="receiptReason">
-		<span>报销原因：</span>${oneReceiptMap.reason }经费报销
+		<span style="font-weight:700;font-size:17px;">报销原因：</span>${oneReceiptMap.reason }经费报销
 	</div>
 	<div id="receiptDetail">
-		<p>报销明细</p>
+		<p style="font-weight:700;font-size:17px;">报销明细</p>
 		<table id="DetailTab">
 			<thead>
 				<tr>
@@ -127,9 +128,9 @@
 		<div class="proc"><span>第二审批人：</span>${oneReceiptMap.second_autitor }</div>
 		<div class="proc"><span>财务审批：</span>${oneReceiptMap.third_autitor }</div>
 	</div>
-	<div id="receiptProImg">
+	<div id="receiptProImg" style="height:200px;position:relative;">
 		<p>流程图：</p>
-		<img id="diagram" src="${pageContext.request.contextPath }/seeProcessdiagram.action?piId=${oneReceiptMap.procInstId}"/>
+		<img id="diagram" style="" src="${pageContext.request.contextPath }/seeProcessdiagram.action?piId=${oneReceiptMap.procInstId}"/>
 	</div>
 	<c:if test="${backPageId==1 }">
 		<a class="backButton" href="${pageContext.request.contextPath }/receipt/queryAllReceipt.action">返回</a>
@@ -137,6 +138,49 @@
 	<c:if test="${backPageId==2 }">
 		<a class="backButton" href="${pageContext.request.contextPath }/activiti/queryUserTask.action">返回</a>
 	</c:if>
+	<div class="col-md-3" style="position:absolute;bottom:8px;right:305px;">
+		<a class="btn btn-default jquery-word-export" href="javascript:void(0)" style="color: #035a75;">
+			<span class="word-icon">W</span>
+			导出为.doc文档
+		</a>
+	</div>
 	</div>
 </body>
+
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/receipt/js/FileSaver.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/receipt/js/jquery.wordexport.js"></script>
+<script>
+$(function(){
+	function fake_click(obj) {
+	    var ev = document.createEvent("MouseEvents");
+	    ev.initMouseEvent(
+	        "click", true, false, window, 0, 0, 0, 0, 0
+	        , false, false, false, false, 0, null
+	        );
+	    obj.dispatchEvent(ev);
+	}
+	 
+	function export_raw(name, data) {
+	    var urlObject = window.URL || window.webkitURL || window;
+	 
+	    var export_blob = new Blob([data]);
+	 
+	    var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+	    save_link.href = urlObject.createObjectURL(export_blob);
+	    save_link.download = name;
+	    fake_click(save_link);
+	}
+	 
+	$("a.jquery-word-export").click(function(event) {
+		$(".backButton").hide();
+		$("a.jquery-word-export").hide();
+		$("#ReceiptItem").wordExport();
+		alert(11);
+	    $(".backButton").show();
+		$("a.jquery-word-export").show();
+	});
+});
+	
+</script>
 </html>

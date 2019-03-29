@@ -23,4 +23,7 @@ public interface IGroupMemberService {
 	User getUserByName(String userName);
 	
 	public void saveMemberInfo(GroupMember memberInfo);
+	
+	public GroupMember getAuditor(String departId,String clubId,int rank);
+
 }

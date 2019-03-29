@@ -13,8 +13,10 @@
 	#paywrapper{
 		width:735px;
 		height:345px;
-		background:#439cd826;
-		border:1px solid #ddd;
+		background:#fff;
+		border:1px solid #a9d2e6;
+		box-shadow: inset -1px -1px 20px 5px #a9d2e6;
+		border-radius:12px;
 		margin:55px auto;
 		color:#da1a1a;
 	}
@@ -28,7 +30,7 @@
 	}
 </style>
 </head>
-<body>
+<body style="width:99%;background:url(<%=request.getContextPath()%>/css/images/bg.png) no-repeat;background-position-y:12px;">
 <div id="paywrapper">
 	<div id="codeBox">
 		<div id="wechatCode"><img alt="微信支付码" width="200" src=""/></div>

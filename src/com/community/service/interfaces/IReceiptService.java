@@ -45,7 +45,7 @@ public interface IReceiptService {
 	
 	public Receipt queryOneReceiptByProcInstId(String procInstId);
 	
-	public void updateOneReceiptByProcInstId(String receipt_reason,Integer amount,Date revise_time,String proc_inst_id);
+	public void updateOneReceiptByProcInstId(String receipt_reason,Float amount,Date revise_time,String proc_inst_id);
 
 	public void revokeOneReceiptByProcInstId(Integer state,String procInstId);
 	

@@ -36,10 +36,10 @@ a:focus { outline: none; }
 }
 .blank{
 	width:200px;
-	background:#026aad;
+	background:#fcfcfc;
 	font-size:14px;
 	line-height:40px;
-	color:#fff;
+	color:#000002;
 }
 .topmenu ul{
 			list-style: none;
@@ -159,7 +159,7 @@ a:focus { outline: none; }
 	height:36px;
 	background:#318609;
 	line-height:36px;
-	color:#e4e0e0;
+	color:#fff;
 	position:absolute;
 	right:243px;
 	top:2px;

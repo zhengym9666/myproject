@@ -14,7 +14,7 @@ public class ReceiptDetail {
 	private Date spend_time;
 	private String reason;
 	private String detail;
-	private Integer cost;
+	private Float cost;
 	public Integer getReceipt_item_id() {
 		return receipt_item_id;
 	}
@@ -45,10 +45,10 @@ public class ReceiptDetail {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public Integer getCost() {
+	public Float getCost() {
 		return cost;
 	}
-	public void setCost(Integer cost) {
+	public void setCost(Float cost) {
 		this.cost = cost;
 	}
 	

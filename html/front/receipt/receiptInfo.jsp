@@ -6,15 +6,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script>
+	var rootPath = "<%=request.getContextPath()%>";
+</script>
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/gd_stu_dev/css/receipt/receipt.css">
-<script type="text/javascript" src="http://localhost:8080/gd_stu_dev/js/calender/laydate.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/receipt/receipt.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/front/receipt/css/load.css">
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/calender/laydate.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/receipt/js/load-min.js"></script>
 </head>
 <body>
 <div id="ReceiptInfoBox" style="display:none;">
 		<div id="oneReceiptInfo"></div>
 </div>
-<div id="receiptwrapper">
+<div id="receiptwrapper" style="margin-left:180px;">
 	<div class="title">
 		<p>
 		最新消息
@@ -161,16 +167,14 @@
 				<th>内容</th>
 				<th style="width:15%;">金额</th> 
 			</tr>
-			<tbody>
-			<tr id="receiptCol">
+			<tr class="receiptCol">
 				<td>
-					<div class="calender"><input class="laydate-icon" id="demo" style="width:55%;height:24px;"> </div>
+					<div class="calender"><input class="laydate-icon" id="spendTime" style="width:55%;height:24px;"></div>
 				</td>
 				<td><input type="text" placeholder="如：购买物资"/></td>
 				<td><input type="text" placeholder="如：气球，彩带"/></td>
 				<td><input type="text" class="oddAmount"/></td>
 			</tr>
-			</tbody>
 		</table>
 		<button id="addCol">添加一行</button>
 		<div id="totalbox">总计：<span id="total"></span><span style="display:inline-block;margin-left:82px;">元</span></div>
@@ -190,7 +194,7 @@
 			<div><span id="finalAudit">财务审核</span></div>
 		</div> -->
 		<p class="auditFlow">审批流程如下：</p>
-		<div style="position:absolute;top:-30px;">
+		<div style="position:absolute;">
 			<img id="diagram"/>
 		</div>
 		<button id="finishBtn">返回</button>
@@ -198,7 +202,6 @@
 <div id="seeMyAudit"></div>
 </body>
 
-<script type="text/javascript" src="http://localhost:8080/gd_stu_dev/front/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		 //获取路径 | | |
@@ -215,18 +218,16 @@
 		
 		//显示日历
 		$(".calender").click(function(){
-			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
-			laydate({elem: '#demo'});//绑定元素
-			$("#laydate_box").show();
 			var index = $(".calender").index(this);
-		    var top = $("#laydate_box").css('top');
-		    if(index==0){
-		    	$("#laydate_box").css('top',"172px");
-		    }else{
-			    topVal = parseInt(top.replace(/[^0-9]/ig,""));
-			    top = topVal+34*index+"px";
-			    $("#laydate_box").css('top',top);
-		    }
+			
+			var index = $(".calender").index(this);
+			var calInput = $(this).find("input");
+			var id = "spendTime"+index;
+			calInput.attr("id",id);
+			
+			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+			laydate({elem: '#'+id});//绑定元素
+			$("#laydate_box").show();	
 		});
 		
 		//未提交表单返回报销首页
@@ -254,7 +255,7 @@
 				}
 				sum = Math.round((sum+parseFloat(value))*100)/100;
 			});
-			$("#total2").text(sum);
+			$("#total").text(sum);
 		});
 		
 		//提交
@@ -265,9 +266,10 @@
 		
 		//提交成功返回报销首页
 		$("#finishBtn").click(function(){
-			$("#receiptform").hide();
+			/* $("#receiptform").hide();
 			$("#submitResult").hide();
-			$("#receiptwrapper").show();
+			$("#receiptwrapper").show(); */
+			window.location.href = rootPath+"/receipt/queryAllReceipt.action";
 		})
 		
 		//计算金额总数
@@ -285,15 +287,18 @@
 		
 		//提交
 		$("#submitBtn").click(function(){
+			
 			var flag = 1;
 			var receiptObj = [];
 			/* var sessionuser = ${sessionScope.userId};
 			alert(sessionuser); */
+			$(this).css("background","#666765");
+			$(this).attr("disabled","disabled");
 			if(($("#receiptReasonVal").val())==""){
 				alert("请填写报销原因！");
 				return;
 			}
-			$("tbody tr").each(function(i){
+			$(".receiptCol").each(function(i){
 				var receiptItem = {};
 				receiptItem.spendTime = $(this).find("input").eq(0).val();
 				receiptItem.reason = $(this).find("input").eq(1).val();
@@ -311,28 +316,31 @@
 			var jsonObj = JSON.stringify(receiptObj);
 			console.log(jsonObj);
 						
-			var url=projectName+"/process/startprocess.action?pdId=myProcess:15:50004";
+			var url=projectName+"/process/startprocess.action?pdId=myProcess:16:82504";
 			//var url = projectName+"/seeProcessdiagram.action?piId="+27501;
 			if(flag==1){
+				$.mask_fullscreen();
 				$.ajax({
 					type:'post',
 					url:url,
+					dataType:'JSON',
 					data:{
 						"amount":$("#total").text(),
 						"reason":$("#receiptReasonVal").val(),
 						"receiptObj":jsonObj
 					},
 					success:function(data){
-						var jsonData = eval("("+data+")");
-						console.log(jsonData.piId);
-						document.getElementById("diagram").src=projectName+"/seeProcessdiagram.action?piId="+jsonData.piId;				
+						console.log(data.piId);
+						document.getElementById("diagram").src=projectName+"/seeProcessdiagram.action?piId="+data.piId;				
+						$.mask_close_all();
 						$("#receiptform").hide();
 						$("#submitResult").show();
 						$("#amount").text($("#total").text()+"元"); 
-						$("#currentAudit").text(jsonData.oneAutName);
+						$("#currentAudit").text(data.oneAutName);
 						
 					},
 					error:function(data){
+						$.mask_close_all();
 						alert("响应失败！");
 					}
 				});
@@ -341,6 +349,7 @@
 		
 		//查看我的审核
 		$("#myAudit").click(function(){
+			/* $.mask_fullscreen(); */
 			var url = projectName+"/activiti/queryUserTask.action";
 			$.ajax({
 				type:'post',
@@ -349,10 +358,12 @@
 					
 				},
 				success:function(data){
+					/* $.mask_close_all(); */
 					$("#receiptwrapper").hide();
 					$("#seeMyAudit").html(data);
 				},
 				error:function(data){
+					/* $.mask_close_all(); */
 					alert("请求出错！");
 				}
 			});
@@ -422,12 +433,15 @@
 				},
 				success:function(data){
 					alert("撤销成功！");
+					window.location.href = rootPath+"/receipt/queryAllReceipt.action";
 				},
 				error:function(){
 					alert("撤销失败！");
 				}
 			});
-		})
+		});
+		
+		
 		
 	});
 </script>

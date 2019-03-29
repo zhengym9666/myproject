@@ -8,7 +8,7 @@
 
 
 </head>
-<body>
+<body style="width:99%;background:url(<%=request.getContextPath()%>/css/images/bg.png) no-repeat;background-position-y:12px;">
 	<div id="joinwrapper" style="width:85%;height:80%;position:absolute;top:10px;;left:135px;">
          <iframe width="120%" height="100%" frameborder="0" class="" src="joinTable.jsp" name="content" id="newscontent" style="overfolw-x:hidden">
                             	

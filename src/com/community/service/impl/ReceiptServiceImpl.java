@@ -13,12 +13,12 @@ import com.community.dao.ReceiptDAO;
 import com.community.service.interfaces.IReceiptService;
 import com.community.util.PageBean;
 
-/** 
-* @author  ä½œè€… :zhengym
-* @date åˆ›å»ºæ—¶é—´ï¼š2019å¹´1æœˆ25æ—¥ ä¸‹åˆ2:36:27
-* @version 1.0 
-* @desrciption		
-*/
+/**
+ * 
+ * @author zym
+ *
+ * 2019å¹´3æœˆ28æ—¥
+ */
 @Service("receiptService")
 public class ReceiptServiceImpl implements IReceiptService {
 	
@@ -31,7 +31,7 @@ public class ReceiptServiceImpl implements IReceiptService {
 		receiptMapper.insertReceipt(receiptBean);
 	}
 	
-	//¸ù¾İµÚÒ»ÉóÅúÈËÑ§ºÅ²éÑ¯ËùÓĞ´ıÉóÅú±¨Ïú
+	//æ ¹æ®ç¬¬ä¸€å®¡æ‰¹äººå­¦å·æŸ¥è¯¢æ‰€æœ‰å¾…å®¡æ‰¹æŠ¥é”€
 	@Override
 	public PageBean queryReceiptByOneId(String clubId,String one_autitor,Integer state,int currentPage,int pageSize) {
 		
@@ -99,7 +99,7 @@ public class ReceiptServiceImpl implements IReceiptService {
 	}
 
 	@Override
-	public void updateOneReceiptByProcInstId(String receipt_reason, Integer amount,Date revise_time, String proc_inst_id) {
+	public void updateOneReceiptByProcInstId(String receipt_reason, Float amount,Date revise_time, String proc_inst_id) {
 		// TODO Auto-generated method stub
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("receipt_reason", receipt_reason);

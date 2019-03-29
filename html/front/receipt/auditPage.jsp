@@ -10,9 +10,11 @@
 <!-- <link rel="stylesheet" type="text/css" href="../../css/userTask/userTask.css"/> -->
 <style type="text/css">
 table{
-	color:#d8d2d2;
+	color:#040404;
 	margin-left:23px;
 	border-collapse: collapse;
+	border:1px solid #babbbb;
+	box-shadow:inset -1px -1px 11px 2px #a9d2e6;
 }
 h2{
 	color:#d8d2d2;
@@ -28,11 +30,11 @@ h2{
 	right:270px;
 }
 #auditPage thead{
-	background:#5b5963;
-	color:#cdccf3;
+	background:#d1ecf7;
+	color:#171717;
 }
-thead tr{
-	height:32px;
+thead tr,tbody tr{
+	height:35px;
 }
 #auditPage .tips{
 	margin:20px 680px;
@@ -87,7 +89,7 @@ a:hover{
 	background:#2b7b05;
 	line-height:36px;
 	text-align:center;
-	color:#ccc;
+	color:#f9f9f9;
 	margin:10px 576px;
 	border:none;
 	border-radius:5px;
@@ -100,7 +102,7 @@ a:hover{
 	background:#2b7b05;
 	line-height:30px;
 	text-align:center;
-	color:#ccc;
+	color:#fdfcfc;
 	margin:0 20px;
 	border:none;
 	border-radius:5px;

@@ -39,7 +39,7 @@ public class ReceiptDetailServiceImpl implements IReceiptDetailService {
 	public void updateDetail(List<ReceiptDetail> detailList,String procInstId) {
 		// TODO Auto-generated method stub
 		for(ReceiptDetail detailItem:detailList){
-			if(!("".equals(detailItem.getReceipt_item_id())&&null==detailItem.getReceipt_item_id())){
+			if(!(0==detailItem.getReceipt_item_id())){
 				ReceiptDetailMapper.updateDetailById(detailItem);
 			}else{
 				HashMap<String,Object> map = new HashMap<String,Object>();

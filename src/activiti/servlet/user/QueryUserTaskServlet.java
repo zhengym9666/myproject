@@ -71,7 +71,7 @@ public class QueryUserTaskServlet{
 		list();
 		
 		//查看审批人级别
-		Integer rank = Integer.parseInt((String) request.getSession().getAttribute("rank"));
+		Integer rank = (Integer) request.getSession().getAttribute("rank");
 		PageBean pageAudit = new PageBean();
 		if(rank==2){
 			pageAudit = receiptService.queryReceiptByOneId(clubId,userId,0,currentPage,pageSize);
@@ -121,7 +121,7 @@ public class QueryUserTaskServlet{
 		
 		
 		//通过审批人的不同级别查看已完成的审批单
-		Integer rank = Integer.parseInt((String) request.getSession().getAttribute("rank"));
+		Integer rank = (Integer) request.getSession().getAttribute("rank");
 		PageBean pageCompletedAudit = new PageBean();
 		if(rank==2){ 
 			pageCompletedAudit = receiptService.queryCompletedAuditByOneId(clubId, userId, 1,currentPage,pageSize);
@@ -139,7 +139,11 @@ public class QueryUserTaskServlet{
 			completedAuditBean.setTime(item.getSubmit_time());
 			completedAuditBean.setReason(item.getReason());
 			completedAuditBean.setTotal(item.getAmount());
-			completedAuditBean.setAudit_suggest(item.getAudit_suggest());
+			if(null==item.getAudit_suggest()){
+				
+			}else{
+				completedAuditBean.setAudit_suggest(item.getAudit_suggest());
+			}
 			completedAuditBean.setState(item.getState());
 			auditedList.add(completedAuditBean);
 		}

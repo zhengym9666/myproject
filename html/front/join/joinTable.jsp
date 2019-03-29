@@ -91,17 +91,25 @@ var rootPath = "<%=request.getContextPath()%>";
 	#submitBtn:hover{
 	cursor:pointer;
 	}
+	.underline{
+	padding-left:50px;
+	}
+	.underline input{
+		border:none;
+		background:none;
+		border-bottom:1px solid #000;
+	}
 </style>
 
 </head>
 <body>
 
 <div>
-<table width="936" border="1" cellspacing="0" style="margin:0 58px;border:0.5px #08a5e638 solid;">
+<table width="936" border="1" cellspacing="0" style="margin:0 129px;border:0.5px #08a5e638 solid;box-shadow:0px 2px 20px 7px #a9d2e6;">
 		<tr class="head"><th colspan="3"><span>报名表</span></th></tr>
 		<tr class="baseInfo">
-			<td><span>学号：</span><input type="text" id="stuNum"/></td>
-			<td><span>姓名：</span><input type="text" id="stuName"/></td>
+			<td class="underline"><span>学号：</span><input type="text" id="stuNum"/></td>
+			<td class="underline"><span>姓名：</span><input type="text" id="stuName" /></td>
 			<td rowspan="4" width="144" style="border-bottom:none;"><div id="addCommodityIndex">
 					             <!--input-group start-->
 					            <div class="input-group row">
@@ -122,7 +130,7 @@ var rootPath = "<%=request.getContextPath()%>";
 							</div></td>
 		</tr>
 		<tr class="baseInfo">
-			<td>
+			<td style="padding-left:50px;">
 				<span>性别：</span>
 				<input type="text" id="gender" value="请选择" class="ui-down"/>
 				<ul id="genderul">
@@ -130,15 +138,15 @@ var rootPath = "<%=request.getContextPath()%>";
 					<li>女</li>
 				</ul>
 			</td>
-			<td><span>专业：</span><input type="text" id="profession"/></td>
+			<td class="underline"><span>专业：</span><input type="text" id="profession"/></td>
 		</tr>
 		<tr class="baseInfo">			
-			<td><span>班级：</span><input type="text" id="grade"/></td>
-			<td><span>电话：</span><input type="text" id="phone"/></td>
+			<td class="underline"><span>班级：</span><input type="text" id="grade"/></td>
+			<td class="underline"><span>电话：</span><input type="text" id="phone"/></td>
 		</tr>
 		<tr class="baseInfo">			
-			<td><span>邮箱：</span><input type="text" id="email"/></td>
-			<td><span>社团意向：</span>
+			<td class="underline"><span>邮箱：</span><input type="text" id="email"/></td>
+			<td  style="padding-left:50px;"><span>社团意向：</span>
 			<input type="text" id="clubName" name="clubName" value="请选择" class="ui-down"/>
 			<input type="hidden" id="clubId" name="clubId" class="ui-down"/>
 			<ul id="clubul">
@@ -148,7 +156,7 @@ var rootPath = "<%=request.getContextPath()%>";
 		</tr>
 		<tr class="baseInfo">
 		
-			<td><span>部门意向：</span>
+			<td  style="padding-left:50px;"><span>部门意向：</span>
 			<input type="text" id="departName" name="departName" value="请选择" class="ui-down"/>
 			<input type="hidden" id="departId" name="departId" class="ui-down"/>
 			<ul id="departmentul">

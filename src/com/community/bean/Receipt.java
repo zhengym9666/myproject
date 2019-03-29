@@ -19,7 +19,7 @@ public class Receipt {
 	private String one_autitor;
 	private String second_autitor;
 	private String third_autitor;
-	private Integer amount;
+	private Float amount;
 	private String reason;
 	private String taskId;
 	private int id;
@@ -85,10 +85,10 @@ public class Receipt {
 	public void setThird_autitor(String third_autitor) {
 		this.third_autitor = third_autitor;
 	}
-	public Integer getAmount() {
+	public Float getAmount() {
 		return amount;
 	}
-	public void setAmount(Integer amount) {
+	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
 	public String getReason() {

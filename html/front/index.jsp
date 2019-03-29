@@ -171,6 +171,13 @@
         .verify-change-code{
         	cursor:pointer;
         }
+        .sideline{
+		position:absolute;
+		border:0;
+		height:2px;
+		background:#48a5f4 !important;
+		top:41px;
+		}
     </style>
 </head>
 <body class = "wrapper">

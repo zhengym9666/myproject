@@ -9,6 +9,7 @@ import com.community.bean.GroupMember;
 import com.community.dao.GroupMemberDAO;
 import com.community.service.interfaces.IGroupMemberService;
 
+import java.util.HashMap;
 import java.util.List;
 
 /** 
@@ -51,5 +52,15 @@ public class GroupMemberServiceImpl extends AbsServiceImpl<GroupMemberDAO> imple
 	public void saveMemberInfo(GroupMember memberInfo) {
 		// TODO Auto-generated method stub
 		mapper.saveMemberInfo(memberInfo);
+	}
+
+	@Override
+	public GroupMember getAuditor(String departId, String clubId, int rank) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("departId", departId);
+		params.put("clubId", clubId);
+		params.put("rank", rank);
+		return mapper.getAuditor(params);
 	}
 }

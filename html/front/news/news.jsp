@@ -22,7 +22,7 @@
 	 }
 </script>
 </head>
-<body>
+<body style="width:99%;background:url(<%=request.getContextPath()%>/css/images/bg.png) no-repeat;background-position-y:12px;">
 <input type="hidden" value="${sessionScope.collegeId }" id="collegeId">
 	<div id="newsnav">
 		<div id="header"> 

@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/receipt/receipt.css">
 </head>
-<body>
+<body  style="width:99%;background:url(<%=request.getContextPath()%>/css/images/bg.png) no-repeat;background-position-y:12px;">
 <div id="receiptwrapper">
-	<iframe width="130%" height="100%" frameborder="0" class="" src="" name="content" id="receiptInfo" style="overfolw-x:hidden"></iframe>
+	<iframe width="130%" height="100%" style="margin-left:-32px;" frameborder="0" class="" src="" name="content" id="receiptInfo" style="overfolw-x:hidden"></iframe>
 </div>
 
 </body>

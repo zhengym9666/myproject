@@ -152,7 +152,7 @@ public class ReceiptAction {
 	public void submitReviseReceipt(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
 		String procInstId = request.getParameter("procInstId");
-		Integer amount = Integer.parseInt(request.getParameter("amount"));
+		Float amount = Float.parseFloat(request.getParameter("amount"));
 		String receipt_reason = request.getParameter("reason");
 		String receiptObj = request.getParameter("receiptObj");
 		JSONArray jsonArray = JSONArray.fromObject(receiptObj);
@@ -167,10 +167,15 @@ public class ReceiptAction {
 			if(!(jsonString.equals("{}"))){
 				ReceiptDetail receiptItem = new ReceiptDetail();
 				String spendTimeStr = jsonArray.getJSONObject(i).getString("spendTime");
-				Integer cost = Integer.parseInt(jsonArray.getJSONObject(i).getString("cost"));
+				Float cost = Float.parseFloat(jsonArray.getJSONObject(i).getString("cost"));
 				String reason = jsonArray.getJSONObject(i).getString("reason");
 				String detail = jsonArray.getJSONObject(i).getString("detail");
-				Integer receiptItemId = Integer.parseInt(jsonArray.getJSONObject(i).getString("receiptItemId"));
+				Integer receiptItemId;
+				if(null==jsonArray.getJSONObject(i).getString("receiptItemId") || "".equals(jsonArray.getJSONObject(i).getString("receiptItemId"))){
+					receiptItemId = 0;
+				}else{
+					receiptItemId = Integer.parseInt(jsonArray.getJSONObject(i).getString("receiptItemId"));
+				}
 				Date spendTime = new Date();
 				try {
 					spendTime = df.parse(spendTimeStr);

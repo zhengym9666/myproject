@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.community.bean.GroupMember;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,4 +24,6 @@ public interface GroupMemberDAO {
     List<GroupMember> queryMemberListByClubId(String clubId);
     
     public void saveMemberInfo(GroupMember memberInfo);
+    
+    public GroupMember getAuditor(HashMap<String,Object> map);
 }
