@@ -70,13 +70,13 @@ body {
 	background:#626763;
 	margin-left:10px;
 }
-#collegeName,#clubName{
+#collegeName,#clubName,#pior{
 	caret-color: transparent;
 }
-#collegeName:hover,#clubName:hover{
+#collegeName:hover,#clubName:hover,#pior{
 	cursor:pointer;
 }
-#collegeul,#clubul{
+#collegeul,#clubul,#piorul{
 	position:  absolute;
     left: 687px;
     color: #000;
@@ -119,6 +119,9 @@ ul li:hover{
 	z-index:99;
 	display:none;
 }
+.geneAdmin,.superAdmin{
+	display:none;
+}
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
@@ -140,11 +143,25 @@ ul li:hover{
   <tr>
     <td width="317" rowspan="2">&nbsp;</td>
     <td width="295" height="152"><table width="261" border="0" align="right">
-        <tr>
+    
+    	<tr>
+          <td class="table-left"><span>权限：</span></td>
+          <td class="table-right">
+          <input type="hidden" id="piorId">
+          <input type="text" id="pior" class="ui-down">
+          </td>
+          <td>
+          	<ul id="piorul">
+          		<li id="1">管理员</li>
+          		<li id="2">超级管理员</li>
+          	</ul>
+          </td>
+        </tr>
+        <tr class="geneAdmin">
           <td class="table-left"><span>学号：</span></td>
           <td class="table-right"><input name="stuId" type="text" id="stuId"></td>
         </tr>
-        <tr>
+        <tr class="geneAdmin">
           <td class="table-left"><span>学院：</span></td>
           <td class="table-right">
           <input type="hidden" id="collegeId">
@@ -159,7 +176,7 @@ ul li:hover{
           	</ul>
           </td>
         </tr>
-        <tr>
+        <tr class="geneAdmin">
           <td class="table-left"><span>社团：</span></td>
           <td class="table-right">
           <input type="hidden" id="clubId">
@@ -170,25 +187,18 @@ ul li:hover{
           	</ul>
           </td>
         </tr>
+        <tr class="superAdmin">
+        	 <td class="table-left"><span>账号：</span></td>
+          	 <td class="table-right"><input name="admin" type="text" id="admin"></td>
+        </tr>
         <tr>
           <td class="table-left"><span>密码：</span></td>
           <td class="table-right"><input name="pwd" type="password" id="password"></td>
         </tr>
         <tr>
-        	
+        	<div id="mpanel4">
+          	</div>	
         </tr>
-        <tr style="display:none">
-          <td height="30"><span class="STYLE7">权限:</span></td>
-          <td height="30"><select name="cx" id="cx">
-            <option value="管理员">管理员</option>
-          </select>
-                <input name="login" type="hidden" id="login" value="1"></td>
-        </tr>
-		 <tr>
- 
-          <div id="mpanel4">
-          </div>
-        <tr>
           <div class="submitbtn">
           		<input type="submit" name="Submit" value="登陆" onClick="showVertify();">
                 <input type="reset" name="Submit2" value="重置"></td>
@@ -202,22 +212,43 @@ ul li:hover{
 </table>
 </body>
 <script type="text/javascript" src="./front/jquery-1.11.1.min.js"></script>
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="verify/js/jquery.min.js"></script>
 <script type="text/javascript" src="verify/js/verify.js" ></script>
 <script>
 	$(function(){
 		$("#collegeName").click(function(){
 			$("#collegeul").toggle();
-		})
+		});
 		
 		$("#clubName").click(function(){
 			$("#clubul").toggle();
 		});
 		
+		$("#pior").click(function(){
+			$("#piorul").show();
+		});
+		
+		$("#piorul li").click(function(){
+			$("#pior").val($(this).text());
+			$("#piorId").val($(this).attr("id"));
+			$("#piorul").hide();
+			if($(this).attr("id")=="1"){
+				$(".geneAdmin").show();
+				$(".superAdmin").hide();
+				$(".submitbtn").css("margin-top","169px");
+				$(".submitbtn").css("margin-left","90px");
+			}else if($(this).attr("id")=="2"){
+				$(".superAdmin").show();
+				$(".geneAdmin").hide();
+				$(".submitbtn").css("margin-top","142px");
+				$(".submitbtn").css("margin-left","90px");
+			}
+		});
+		
 		initVerify();
 		
 		$.ajax({
-    		url:rootPath+"/community/queryAllCollege.action",
+    		url:rootPath+"/community/GetAllCollegeInfo.action",
     		type:'post',
     		data:{},
     		dataType:'JSON',
@@ -288,6 +319,7 @@ ul li:hover{
 	        ready : function() {
 	    	},
 	        success : function() {
+	        	if($("#piorId").val()=="1"){
 	        	var stuId = $("#stuId").val();
 	        	var collegeId = $("#collegeId").val();
 	        	var clubId = $("#clubId").val();
@@ -319,6 +351,31 @@ ul li:hover{
 	        			alert("请求出错");
 	        		}
 	        	});
+	        	}else if($("#piorId").val()=="2"){
+	        		var adminName = $("#admin").val();
+	        		var password = $("#password").val();
+	        		$.ajax({
+		        		url:rootPath+"/admin/SuperLoginAction.action",
+		        		type:'post',
+		        		data:{
+		        			adminName:adminName,
+		        			password:password
+		        		},
+		        		dataType:'JSON',
+		        		success:function(response){
+		        			if(response.resultFlag){
+		        				window.open(response.adminUrl);
+		        			}else{
+		        				alert(response.Msg);
+		        				$('#mpanel4').hide();
+		        			}
+		        			
+		        		},
+		        		error:function(){
+		        			alert("请求出错");
+		        		}
+		        	});
+	        	}
 	        },
 	        error : function() {
 //	        	alert('验证失败！');
