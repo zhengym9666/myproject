@@ -3,7 +3,6 @@ package com.community.service.impl;
 import com.community.dao.TokenDAO;
 import com.community.model.base.Token;
 import com.community.util.MybatisUtil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
