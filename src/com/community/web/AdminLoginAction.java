@@ -71,4 +71,22 @@ public class AdminLoginAction {
 		
 	}
 	
+	@RequestMapping("/SuperLoginAction.action")
+	@ResponseBody
+	public Map<String,Object> SuperLoginAction(HttpServletRequest request){
+		
+		String adminName = request.getParameter("adminName");
+		String password = request.getParameter("password");
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+		if(!("admin".equals(adminName) && ("admin").equals(password))){
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "用户名或密码错误");
+		}else{
+			resultMap.put("resultFlag", 1);
+			resultMap.put("adminUrl", "http://localhost:8080/admin-web/index2.jsp");
+		}
+		return resultMap;
+	}
 }
