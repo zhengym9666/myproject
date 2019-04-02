@@ -50,7 +50,7 @@
         var port=window.location.port;
         var portIndex=curWwwPath.indexOf(port);
         var ip=curWwwPath.substring(7,portIndex-1);
-        anychat.loginChatProxy.url = "ws://"+ip+":8080/chat_server/ws"
+        anychat.loginChatProxy.url = "ws://"+ip+":8082/chat_server/ws"
         var talkMediator = new anychat.TalkMediator();
         //alert(anychat.loginChatProxy.url);
         talkMediator.initView();

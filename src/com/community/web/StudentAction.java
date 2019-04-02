@@ -73,6 +73,11 @@ public class StudentAction {
         JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
         String studentId = ob.getString("studentId");
         String hOpCode = ob.getString("hOpCode");
+
+        //获取当前登录的社团id
+        String clubId ="";
+
+
         //测试使用
         if(studentId==null){
             //studentId="123";
@@ -80,6 +85,7 @@ public class StudentAction {
         Map map=new HashMap();
         if (StringUtil.stringIsNull(studentId)) {
             student = (Student) request.getSession().getAttribute("student");
+            clubId=(String) request.getSession().getAttribute("clubId");
         } else {
             student = studentService.getStudentInfoById(studentId);
         }
@@ -91,7 +97,7 @@ public class StudentAction {
             //返回500
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        User user = studentToUser(student);
+        User user = studentToUser(student,clubId);
         map.put("user",user);
         map.put("hOpCode",hOpCode);
         return ResponseEntity.ok(map);
@@ -127,13 +133,15 @@ public class StudentAction {
                 /*if(adminStudent!=null){
                     studentIds.add(adminStudent.getStuNum());
                 }*/
-                stuList = studentService.getFriendListByStudentId(studentIds);
+                if(studentIds!=null){
+                    stuList = studentService.getFriendListByStudentId(studentIds);
+                }
             }
             //List<Student> stuList = studentService.getFriendList(cludId);
             if (userList != null) {
                 for (int i = 0; i < stuList.size(); i++) {
                     Student student = stuList.get(i);
-                    User user = studentToUser(student);
+                    User user = studentToUser(student,cludId);
                     userList.add(user);
                 }
             }
@@ -162,7 +170,7 @@ public class StudentAction {
         return ResponseEntity.ok(student);
     }
 
-    public User studentToUser(Student student){
+    public User studentToUser(Student student,String clubId){
         /*User user=new User();
         user.setUserId(student.getStuNum());
         user.setUserGroupTopId(student.getCollegeId());
@@ -173,7 +181,7 @@ public class StudentAction {
         userData.setUser(user);*/
         User user=new User();
         user.setUserId(student.getStuNum());
-        user.setUserGroupTopId(student.getCollegeId());
+        user.setUserGroupTopId(clubId);
         user.setUserImgUrl("");
         user.setUserRealName(student.getStuName());
         return user;

@@ -110,7 +110,7 @@ public class LoginServlet{
             }
             Token token = tokenService.getTokenByUserId(student.getStuNum());
             if (token == null) {
-                token = tokenService.createToken(userId);
+                token = tokenService.createToken(userId,clubId);
                 if (token == null) {
                     token = tokenService.getTokenByUserId(userId);
                 }
@@ -119,12 +119,12 @@ public class LoginServlet{
                 // 判断是否过期
                 if (date.getTime() > token.getTokenExpireTime().getTime()) {
                     tokenService.deleteToken(token.getTokenId());
-                    token = tokenService.createToken(userId);
+                    token = tokenService.createToken(userId,clubId);
                     if (token == null) {
                         token = tokenService.getTokenByUserId(userId);
                     }
                 } else {
-                    tokenService.updateToken(token.getTokenId());
+                    tokenService.updateToken(token.getTokenId(),clubId);
                 }
             }
             if (token == null) {
@@ -181,7 +181,7 @@ public class LoginServlet{
             }
             Token token = tokenService.getTokenByUserId(student.getStuNum());
             if (token == null) {
-                token = tokenService.createToken(userId);
+                token = tokenService.createToken(userId,null);
                 if (token == null) {
                     token = tokenService.getTokenByUserId(userId);
                 }
@@ -190,12 +190,12 @@ public class LoginServlet{
                 // 判断是否过期
                 if (date.getTime() > token.getTokenExpireTime().getTime()) {
                     tokenService.deleteToken(token.getTokenId());
-                    token = tokenService.createToken(userId);
+                    token = tokenService.createToken(userId,null);
                     if (token == null) {
                         token = tokenService.getTokenByUserId(userId);
                     }
                 } else {
-                    tokenService.updateToken(token.getTokenId());
+                    tokenService.updateToken(token.getTokenId(),token.getCur_club_id());
                 }
             }
             if (token == null) {

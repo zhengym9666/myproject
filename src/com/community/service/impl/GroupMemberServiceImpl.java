@@ -44,7 +44,7 @@ public class GroupMemberServiceImpl extends AbsServiceImpl<GroupMemberDAO> imple
 	public static void main(String[] args) throws Exception {
 		MybatisUtil util=new MybatisUtil();
 		GroupMemberServiceImpl service = util.getMapperServiceImplObject(GroupMemberDAO.class, GroupMemberServiceImpl.class);
-		List<GroupMember> groupMember = service.queryMemberListByClubId("1010100");
+		List<GroupMember> groupMember = service.queryMemberListByClubId("1010000");
 		System.out.println(groupMember);
 	}
 

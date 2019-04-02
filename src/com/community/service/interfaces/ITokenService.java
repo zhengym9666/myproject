@@ -13,9 +13,9 @@ public interface ITokenService {
 
     public  Token getTokenById(String tokenId);
 
-    public  Token createToken(String userId) ;
+    public  Token createToken(String userId,String clubId) ;
 
-    public  Token updateToken(String tokenId);
+    public  Token updateToken(String tokenId,String clubId);
 
     public  boolean deleteToken(String tokenId);
 

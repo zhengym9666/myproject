@@ -9,6 +9,7 @@ public class Token implements Serializable {
     private Date tokenCreateTime;
     private Date tokenUpdateTime;
     private Date tokenExpireTime;
+    private String cur_club_id;
     private static final long serialVersionUID = 1L;
 
     public String getTokenId() {
@@ -51,6 +52,26 @@ public class Token implements Serializable {
         this.tokenExpireTime = tokenExpireTime;
     }
 
+    public String getCur_club_id() {
+        return cur_club_id;
+    }
+
+    public void setCur_club_id(String cur_club_id) {
+        this.cur_club_id = cur_club_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "tokenId='" + tokenId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", tokenCreateTime=" + tokenCreateTime +
+                ", tokenUpdateTime=" + tokenUpdateTime +
+                ", tokenExpireTime=" + tokenExpireTime +
+                ", cur_club_id='" + cur_club_id + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -88,14 +109,4 @@ public class Token implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Token{" +
-                "tokenId='" + tokenId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", tokenCreateTime=" + tokenCreateTime +
-                ", tokenUpdateTime=" + tokenUpdateTime +
-                ", tokenExpireTime=" + tokenExpireTime +
-                '}';
-    }
 }

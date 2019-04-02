@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ThemeResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,10 +48,17 @@ public class TokenHttpFilter implements HandlerInterceptor {
             //获取请求地址
             String getServletPath =request.getServletPath();
             //如果是登录接口，不进行拦截
-            if(getServletPath.contains("LoginAction.action") || getServletPath.contains("queryNewsPage.action") ||
+            /*if(getServletPath.contains("LoginAction.action") || getServletPath.contains("queryNewsPage.action") ||
                     getServletPath.contains("mathBuild.action")|| getServletPath.contains("getAdminToken.action")){
                 return true;
+            }*/
+            //如果不涉及到聊天记录的类不进行拦截
+            if(getServletPath.contains("student/queryStudent.action") || getServletPath.contains("student/queryFriendList.action") ||
+                   getServletPath.contains("student/queryFriendList.action") || getServletPath.contains("club/queryStudentClub.action")){
+            }else{
+                return true;
             }
+
             //先检测聊天系统是否有toekn
             String tokenStr= (String) request.getHeader("token");
             if(tokenStr==null || tokenStr.length()==0){
@@ -83,7 +91,7 @@ public class TokenHttpFilter implements HandlerInterceptor {
                 //return false;
                 throw new Exception("该token已过期或不合法");
             } else {
-                tokenService.updateToken(token.getTokenId());
+                tokenService.updateToken(token.getTokenId(),token.getCur_club_id());
             }
             student = studentService.getStudentInfoById(token.getUserId());
             if (student == null) {
@@ -95,6 +103,7 @@ public class TokenHttpFilter implements HandlerInterceptor {
             }
             request.getSession().setAttribute("student",student);
             request.getSession().setAttribute("token",tokenStr);
+            request.getSession().setAttribute("clubId",token.getCur_club_id());
             return true;
         } catch (Exception e) {
             e.printStackTrace();

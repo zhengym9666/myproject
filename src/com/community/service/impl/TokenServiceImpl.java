@@ -72,7 +72,7 @@ public class TokenServiceImpl extends AbsServiceImpl<TokenDAO> implements IToken
         }
     }
 
-    public  Token createToken(String userId) {
+    public  Token createToken(String userId,String club_id) {
         if (StringUtil.stringIsNull(userId)) {
             return null;
         }
@@ -84,6 +84,7 @@ public class TokenServiceImpl extends AbsServiceImpl<TokenDAO> implements IToken
         token.setTokenExpireTime(expireTime);
         token.setUserId(userId);
         token.setTokenId(IdUtil.getUuid());
+        token.setCur_club_id(club_id);
 
         try {
 
@@ -100,7 +101,7 @@ public class TokenServiceImpl extends AbsServiceImpl<TokenDAO> implements IToken
         }
     }
 
-    public  Token updateToken(String tokenId) {
+    public  Token updateToken(String tokenId,String clubId) {
         if (StringUtil.stringIsNull(tokenId)) {
             return null;
         }
@@ -114,6 +115,7 @@ public class TokenServiceImpl extends AbsServiceImpl<TokenDAO> implements IToken
         token.setTokenUpdateTime(date);
         Date expireTime = new Date(date.getTime() + CommonConfigUCenter.TOKEN_EXPIRE_TIME);
         token.setTokenExpireTime(expireTime);
+        token.setCur_club_id(clubId);
 
         try {
             int result = mapper.updateByPrimaryKeySelective(token);

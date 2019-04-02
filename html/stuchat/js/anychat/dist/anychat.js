@@ -831,6 +831,8 @@
         //发送聊天
         this.onSendChat = function (event) {
             var chatContent = $("#sendChatContent").html();
+            //清空输入内容
+            $("#sendChatContent").html("");
             if (chatContent === null || chatContent === "" || chatContent === undefined) {
                 return;
             }
