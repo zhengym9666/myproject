@@ -36,11 +36,30 @@
     	</where>
     	limit #{start},#{size}
     </select>
-    
+
     <select id="queryTotalCount" resultType="java.lang.Integer">
-    	select  count(*) from NEWS
-    	<where>
-    	collegeId = #{collegeId} and clubId = #{clubId}
-    	</where>
+        select  count(*) from NEWS
+        <where>
+            collegeId = #{collegeId} and clubId = #{clubId}
+        </where>
     </select>
+    <select id="queryNewsImgRecently" resultMap="BaseResultMap">
+        select  * from NEWS n
+        <where>
+            n.clubId = #{clubId}
+            AND n.content LIKE '%&lt;img%'
+        </where>
+        ORDER BY n.submit_time DESC
+        LIMIT 5
+    </select>
+
+    <select id="queryNewsRecently" resultMap="BaseResultMap">
+        select  * from NEWS n
+        <where>
+            n.clubId = #{clubId}
+        </where>
+        ORDER BY n.submit_time DESC
+        LIMIT 6
+    </select>
+
 </mapper>

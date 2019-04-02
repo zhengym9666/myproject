@@ -62,28 +62,32 @@
 	<div class="hotnews">
 		<span class="title">*热门新闻*</span>
 		<div class="yx-rotaion">
-			<ul class="rotaion_list">
-		
-				<li><a href="http://www.jq22.com/"><img src="../css/news/images/1.jpg" alt="图片信息1"></a></li>
-		
-				<li><a href="http://www.jq22.com/"><img src="../css/news/images/2.jpg" alt="图片信息2"></a></li>
-		
-				<li><a href="http://www.jq22.com/"><img src="../css/news/images/3.jpg" alt="图片信息3"></a></li>
-		
+			<ul class="rotaion_list" >
+				<li><a><img src="../css/news/images/3.jpg" alt="图片信息1"></a></li>
+				<li><a></a></li>
+				<li><a></a></li>
+				<li><a></a></li>
+				<li><a></a></li>
+				<li><a></a></li>
+				<%--<li><a href="http://www.jq22.com/"><img src="http://localhost:8081/admin/upload/4a01d7bd-c211-4f19-b914-4e299bebd220.png" alt="图片信息1"></a></li>
+
+				<li><a href="http://www.jq22.com/"><img src="http://localhost:8081/admin/upload/4a01d7bd-c211-4f19-b914-4e299bebd220.png" alt="图片信息2"></a></li>--%>
+				<%--<li><a href="http://www.jq22.com/"><img src="../css/news/images/3.jpg" alt="图片信息3"></a></li>
+
 				<li><a href="http://www.jq22.com/"><img src="../css/news/images/4.jpg" alt="图片信息4"></a></li>
-		
-				<li><a href="http://www.jq22.com/"><img src="../css/news/images/5.jpg" alt="图片信息5"></a></li>
+
+				<li><a href="http://www.jq22.com/"><img src="../css/news/images/5.jpg" alt="图片信息5"></a></li>--%>
 		
 			</ul>
 		</div>
 		<div>
 			<ul class="newsList">
+					<%--<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
 					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
 					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
 					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
 					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
+					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>--%>
 			</ul>
 		</div>
 	</div>
@@ -136,12 +140,9 @@
 
 </body>
 <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+
 <script type="text/javascript" src="<%=request.getContextPath() %>/front/news/jquery.min.js"></script>
-<!-- 轮播图 -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/front/news/jquery.yx_rotaion.js"></script>
-<script type="text/javascript">
-$(".yx-rotaion").yx_rotaion({auto:true});
-</script>
+
 
 <!-- 评论模块 -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/front/news/jquery-1.12.0.min.js"></script>
@@ -301,4 +302,75 @@ $(".yx-rotaion").yx_rotaion({auto:true});
         }
     })
 </script>
+<%--加载最近的六篇文章的标题和链接--%>
+<script type="text/javascript">
+    $.ajax({
+        url : rootPath+"/news/queryNewsRecently.action",
+        type:'post',
+        async:true,
+        cache:false,
+        data : {
+            clubId:${clubId}
+        },
+        dataType:'JSON',
+        success : function(response) {
+            /* response=JSON.parse(response); */
+            if(response.resultFlag){
+                if(response.newslist !=null){
+                    $.each(response.newslist,function(index,news){
+                        $('.newsList').append("<li><a  target=\"_blank\" href='"+news.url+"'>"+news.title+"</a></li>");
+                    });
+                }
+            }else{
+                alert("获取最近的文章失败："+response.msg);
+            }
+        },
+        error : function() {
+            var obj = {};
+            alert("系统出错")
+            //operationTipsFailed(obj);
+        }
+    });
+</script>
+<%--加载最新的滚动图片和文章链接--%>
+<script type="text/javascript">
+        $.ajax({
+            url : rootPath+"/news/queryNewsImgRecently.action",
+            type:'post',
+            async:false,
+            cache:false,
+            data : {
+                clubId:${clubId}
+            },
+            dataType:'JSON',
+            success : function(response) {
+                /* response=JSON.parse(response); */
+                var str="";
+                if(response.resultFlag){
+                    if(response.imglist !=null){
+
+                        $.each(response.imglist,function(index,imagNew){
+                            str+="<li><a  target=\"_blank\" href='"+imagNew.url+"'><img src='"+imagNew.urlImage+"'></a></li>";
+                        });
+                    }
+                    $('.rotaion_list').html(str);
+
+                }else{
+                    alert("获取最近的图片失败："+response.msg);
+                }
+            },
+            error : function() {
+                alert("系统出错")
+            }
+        });
+
+
+</script>
+<!-- 轮播图 -->
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/news/jquery.yx_rotaion.js"></script>
+<script type="text/javascript">
+    //留到下面图片加载再处理
+    $(".yx-rotaion").yx_rotaion({auto:true});
+</script>
+
 </html>

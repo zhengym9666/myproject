@@ -78,7 +78,21 @@ public class News {
 	public void setClubId(String clubId) {
 		this.clubId = clubId;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "News{" +
+				"id=" + id +
+				", author='" + author + '\'' +
+				", submitter='" + submitter + '\'' +
+				", submit_time='" + submit_time + '\'' +
+				", revise_time='" + revise_time + '\'' +
+				", title='" + title + '\'' +
+				", content='" + content + '\'' +
+				", image='" + image + '\'' +
+				", readcount=" + readcount +
+				", collegeId='" + collegeId + '\'' +
+				", clubId='" + clubId + '\'' +
+				'}';
+	}
 }

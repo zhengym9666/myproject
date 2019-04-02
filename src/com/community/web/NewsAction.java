@@ -1,5 +1,6 @@
 package com.community.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.community.util.FilePropertiesUtil;
+import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +61,19 @@ public class NewsAction {
 		return "forward:/front/news/newscontent.jsp";
 	}
 
+	@RequestMapping(value = "newsById/{newsId}", method = RequestMethod.GET)
+	public String newsById(@PathVariable("newsId")Integer newsId,HttpServletRequest request){
+		String clubId =  request.getParameter("clubId");
+		News news = newsService.queryNewsById(newsId);
+		request.setAttribute("id", news.getId());
+		request.setAttribute("collegeId", news.getCollegeId());
+		request.setAttribute("title", news.getTitle());
+		request.setAttribute("content",news.getContent());
+		request.setAttribute("news",news);
+
+		return "forward:/front/news/hotnewscontent.jsp";
+	}
+
 	@RequestMapping(value = "/{newsId}", method = RequestMethod.GET)
 	public ResponseEntity<News> queryNewsById(@PathVariable("newsId")Integer newsId){
 		//int id = Integer.parseInt(request.getParameter("id"));
@@ -72,7 +87,7 @@ public class NewsAction {
 		//返回500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
-	
+
 	@RequestMapping("queryNewsPage.action")
 	public String queryNewsPage(HttpServletRequest request){
 		//后台的项目名
@@ -113,10 +128,88 @@ public class NewsAction {
 		request.setAttribute("clubName", clubName);
 		System.out.println(pageNews);
 		return "forward:/front/news/newscontent.jsp";
-		
+
 	}
 
-    /***
+	//获取当前社团最近的六条新闻的图片链接和新闻链接
+	@RequestMapping("queryNewsImgRecently.action")
+	public ResponseEntity<Map> queryNewsImgRecently(HttpServletRequest request){
+		//后台的项目名
+		if(adminProjectName==null){
+			adminProjectName="admin";
+		}
+		if(adminProjectProt==null){
+			//adminProjectProt="8081";
+		}
+		if(adminProjectHost==null){
+			//adminProjectHost="localhost";
+		}
+
+
+		String collegeId = (String) request.getSession().getAttribute("collegeId");
+		String clubId =  request.getParameter("clubId");
+
+		HashMap<String,Object> resultMap = new HashMap<String,Object>();
+		List<Map<String,String>> imglist=new ArrayList<>();
+		if(clubId==null || clubId.length()>0){
+			clubId="1010100";
+		}
+
+		try {
+			List<News> newsList=newsService.queryNewsImgRecently(clubId);
+			for (News new1:newsList) {
+				String content = new1.getContent();
+				//把图片的链接转成后台的图片链接
+				content=replaceImageUrl(content);
+				//获取图片的首个链接
+				String urlImage = contentToImgUrlOne(content);
+				Map<String,String > map=new HashMap<>();
+				map.put("urlImage",urlImage);
+				map.put("url",request.getContextPath()+"/news/newsById/"+new1.getId());
+				imglist.add(map);
+			}
+			resultMap.put("resultFlag", 1);
+			resultMap.put("imglist",imglist);
+		} catch (Exception e) {
+			resultMap.put("resultFlag", 0);
+			resultMap.put("msg", "查询图片信息出错："+e.getMessage());
+		}
+		return ResponseEntity.ok(resultMap);
+
+	}
+	//获取当前社团最近的六条新闻的标题和链接
+	@RequestMapping("queryNewsRecently.action")
+	public ResponseEntity<Map> queryNewsRecently(HttpServletRequest request){
+
+		String collegeId = (String) request.getSession().getAttribute("collegeId");
+		String clubId =  request.getParameter("clubId");
+
+		HashMap<String,Object> resultMap = new HashMap<String,Object>();
+		List<JSONObject> news=new ArrayList<>();
+		if(clubId==null || clubId.length()>0){
+			clubId="1010100";
+		}
+
+		try {
+			List<News> newsList=newsService.queryNewsRecently(clubId);
+			for (News new1:newsList) {
+				JSONObject object=new JSONObject();
+				object.put("url",request.getContextPath()+"/news/newsById/"+new1.getId());
+				object.put("title",new1.getTitle());
+				news.add(object);
+
+			}
+			resultMap.put("resultFlag", 1);
+			resultMap.put("newslist",news);
+		} catch (Exception e) {
+			resultMap.put("resultFlag", 0);
+			resultMap.put("msg", "查询图片信息出错："+e.getMessage());
+		}
+		return ResponseEntity.ok(resultMap);
+
+	}
+
+	/***
      *原新闻内容
      * <div style="text-align:center;">
      * 	<img src="/admin/upload/2c234de6e-3c21-4563-9db3-4243a690d32a.png" alt="" />
@@ -150,5 +243,24 @@ public class NewsAction {
 				"</div>";
 		content = content.replaceAll("<img src=\"/[a-z]*/upload", "<img src=\"http://localhost:xx/asb/upload");
 		System.out.println(content);
+	}
+
+	//图片链接获取
+	@Test
+	public void test2(){
+		String str=" 1231<img src=\"/admin/upload/2c234de6e-3c21-4563-9db3-4243a690d32a.png\" alt=\"\" />213121212<img src=\"/admin/upload/c234de6e-3c21-4563-9db3-4243a690d32a.png\" alt=\"\" />";
+		String substring = str.substring(str.indexOf("<img"));
+		CharSequence charSequence = substring.subSequence(substring.indexOf("\"")+1, substring.indexOf("\"",substring.indexOf("\"")+1));
+		System.out.println(charSequence.toString());
+	}
+
+	//把新闻内容转换成获取出里面的一个图片链接
+	public String contentToImgUrlOne(String content){
+		//获取图片标签开始的文本
+		String substring = content.substring(content.indexOf("<img"));
+		//裁剪图片标签后的链接
+		CharSequence charSequence = substring.subSequence(substring.indexOf("\"")+1, substring.indexOf("\"",substring.indexOf("\"")+1));
+		//System.out.println(charSequence.toString());
+		return charSequence.toString();
 	}
 }

@@ -18,23 +18,18 @@
 		<p>
 			<%-- <%=request.getAttribute("title") %> --%>
 			<%-- ${news.title } --%>
-			蜂蜜真的不会变质吗？看完我震惊了
+			${news.title }
+
 		</p>
 		<div class="info">
-			<span>发布日期：</span><span><%-- ${news.submit_time } --%>2019年2月18日</span>
+			<span>发布日期：</span><span> ${news.submit_time } 2019年2月18日</span>
 			<span style="margin-left:35px;">点击量：</span><span>100</span>
 		</div>
 		
 		
 	</div>
 	<div class="newscontent" style="width:77%;margin:0 auto;">
-		<p>蜂蜜是我们日常生活中经常会吃到的食品。</p>
-		<p>它营养丰富，具有增强抵抗力，减肥，促进消化和吸收等功效。长期服用不仅能够强身健体还能美容养颜，是爱美、爱健康人士必不可少的滋补佳品。</p>
-		<p>在食用蜂蜜的过程中我们肯定也听别人说过“蜂蜜一万年也不会变质”的说法 ，意思是蜂蜜可以保持很久基本不会腐坏变质。</p>
-		<p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p>
-		<p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p>
-		<p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p>
-		<p>那么事实真的是这样吗？蜂蜜为什么不会变质呢，下面我们一起来看看吧。</p>
+		${news.content }
 	</div>
 	
 	
@@ -86,6 +81,7 @@
     $(function () {
         $('.content').flexText();
     });
+    alert(${news})
 </script>
 <!--textarea限制字数-->
 <script type="text/javascript">
@@ -116,7 +112,7 @@
         var oSize = $(this).siblings('.flex-text-wrap').find('.comment-input').val();
         console.log(oSize);
         //动态创建评论模块
-        oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="../css/news/images/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ oSize +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+now+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a> </div> </div><div class="hf-list-con"></div></div> </div>';
+        oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><!--<img src="../css/news/images/header-img-comment_03.png" alt="">--></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ oSize +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+now+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a> </div> </div><div class="hf-list-con"></div></div> </div>';
         if(oSize.replace(/(^\s*)|(\s*$)/g, "") != ''){
             $(this).parents('.reviewArea ').siblings('.comment-show').prepend(oHtml);
             $(this).siblings('.flex-text-wrap').find('.comment-input').prop('value','').siblings('pre').find('span').text('');

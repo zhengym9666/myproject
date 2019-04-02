@@ -20,4 +20,8 @@ public interface NewsDAO {
 
 	// 获取新闻总记录数
 	public int queryTotalCount(@Param("collegeId")String collegeId,@Param("clubId")String clubId);
+
+    List<News> queryNewsImgRecently(String clubId);
+
+	List<News> queryNewsRecently(String clubId);
 }

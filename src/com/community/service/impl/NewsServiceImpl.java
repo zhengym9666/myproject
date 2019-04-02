@@ -1,5 +1,10 @@
 package com.community.service.impl;
 
+import com.community.dao.TokenDAO;
+import com.community.model.base.Token;
+import com.community.util.MybatisUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +13,8 @@ import com.community.dao.NewsDAO;
 import com.community.service.interfaces.INewsService;
 import com.community.util.PageBean;
 
+import java.util.List;
+
 /**
  * 
  * @author zym
@@ -15,15 +22,13 @@ import com.community.util.PageBean;
  * 2018年12月24日
  */
 @Service("newsService")
-public class NewsServiceImpl implements INewsService {
+public class NewsServiceImpl extends AbsServiceImpl<NewsDAO> implements INewsService {
 	
-	@Autowired
-	private NewsDAO newsMapper;
-	
+
 	@Override
 	public News queryNewsById(int id) {
 		// TODO Auto-generated method stub
-		return newsMapper.queryNewsById(id);
+		return mapper.queryNewsById(id);
 	}
 	
 	@Override
@@ -32,7 +37,7 @@ public class NewsServiceImpl implements INewsService {
 		PageBean pageBean = new PageBean();
 		int start = (currentPage-1)*pageSize;
 		int size = pageSize;
-		pageBean.setData(newsMapper.queryPageNews(collegeId,clubId,start, size));
+		pageBean.setData(mapper.queryPageNews(collegeId,clubId,start, size));
 		pageBean.setCurrentPage(currentPage);
 		
 //		总记录数
@@ -49,6 +54,25 @@ public class NewsServiceImpl implements INewsService {
 	@Override
 	public int queryTotalCount(String collegeId, String clubId) {
 		// TODO Auto-generated method stub
-		return newsMapper.queryTotalCount(collegeId, clubId);
+		return mapper.queryTotalCount(collegeId, clubId);
+	}
+
+	@Override
+	public List<News> queryNewsImgRecently(String clubId) {
+		return mapper.queryNewsImgRecently(clubId);
+	}
+
+	@Override
+	public List<News> queryNewsRecently(String clubId) {
+		return mapper.queryNewsRecently(clubId);
+	}
+
+	public static void main(String[] args) throws Exception {
+		MybatisUtil mybatisUtil=new MybatisUtil();
+		NewsServiceImpl service = mybatisUtil.getMapperServiceImplObject(NewsDAO.class, NewsServiceImpl.class);
+		List<News>  lists= service.queryNewsRecently("1010100");
+
+		mybatisUtil.commit();
+		System.out.println(lists);
 	}
 }

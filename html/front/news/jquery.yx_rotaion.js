@@ -38,10 +38,11 @@
                for(i=1;i<=li_count;i++){
                  $focus.append('<span>'+i+'</span>');
                }
+                $.browser={};(function(){$.browser.msie=false; $.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ $.browser.msie=true;$.browser.version=RegExp.$1;}})();
                // 兼容IE6透明图片   
                if($.browser.msie && $.browser.version == "6.0" ){
                   $btn.add($focus.children("span")).css({backgroundImage:'url(images/ico.gif)'});
-               }		
+               }
                var $f = $focus.children("span");
                $f.first().addClass("hover");
                // 鼠标覆盖左右按钮设置透明度

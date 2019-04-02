@@ -2,6 +2,9 @@ package com.community.service.interfaces;
 
 import com.community.bean.News;
 import com.community.util.PageBean;
+
+import java.util.List;
+
 /**
  * 
  * @author zym
@@ -15,4 +18,8 @@ public interface INewsService {
 	public PageBean queryPageNews(String collegeId,String clubId,int currentPage,int pageSize);
 	
 	public int queryTotalCount(String collegeId,String clubId);
+
+    List<News> queryNewsImgRecently(String clubId);
+
+	List<News> queryNewsRecently(String clubId);
 }
