@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.community.dao.CommentsDAO">
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.community.bean.Comments" >
+        <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->
+  <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+        <result column="comment_id" property="comment_id"/>
+        <result column="news_id" property="news_id"/>
+        <result column="author" property="author"/>
+        <result column="responseTo" property="responseTo"/>
+        <result column="responseToCommentId" property="responseToCommentId"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="create_time"/>
+        <result column="belike" property="belike"/>
+        <result column="commentHead" property="commentHead"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+        comment_id,news_id,author,responseTo,responseToCommentId,content,create_time,belike,commentHead
+    </sql>
+    <select id="queryAllComments" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from COMMENTS
+        where news_id = #{news_id} and responseToCommentId = 0 order by create_time desc
+    </select>
+
+	<select id="queryResponseComments" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT * FROM comments WHERE responseToCommentId = #{comment_id}
+	</select>
+	
+	<insert id="addCommentPl" useGeneratedKeys="true" keyProperty="comment_id" parameterType="com.community.bean.Comments">
+		insert into comments(news_id,author,responseTo,responseToCommentId,content,create_time,belike,commentHead)
+		values(#{news_id},#{author},#{responseTo},#{responseToCommentId},#{content},#{create_time},0,#{commentHead})
+	</insert>
+	
+	<delete id="deleteComment" parameterType="java.lang.Integer">
+		delete from comments where comment_id = #{comment_id}
+	</delete>
+
+	<update id="updateCommentLike" parameterType="HashMap">
+		update comments set belike = #{belike} where comment_id = #{comment_id}
+	</update>
+</mapper>

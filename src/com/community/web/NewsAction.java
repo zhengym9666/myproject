@@ -1,11 +1,13 @@
 package com.community.web;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.community.util.FilePropertiesUtil;
 import net.sf.json.JSONObject;
@@ -17,8 +19,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.community.bean.Comments;
 import com.community.bean.News;
+import com.community.service.interfaces.ICommentsService;
 import com.community.service.interfaces.INewsService;
 import com.community.util.PageBean;
 
@@ -28,6 +33,9 @@ import com.community.util.PageBean;
 public class NewsAction {
 	@Autowired
 	private INewsService newsService;
+	
+	@Autowired
+	private ICommentsService commentsService;
 	private String adminProjectName=FilePropertiesUtil.getString("project_name");
 	private String adminProjectProt=FilePropertiesUtil.getString("admin_port");
 	private String adminProjectHost=FilePropertiesUtil.getString("admin_host");
@@ -120,12 +128,20 @@ public class NewsAction {
 			String content = news.getContent();
 			news.setContent(replaceImageUrl(content));
 		}
-
-
+		
+		if(newList!=null && newList.size()!=0){
+			News onenews = newList.get(0);
+			request.setAttribute("newsId", onenews.getId());
+			request.setAttribute("resultMap", queryAllComments(onenews.getId()));
+		}
+		
+	
 		request.setAttribute("pageNews", pageNews);
+		//request.setAttribute("newsId", onenews.getId());
 		request.setAttribute("collegeId", collegeId);
 		request.setAttribute("clubId", clubId);
 		request.setAttribute("clubName", clubName);
+		//request.setAttribute("resultMap", queryAllComments(onenews.getId()));
 		System.out.println(pageNews);
 		return "forward:/front/news/newscontent.jsp";
 
@@ -262,5 +278,144 @@ public class NewsAction {
 		CharSequence charSequence = substring.subSequence(substring.indexOf("\"")+1, substring.indexOf("\"",substring.indexOf("\"")+1));
 		//System.out.println(charSequence.toString());
 		return charSequence.toString();
+	}
+	
+	
+	//获取新闻评论数据
+	/*@RequestMapping("/queryAllComments.action")
+	@ResponseBody*/
+	public Map<String,Object> queryAllComments(int newsId){
+		
+		//Integer newsId = Integer.parseInt(request.getParameter("newsId"));
+		List<Map> dataList = new ArrayList<Map>();
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("resultFlag", 1);
+		
+		try {
+			List<Comments> mainCommList = commentsService.queryAllComments(newsId);
+			for(Comments commentBean:mainCommList){
+				Map<String,Object> commentBlock = new HashMap<String,Object>(); 
+				commentBlock.put("mainComment", commentBean);
+				List<Comments> responseList = commentsService.queryResponseComments(commentBean.getComment_id());
+				commentBlock.put("responseList", responseList);
+				dataList.add(commentBlock);
+			}
+			resultMap.put("dataList", dataList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "获取评论信息出错");
+			e.printStackTrace();
+		}
+		return resultMap;
+	}
+	
+	@RequestMapping("/CommentsPl.action")
+	@ResponseBody
+	public Map<String,Object> CommentsPl(HttpServletRequest request){
+		
+		int newsId = Integer.parseInt(request.getParameter("newsId"));
+		String author = request.getParameter("author");
+		String content = request.getParameter("content");
+		String headImg = request.getParameter("headImg");
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("resultFlag", 1);
+		
+		Comments pl = new Comments();
+		pl.setAuthor(author);
+		pl.setContent(content);
+		pl.setNews_id(newsId);
+		pl.setResponseToCommentId(0);
+		pl.setCreate_time(new Date());
+		pl.setCommentHead(headImg);
+		
+		try {
+			commentsService.addCommentPl(pl);
+			resultMap.put("commentId", pl.getComment_id());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "保存评论信息失败");
+			e.printStackTrace();
+		}
+		return resultMap;
+		
+	}
+	
+	@RequestMapping("/CommentsHf.action")
+	@ResponseBody
+	public Map<String,Object> CommentsHf(HttpServletRequest request){
+		int newsId = Integer.parseInt(request.getParameter("newsId"));
+		String author = request.getParameter("author");
+		String content = request.getParameter("content");
+		int responseToCommentId = Integer.parseInt(request.getParameter("responseToCommentId"));
+		String responseTo = request.getParameter("responseTo");
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("resultFlag", 1);
+		
+		Comments hf = new Comments();
+		hf.setAuthor(author);
+		hf.setContent(content);
+		hf.setNews_id(newsId);
+		hf.setResponseToCommentId(responseToCommentId);
+		hf.setResponseTo(responseTo);
+		hf.setCreate_time(new Date());
+		
+		try {
+			commentsService.addCommentPl(hf);
+			resultMap.put("commentId", hf.getComment_id());
+			resultMap.put("respToCom", responseToCommentId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "保存评论信息失败");
+			e.printStackTrace();
+		}
+		return resultMap;
+	}
+	
+	@RequestMapping("/deleteComment.action")
+	@ResponseBody
+	public Map<String,Object> deleteComment(HttpServletRequest request){
+		
+		int commentId = Integer.parseInt(request.getParameter("commentId"));
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+		resultMap.put("resultFlag", 1);
+		
+		try {
+			commentsService.deleteComment(commentId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "删除评论失败");
+		}
+		return resultMap;
+
+	}
+	
+	@RequestMapping("/CommentOnLike.action")
+	@ResponseBody
+	public Map<String,Object> CommentOnLike(HttpServletRequest request){
+		
+		int commentId = Integer.parseInt(request.getParameter("commentId"));
+		int zNum = Integer.parseInt(request.getParameter("zNum"));
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("resultFlag", 1);
+		
+		try {
+			commentsService.updateCommentLike(commentId, zNum);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "系统出错");
+			e.printStackTrace();
+		}
+		return resultMap;
 	}
 }

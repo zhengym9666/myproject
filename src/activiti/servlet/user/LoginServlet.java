@@ -143,6 +143,7 @@ public class LoginServlet{
             //把用户存入session
             request.getSession().setAttribute("userId", userId);
             request.getSession().setAttribute("userName", student.getStuName());
+            request.getSession().setAttribute("headImg", student.getHead());
             request.getSession().setAttribute("clubId", clubId);
             request.getSession().setAttribute("token", token.getTokenId());
         }catch (Exception e){

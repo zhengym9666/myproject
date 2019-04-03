@@ -18,7 +18,7 @@
 
     </resultMap>
     <sql id="Base_Column_List" >
-        author,submitter,submit_time,revise_time,title,content,readcount,collegeId,clubId
+        id,author,submitter,submit_time,revise_time,title,content,readcount,collegeId,clubId
     </sql>
     <select id="queryNewsById" resultMap="BaseResultMap" parameterType="Int" >
         select
