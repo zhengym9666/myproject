@@ -25,7 +25,7 @@
     </bean>
 
     <!-- 组件扫描的方式，扫描controller -->
-     <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven></mvc:annotation-driven>
     <context:component-scan base-package="com.community.web"/>
     <context:component-scan base-package="activiti.servlet"/>
 	<context:component-scan base-package="activiti.common.*"/>

@@ -9,7 +9,6 @@ import com.community.bean.News;
 /**
  * 
  * @author zym
- *
  */
 public interface NewsDAO {
 	//根据新闻id获取新闻信息
@@ -24,4 +23,6 @@ public interface NewsDAO {
     List<News> queryNewsImgRecently(String clubId);
 
 	List<News> queryNewsRecently(String clubId);
+
+    void updateReadcount(@Param("id")String key, @Param("readcount")Integer count);
 }

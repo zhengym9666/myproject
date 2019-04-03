@@ -1,10 +1,6 @@
 package com.community.service.impl;
 
-import com.community.dao.TokenDAO;
-import com.community.model.base.Token;
 import com.community.util.MybatisUtil;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.bean.News;
@@ -66,12 +62,18 @@ public class NewsServiceImpl extends AbsServiceImpl<NewsDAO> implements INewsSer
 		return mapper.queryNewsRecently(clubId);
 	}
 
+	@Override
+	public void updateReadcount(String key, Integer count) {
+		mapper.updateReadcount(key,count);
+	}
+
 	public static void main(String[] args) throws Exception {
 		MybatisUtil mybatisUtil=new MybatisUtil();
 		NewsServiceImpl service = mybatisUtil.getMapperServiceImplObject(NewsDAO.class, NewsServiceImpl.class);
 		List<News>  lists= service.queryNewsRecently("1010100");
 
-		mybatisUtil.commit();
+		//service.updateReadcount("2000002",200);
+
 		System.out.println(lists);
 	}
 }

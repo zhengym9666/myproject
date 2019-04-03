@@ -64,6 +64,8 @@ public  class MybatisUtil {
     public void commit(){
         //提交事物
         sqlSession.commit();
+    }
+    public void close(){
         //释放资源
         sqlSession.close();
     }

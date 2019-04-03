@@ -22,4 +22,6 @@ public interface INewsService {
     List<News> queryNewsImgRecently(String clubId);
 
 	List<News> queryNewsRecently(String clubId);
+
+    void updateReadcount(String key, Integer count);
 }

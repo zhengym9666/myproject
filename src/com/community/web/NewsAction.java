@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.community.util.DatePersThread;
 import com.community.util.FilePropertiesUtil;
 import net.sf.json.JSONObject;
 import org.junit.Test;
@@ -127,6 +128,16 @@ public class NewsAction {
 		for(News news :newList){
 			String content = news.getContent();
 			news.setContent(replaceImageUrl(content));
+
+			int readcount = news.getReadcount();
+			int id = news.getId();
+			int countByKey = DatePersThread.getCountByKey(id + "");
+			//如果缓存有数据，直接取缓存数据
+			if(countByKey>0){
+				news.setReadcount(countByKey);
+			}
+			news.setReadcount(news.getReadcount()+1);
+			DatePersThread.setCountByKey(id+"",readcount);
 		}
 		
 		if(newList!=null && newList.size()!=0){

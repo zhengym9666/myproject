@@ -1,6 +1,8 @@
 package com.community.bean;
 
-public class Club {
+import java.io.Serializable;
+
+public class Club implements Serializable {
 	private String clubId;
 	private String clubName;
 	private String intro;

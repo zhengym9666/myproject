@@ -12,6 +12,7 @@ public class News {
 	private int readcount;
 	private String collegeId;
 	private String clubId;
+
 	public int getId() {
 		return id;
 	}

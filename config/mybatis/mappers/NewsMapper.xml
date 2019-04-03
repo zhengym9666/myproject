@@ -62,4 +62,9 @@
         LIMIT 6
     </select>
 
+    <update id="updateReadcount" >
+        UPDATE   news
+        SET readcount=#{readcount}
+        WHERE id=#{id};
+    </update>
 </mapper>
