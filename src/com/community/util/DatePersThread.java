@@ -58,8 +58,8 @@ public class DatePersThread extends Thread{
                     start=System.currentTimeMillis();
                     ;
                 }else{
-                    log.info("暂时没有达到缓存最大值，暂不保存数据库，休息10秒");
-                    sleep(10000l);
+                    log.info("暂时没有达到缓存最大值，暂不保存数据库，休息60秒");
+                    sleep(1000l*60);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -12,6 +12,7 @@ import com.community.service.interfaces.IGroupMemberService;
 import com.community.service.interfaces.IStudentService;
 import com.community.service.interfaces.ITokenService;
 import com.community.service.interfaces.IUserService;
+import com.community.util.CommonStatic;
 import com.community.util.EntityToJsonUtil;
 import com.community.util.StringUtil;
 import org.apache.commons.logging.Log;
@@ -50,6 +51,7 @@ public class StudentAction {
     @Autowired
     ITokenService tokenService;
     private static transient Log log = LogFactory.getLog(StudentAction.class);
+
     @RequestMapping(value = "/{studentId}", method = RequestMethod.GET)
     public ResponseEntity<Student> queryUserById(@PathVariable("studentId")String userId){
 
@@ -97,7 +99,7 @@ public class StudentAction {
             //返回500
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        User user = studentToUser(student,clubId);
+        User user = studentToUser(request,student,clubId);
         map.put("user",user);
         map.put("hOpCode",hOpCode);
         return ResponseEntity.ok(map);
@@ -141,7 +143,7 @@ public class StudentAction {
             if (userList != null) {
                 for (int i = 0; i < stuList.size(); i++) {
                     Student student = stuList.get(i);
-                    User user = studentToUser(student,cludId);
+                    User user = studentToUser(request,student,cludId);
                     userList.add(user);
                 }
             }
@@ -170,7 +172,7 @@ public class StudentAction {
         return ResponseEntity.ok(student);
     }
 
-    public User studentToUser(Student student,String clubId){
+    public User studentToUser(HttpServletRequest request,Student student,String clubId){
         /*User user=new User();
         user.setUserId(student.getStuNum());
         user.setUserGroupTopId(student.getCollegeId());
@@ -182,8 +184,12 @@ public class StudentAction {
         User user=new User();
         user.setUserId(student.getStuNum());
         user.setUserGroupTopId(clubId);
-        user.setUserImgUrl("");
         user.setUserRealName(student.getStuName());
+        //转换头像的图片链接
+        //user.setUserImgUrl(student.getHead());//头像
+        String imageName=student.getHead();
+        String imageUrl=request.getContextPath()+CommonStatic.IMAGE_ACTION+"/"+student.getStuNum();
+        user.setUserImgUrl(imageUrl);
         return user;
     }
 }
