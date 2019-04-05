@@ -39,7 +39,7 @@ public class AdminLoginAction {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String stuId = request.getParameter("stuId");
+		String stuNum = request.getParameter("stuNum");
 		String collegeId = request.getParameter("collegeId");
 		String clubId = request.getParameter("clubId");
 		String password = request.getParameter("password");
@@ -49,11 +49,11 @@ public class AdminLoginAction {
 			resultMap.put("Msg", "密码错误");
 			return resultMap;
 		}
-		GroupMember memInfo = groupMemberService.queryMemberInfo(stuId, clubId);
+		GroupMember memInfo = groupMemberService.queryMemberInfo(stuNum, clubId);
 		//保存用户登录信息到session
-		session.setAttribute("stuNum", stuId);
+		session.setAttribute("collegeId", collegeId);
+		session.setAttribute("stuNum", stuNum);
 		session.setAttribute("clubId", clubId);
-		session.setAttribute("memInfo", memInfo);
 		if(memInfo==null){
 			resultMap.put("resultFlag", 0);
 			resultMap.put("Msg", "该用户不存在");
@@ -61,10 +61,9 @@ public class AdminLoginAction {
 		}
 		
 		resultMap.put("resultFlag", 1);
-		resultMap.put("stuNum", stuId);
+		resultMap.put("stuNum", stuNum);
 		resultMap.put("clubId", clubId);
 		resultMap.put("collegeId", collegeId);
-		resultMap.put("memInfo", memInfo);
 		resultMap.put("adminUrl", "http://localhost:8080/admin-web/admin/loginAction.action");
 		
 		return resultMap;

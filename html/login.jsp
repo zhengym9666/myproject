@@ -328,7 +328,7 @@ ul li:hover{
 	        		url:rootPath+"/admin/LoginAction.action",
 	        		type:'post',
 	        		data:{
-	        			stuId:stuId,
+	        			stuNum:stuId,
 	        			collegeId:collegeId,
 	        			clubId:clubId,
 	        			password:password
@@ -337,7 +337,7 @@ ul li:hover{
 	        		success:function(response){
 	        			if(response.resultFlag){
 	        				
-	        				var args = [{ Key:'stuNum' , Value: response.stuNum }, { Key: 'collegeId', Value: response.collegeId}, { Key: 'clubId', Value: response.clubId}, { Key: 'memInfo', Value: JSON.stringify(response.memInfo)}];
+	        				var args = [{ Key:'stuNum' , Value: response.stuNum }, { Key: 'collegeId', Value: response.collegeId}, { Key: 'clubId', Value: response.clubId}];
 	        	            OpenWindowWithPost(response.adminUrl,
 	        	            "", "NewFile", args);
 	        				/* window.open(response.adminUrl); */
@@ -398,8 +398,6 @@ ul li:hover{
              form.appendChild(input);
          }
 
-         console.log(params[3].Key);
-         console.log(params[3].Value);
          document.body.appendChild(form);
 
          //note I am using a post.htm page since I did not want to make double request to the page 
