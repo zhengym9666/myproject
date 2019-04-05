@@ -32,7 +32,7 @@
 				  		  titleLnHeight = Math.round(0.58*height);
 				  		  $(".collegeMenu").append('<li style="width:'+width+'px;height:'+height+'px">'
 				                    +'<a class="normal" id="math" href="'+item.url+'" title="'+item.intro+'">'
-				                    +'<img src="'+item.image+'">'
+				                    +'<img src="/Cache/collegeImages/'+item.image+'">'
 				                    +'</a>'
 				                  +'<div class="info">'
 				                      +'<div class="inforCon">'
