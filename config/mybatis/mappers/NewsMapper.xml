@@ -34,7 +34,7 @@
     	<where>
     	collegeId = #{collegeId} and clubId = #{clubId}
     	</where>
-    	limit #{start},#{size}
+    	 ORDER BY submit_time DESC limit #{start},#{size}
     </select>
 
     <select id="queryTotalCount" resultType="java.lang.Integer">

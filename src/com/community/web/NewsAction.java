@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.community.bean.Comments;
 import com.community.bean.News;
+import com.community.service.interfaces.IClubService;
 import com.community.service.interfaces.ICommentsService;
 import com.community.service.interfaces.INewsService;
 import com.community.util.PageBean;
@@ -34,6 +35,9 @@ import com.community.util.PageBean;
 public class NewsAction {
 	@Autowired
 	private INewsService newsService;
+	
+	@Autowired
+	IClubService clubService;
 	
 	@Autowired
 	private ICommentsService commentsService;
@@ -114,7 +118,7 @@ public class NewsAction {
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
 //		获取社团名称作为新闻头
-		String clubName = request.getParameter("clubname");
+		String clubName = clubService.getClubById(clubId).getClubName();
 		int currentPage;
 		if(currentPage0==null || currentPage0.equals("")){
 			currentPage = 1;
