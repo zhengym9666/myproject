@@ -10,8 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UploadImageUtil {
 	
-	private static String path = "G:\\community\\headImages\\";
-	
+	//private static String path = "G:\\community\\headImages\\";
+	private static String path = CommonStatic.IMAGE_PATH;
+
 	
 	  private String fileType;//图片类型
 	  private int maxSize;//图片大小
