@@ -208,7 +208,6 @@
 <script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-http.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-mv.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-websocket.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/stuchat/js/lib/jquery.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/stuchat/js/anychat/dist/chatUtils.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
 	$(function(){
@@ -337,6 +336,7 @@
 				}
 				receiptObj.push(receiptItem);
 			});
+			debugger;
 			var jsonObj = JSON.stringify(receiptObj);
 			console.log(jsonObj);
 						

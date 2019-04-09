@@ -261,13 +261,13 @@
             var portIndex=curWwwPath.indexOf(port);
             var ip=curWwwPath.substring(7,portIndex-1);
             //var identityUrl = "http://"+ip+":8082/StartpointServer/s";
-            var oriIdentityUrl = "http://"+ip+":8080/ori/login/getAdminToken.action";
+            var oriIdentityUrl = "http://"+ip+":8080/gd_stu_dev/login/getAdminToken.action";
 
             //请求admintoken，为了后面获取组列表
             var data = {
                 'hOpCode': '20',
                 'userName': '123456',
-                'userPassword': '123456'
+                'userPassword': '000000'
             };
             var header = [];
             header["hOpCode"] = "20";
@@ -293,14 +293,14 @@
             var port = window.location.port;
             var portIndex = curWwwPath.indexOf(port);
             var ip = curWwwPath.substring(7, portIndex - 1);
-            anychat.loginChatProxy.url = "ws://" + ip + ":8082/chat_server/ws"
+            anychat.loginChatProxy.url = "ws://" + ip + ":8080/AnyChatServer/ws"
             talkMediator = new anychat.TalkMediator();
             //alert(anychat.loginChatProxy.url);
             talkMediator.initView(adminToken);
         };
 
         this.getTalkMediator=function(){
-            return talkMediator;
+            return anychat.TalkMediator;
         }
     };
     window.anychat.AdminObj = AdminObj;
