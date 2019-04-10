@@ -229,7 +229,6 @@
         	var adminObj = new anychat.AdminObj();
             adminObj.initAdminToken();
             talkMediator=adminObj.getTalkMediator();
-            adminObj.initWs();
             //content:发送的内容
             //toType：发送类型：1用户 2群组
             //toTypeId：接收的用户
@@ -346,6 +345,7 @@
 						
 			var url=projectName+"/process/startprocess.action?pdId=myProcess:16:82504";
 			//var url = projectName+"/seeProcessdiagram.action?piId="+27501;
+			var stuNum = "<%=session.getAttribute("userId")%>";
 			if(flag==1){
 				$.mask_fullscreen();
 				$.ajax({
@@ -365,7 +365,7 @@
 						$("#submitResult").show();
 						$("#amount").text($("#total").text()+"元"); 
 						$("#currentAudit").text(data.oneAutName);
-						sendNotifyMessage("您有一笔报销单已成功提交，<br>报销金额："+$("#total").text()+"元<br>请耐心等待一级审批...",1,"1515200021");
+						sendNotifyMessage("您有一笔报销单已成功提交，<br>报销金额："+$("#total").text()+"元<br>请耐心等待一级审批...",1,stuNum);
 					},
 					error:function(data){
 						$.mask_close_all();

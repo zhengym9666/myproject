@@ -136,8 +136,8 @@ a:hover{
 				<c:forEach items="${auditList }" var="auditItem">
 					<tr>
 						<td style="display:none"><input type="hidden" value="${auditItem.taskId }"/></td>
-						<td>${auditItem.auditNum }</td>
-						<td>${auditItem.auditName }</td>
+						<td id="stuNum">${auditItem.auditNum }</td>
+						<td id="stuName">${auditItem.auditName }</td>
 						<td>${auditItem.department }</td>
 						<td><fmt:formatDate value="${auditItem.time }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						<td>${auditItem.reason }</td>
@@ -186,25 +186,29 @@ a:hover{
 <script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-websocket.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/stuchat/js/anychat/dist/chatUtils.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
-window.onload = function () {
-    //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
-    var adminObj = new anychat.AdminObj;
-    adminObj.initAdminToken();
-    talkMediator=adminObj.getTalkMediator();
-    anychat.loginChatProxy.url = "ws://"+ip+":8080/AnyChatServer/ws";
-}
 	$(function(){
 		
 		//获取路径 | | |
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
-
-		        
-        function sendNotifyMessage(content,toType,toTypeId) {
-        	 var adminObj = new anychat.AdminObj;
+		
+        var talkMediator=null;
+        window.onload = function () {
+        	debugger;
+            //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码:123456的学生管理员信息
+            var adminObj = new anychat.AdminObj;
             adminObj.initAdminToken();
-            talkMediator=adminObj.getTalkMediator(); 
+            talkMediator=adminObj.getTalkMediator();
+        }
+        
+    	debugger;
+        //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码:123456的学生管理员信息
+         var adminObj = new anychat.AdminObj;
+        adminObj.initAdminToken();
+        talkMediator=adminObj.getTalkMediator();
+
+        function sendNotifyMessage(content,toType,toTypeId) {
             //content:发送的内容
             //toType：发送类型：1用户 2群组
             //toTypeId：接收的用户
@@ -235,11 +239,13 @@ window.onload = function () {
 		
 		//审核通过
 		$(".pass").click(function(){
-			sendNotifyMessage("测试",1,"1515200021");
-<%-- 			var url = projectName+"/activiti/completeAudit.action";
+			/* alert($(this).parent().siblings("#stuNum").text()); */
+			var url = projectName+"/activiti/completeAudit.action";
 			var tid = $(this).find("input").eq(0).val();
 			var state = $(this).find("input").eq(1).val();
 			var rank = "<%=session.getAttribute("rank")%>";
+			var stuNum = $(this).parent().siblings("#stuNum").text();
+			var stuName = $(this).parent().siblings("#stuName").text();
  			$.ajax({
 				type:'post',
 				url:url,
@@ -249,30 +255,33 @@ window.onload = function () {
 				},
 				success:function(data){
 					/* alert("已提交审核！"); */
-					console.log("审批成功");
+					alert("审批成功");
 					$("#auditPage").html(data);
 					var msg;
 					if(rank=="2"){
-						msg = "你有一笔报销单已通过一级审批...";
+						msg = "你好，"+stuName+"<br>你有一笔报销单已通过一级审批...";
 					}else if(rank=="3"){
-						msg = "你有一笔报销单已通过二级审批...";
+						msg = "你好，"+stuName+"<br>你有一笔报销单已通过二级审批...";
 					}else if(rank=="6"){
-						msg = "你有一笔报销单已完成审批...";
+						msg = "你好，"+stuName+"<br>你有一笔报销单已完成审批...";
 					}
 					
-					
+					sendNotifyMessage(msg,1,stuNum);
 
 				},
 				error:function(){
 					alert("审核出错！");
 				}
 				
-			});  --%>			
+			}); 			
 		});
 		
 		//审核不通过
 		$(".unpass").click(function(){
 			var procInstId = $(this).parent().siblings(".procInstId").find("input").val();
+			var rank = "<%=session.getAttribute("rank")%>";
+			var stuNum = $(this).parent().siblings("#stuNum").text();
+			var stuName = $(this).parent().siblings("#stuName").text();
 			$("#unpassReason").show();
 			$("#submitReject").click(function(){
 				if($("#audit_suggest").val()=="" || $("#audit_suggest").val()==null){
@@ -286,10 +295,20 @@ window.onload = function () {
 							"procInstId":procInstId,
 							"audit_suggest":$("#audit_suggest").val()
 						},
-						success:function(){
+						success:function(data){
 							alert("已提交审核！");
 							$("#unpassReason").hide();
 							$("#auditPage").html(data);
+							var msg;
+							if(rank=="2"){
+								msg = "你好，"+stuName+"<br>你有一笔报销单一级审批未通过，已退回...";
+							}else if(rank=="3"){
+								msg = "你好，"+stuName+"<br>你有一笔报销单二级审批未通过，已退回...";
+							}else if(rank=="6"){
+								msg = "你好，"+stuName+"<br>你有一笔报销单财务审核未通过，已退回...";
+							}
+							
+							sendNotifyMessage(msg,1,stuNum);
 						},
 						error:function(){
 							alert("审核出错！");

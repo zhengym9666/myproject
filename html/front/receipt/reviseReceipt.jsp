@@ -67,6 +67,14 @@
 		
 	</div>
 </body>
+<!--juggle库 small require-->
+<script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-help.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-event.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-all.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-http.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-mv.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-websocket.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/anychat/dist/chatUtils.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
 	$(function(){
 		
@@ -74,6 +82,26 @@
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);	
+		
+        var adminObj = new anychat.AdminObj;
+        adminObj.initAdminToken();
+        talkMediator=adminObj.getTalkMediator();
+		
+        function sendNotifyMessage(content,toType,toTypeId) {
+        	var adminObj = new anychat.AdminObj;
+            adminObj.initAdminToken();
+            talkMediator=adminObj.getTalkMediator();
+            //content:发送的内容
+            //toType：发送类型：1用户 2群组
+            //toTypeId：接收的用户
+            debugger;
+            if(talkMediator!=null && talkMediator!=undefined){
+                loginChatProxy=talkMediator.onLogChatProxy();
+                if(loginChatProxy!=null && loginChatProxy!=undefined){
+                    loginChatProxy.sendMessage(content, 1, toTypeId);
+                }
+            }
+        }
 		
       //显示日历
 		$(".calender").click(function(){
@@ -129,6 +157,7 @@
 			var receiptObj = [];
 			/* var sessionuser = ${sessionScope.userId};
 			alert(sessionuser); */
+			var stuNum = "<%=session.getAttribute("userId")%>";
 			if(($("#receiptReasonVal").val())==""){
 				alert("请填写报销原因！");
 				return;
@@ -173,7 +202,7 @@
 						$("#submitResult").show();
 						$("#amount").text(jsonData.amount+"元"); 
 						$("#currentAudit").text(jsonData.oneAuditor);
-						
+						sendNotifyMessage("您已成功修改一笔报销单<br>报销金额："+jsonData.amount+"元<br>请耐心等待一级审批...",1,stuNum);
 					},
 					error:function(data){
 						$.mask_close_asll();
