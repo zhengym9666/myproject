@@ -65,7 +65,7 @@
 		font-size:14px;
 		text-decoration:none;
 		position:absolute;
-		bottom:8px;
+		bottom:65px;
 		right:695px;
 	}
 </style>
@@ -138,7 +138,7 @@
 	<c:if test="${backPageId==2 }">
 		<a class="backButton" href="${pageContext.request.contextPath }/activiti/queryUserTask.action">返回</a>
 	</c:if>
-	<div class="col-md-3" style="position:absolute;bottom:8px;right:305px;">
+	<div class="col-md-3" style="position:absolute;bottom:65px;right:305px;">
 		<a class="btn btn-default jquery-word-export" href="javascript:void(0)" style="color: #035a75;">
 			<span class="word-icon">W</span>
 			导出为.doc文档
