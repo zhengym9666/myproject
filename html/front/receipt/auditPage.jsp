@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>查询用户任务</title>
 <!-- <link rel="stylesheet" type="text/css" href="../../css/userTask/userTask.css"/> -->
+<script type="text/javascript" src="<%=request.getContextPath() %>/front/jquery-1.11.1.min.js"></script>
 <style type="text/css">
 table{
 	color:#040404;
@@ -176,14 +177,46 @@ a:hover{
 	</div>
 	
 </body>
-<script type="text/javascript" src="http://localhost:8080/gd_stu_dev/front/jquery-1.11.1.min.js"></script>
+<!--juggle库 small require-->
+<script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-help.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-event.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-all.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib//juggle-http.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-mv.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-websocket.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/stuchat/js/anychat/dist/chatUtils.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
+window.onload = function () {
+    //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
+    var adminObj = new anychat.AdminObj;
+    adminObj.initAdminToken();
+    talkMediator=adminObj.getTalkMediator();
+    anychat.loginChatProxy.url = "ws://"+ip+":8080/AnyChatServer/ws";
+}
 	$(function(){
 		
 		//获取路径 | | |
         var pathName=window.document.location.pathname;
 		//截取，得到项目名称
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
+
+		        
+        function sendNotifyMessage(content,toType,toTypeId) {
+        	 var adminObj = new anychat.AdminObj;
+            adminObj.initAdminToken();
+            talkMediator=adminObj.getTalkMediator(); 
+            //content:发送的内容
+            //toType：发送类型：1用户 2群组
+            //toTypeId：接收的用户
+            debugger;
+            if(talkMediator!=null && talkMediator!=undefined){
+                loginChatProxy=talkMediator.onLogChatProxy();
+                if(loginChatProxy!=null && loginChatProxy!=undefined){
+                    loginChatProxy.sendMessage(content, 1, toTypeId);
+                }
+            }
+        }
+		
 		//查看已审核报销单
 		/* $("#completedAudit").click(function(){
 			var url = projectName+"/activiti/queryCompletedAuditTask.action";
@@ -202,9 +235,11 @@ a:hover{
 		
 		//审核通过
 		$(".pass").click(function(){
-			var url = projectName+"/activiti/completeAudit.action";
+			sendNotifyMessage("测试",1,"1515200021");
+<%-- 			var url = projectName+"/activiti/completeAudit.action";
 			var tid = $(this).find("input").eq(0).val();
 			var state = $(this).find("input").eq(1).val();
+			var rank = "<%=session.getAttribute("rank")%>";
  			$.ajax({
 				type:'post',
 				url:url,
@@ -213,14 +248,26 @@ a:hover{
 					"state":state
 				},
 				success:function(data){
-					alert("已提交审核！");
+					/* alert("已提交审核！"); */
+					console.log("审批成功");
 					$("#auditPage").html(data);
+					var msg;
+					if(rank=="2"){
+						msg = "你有一笔报销单已通过一级审批...";
+					}else if(rank=="3"){
+						msg = "你有一笔报销单已通过二级审批...";
+					}else if(rank=="6"){
+						msg = "你有一笔报销单已完成审批...";
+					}
+					
+					
+
 				},
 				error:function(){
 					alert("审核出错！");
 				}
 				
-			}); 			
+			});  --%>			
 		});
 		
 		//审核不通过

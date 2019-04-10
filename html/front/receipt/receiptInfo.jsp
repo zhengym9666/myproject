@@ -220,15 +220,20 @@
         var talkMediator=null;
         window.onload = function () {
             //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
-            var adminObj = new anychat.AdminObj;
+            var adminObj = new anychat.AdminObj();
             adminObj.initAdminToken();
             talkMediator=adminObj.getTalkMediator();
         }
 
         function sendNotifyMessage(content,toType,toTypeId) {
+        	var adminObj = new anychat.AdminObj();
+            adminObj.initAdminToken();
+            talkMediator=adminObj.getTalkMediator();
+            adminObj.initWs();
             //content:发送的内容
             //toType：发送类型：1用户 2群组
             //toTypeId：接收的用户
+            debugger;
             if(talkMediator!=null && talkMediator!=undefined){
                 loginChatProxy=talkMediator.onLogChatProxy();
                 if(loginChatProxy!=null && loginChatProxy!=undefined){
@@ -336,7 +341,6 @@
 				}
 				receiptObj.push(receiptItem);
 			});
-			debugger;
 			var jsonObj = JSON.stringify(receiptObj);
 			console.log(jsonObj);
 						
@@ -361,7 +365,7 @@
 						$("#submitResult").show();
 						$("#amount").text($("#total").text()+"元"); 
 						$("#currentAudit").text(data.oneAutName);
-						sendNotifyMessage("报销单提交成功，等待一级审批...",1,"1515200021");
+						sendNotifyMessage("您有一笔报销单已成功提交，<br>报销金额："+$("#total").text()+"元<br>请耐心等待一级审批...",1,"1515200021");
 					},
 					error:function(data){
 						$.mask_close_all();
@@ -458,6 +462,7 @@
 				success:function(data){
 					alert("撤销成功！");
 					window.location.href = rootPath+"/receipt/queryAllReceipt.action";
+					sendNotifyMessage("您已成功撤销一笔报销单",1,"1515200021");
 				},
 				error:function(){
 					alert("撤销失败！");
