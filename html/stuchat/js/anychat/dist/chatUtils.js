@@ -200,7 +200,7 @@
         this.onToUserMessage = function (body) {
             //接收自己发出的消息，用来检测是否发送消息成功并被接收到,接收到消息，所以发送成功
             //alert(body.message.chatContent);
-            alert("发送消息成功");
+            console.log("发送消息成功");
 
         };
 
@@ -238,6 +238,8 @@
         this.view = null;
         this.chatList = [];
         this.shadow = null;
+        this.wsUrl=null;
+        this.talkMediator=null;
         EventDispatcher.apply(this);
         //初始化
         this.init = function (user) {
@@ -253,15 +255,18 @@
             };
             this.view.on("click", callFunc);
         };
+        //oriAdminUrl,ws_url
         this.initAdminToken=function () {
-            var talkMediator =null;
+            //wsUrl=ws_url;
             var adminToken = null;
             var curWwwPath=window.document.location.href;
             var port=window.location.port;
             var portIndex=curWwwPath.indexOf(port);
             var ip=curWwwPath.substring(7,portIndex-1);
             //var identityUrl = "http://"+ip+":8082/StartpointServer/s";
-            var oriIdentityUrl = "http://"+ip+":8080/gd_stu_dev/login/getAdminToken.action";
+            //var oriIdentityUrl = "http://"+ip+":8080/gd_stu_dev/login/getAdminToken.action";
+            //var oriIdentityUrl = oriAdminUrl;
+            var oriIdentityUrl = "http://localhost:8080/ori/login/getAdminToken.action";
 
             //请求admintoken，为了后面获取组列表
             var data = {
@@ -272,6 +277,7 @@
             var header = [];
             header["hOpCode"] = "20";
             var httpClient = new juggle.HttpClient();
+            this.talkMediator = new anychat.TalkMediator();
             httpClient.send(data, oriIdentityUrl, header);
             httpClient.addEventListener(juggle.httpEventType.SUCCESS, adminSuccess, this);
             httpClient.addEventListener(juggle.httpEventType.ERROR, adminError, this);
@@ -280,6 +286,7 @@
                 var returnData = JSON.parse(event.mData);
                 adminToken = returnData.tokenId;
                 this.initWs(adminToken);
+                console.log("登录成功 adminToken"+adminToken);
 
             }
 
@@ -293,14 +300,17 @@
             var port = window.location.port;
             var portIndex = curWwwPath.indexOf(port);
             var ip = curWwwPath.substring(7, portIndex - 1);
-            anychat.loginChatProxy.url = "ws://" + ip + ":8080/AnyChatServer/ws"
-            talkMediator = new anychat.TalkMediator();
+            //anychat.loginChatProxy.url = "ws://" + ip + ":8080/AnyChatServer/ws";
+            anychat.loginChatProxy.url = "ws://localhost:8082/chat_server/ws";
+            //anychat.loginChatProxy.url = wsUrl;
+            //console.log("ws接口地址："+wsUrl);
+
             //alert(anychat.loginChatProxy.url);
-            talkMediator.initView(adminToken);
+            this.talkMediator.initView(adminToken);
         };
 
         this.getTalkMediator=function(){
-            return anychat.TalkMediator;
+            return this.talkMediator;
         }
     };
     window.anychat.AdminObj = AdminObj;

@@ -1,7 +1,12 @@
 package com.community.service.impl;
 
+import com.community.bean.News;
+import com.community.dao.NewsDAO;
 import com.community.model.base.User;
 import com.community.util.MybatisUtil;
+import com.community.web.StudentAction;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +46,7 @@ public class GroupMemberServiceImpl extends AbsServiceImpl<GroupMemberDAO> imple
 		return mapper.getUserByName(userName);
 	}
 
-	public static void main(String[] args) throws Exception {
-		MybatisUtil util=new MybatisUtil();
-		GroupMemberServiceImpl service = util.getMapperServiceImplObject(GroupMemberDAO.class, GroupMemberServiceImpl.class);
-		List<GroupMember> groupMember = service.queryMemberListByClubId("1010000");
-		System.out.println(groupMember);
-	}
+
 
 	@Override
 	public void saveMemberInfo(GroupMember memberInfo) {
@@ -61,6 +61,21 @@ public class GroupMemberServiceImpl extends AbsServiceImpl<GroupMemberDAO> imple
 		params.put("departId", departId);
 		params.put("clubId", clubId);
 		params.put("rank", rank);
-		return mapper.getAuditor(params);
+        List<GroupMember> auditor = mapper.getAuditor(params);
+        GroupMember groupMember=null;
+        if(auditor!=null && auditor.size()>0){
+            groupMember=auditor.get(0);
+        }
+        return groupMember;
 	}
+
+    public static void main(String[] args) throws Exception {
+        MybatisUtil util=new MybatisUtil();
+        GroupMemberServiceImpl service = util.getMapperServiceImplObject(GroupMemberDAO.class, GroupMemberServiceImpl.class);
+        //List<GroupMember> groupMember = service.queryMemberListByClubId("1010000");
+        //System.out.println(groupMember);
+        GroupMember auditor = service.getAuditor("", "1010100", 1);
+        System.out.println(auditor);
+    }
+
 }

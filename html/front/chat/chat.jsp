@@ -40,6 +40,10 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/test/css/reset.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/test/css/chatface.css">
     <script type="text/javascript" src="<%=request.getContextPath()%>/test/js/jquery.qqFace.js"  charset="UTF-8"></script>
+    <%@ page contentType="text/html;charset=UTF-8" import="java.util.ResourceBundle" %>
+    <%
+        ResourceBundle resource = ResourceBundle.getBundle("/admin/chat");
+    %>
 </head>
 <script type="text/javascript">
     window.onload = function () {
@@ -50,7 +54,11 @@
         var port=window.location.port;
         var portIndex=curWwwPath.indexOf(port);
         var ip=curWwwPath.substring(7,portIndex-1);
-        anychat.loginChatProxy.url = "ws://"+ip+":8082/chat_server/ws"
+        //anychat.loginChatProxy.url = "ws://"+ip+":8082/chat_server/ws";
+        //获取ws的访问地址
+        var ws_url= "<%=resource.getString("ws_url")%>";
+        console.log("ws的访问地址："+ws_url);
+        anychat.loginChatProxy.url = ws_url;
         var talkMediator = new anychat.TalkMediator();
         //alert(anychat.loginChatProxy.url);
         talkMediator.initView();

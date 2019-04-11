@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.community.bean.Club;
 import com.community.util.DatePersThread;
 import com.community.util.FilePropertiesUtil;
 import net.sf.json.JSONObject;
@@ -50,7 +51,8 @@ public class NewsAction {
 		System.out.println("hhhh");
 		return "forward:/front/news/news.jsp";
 	}
-	
+
+	//获取新闻内容
 	@RequestMapping("/newscontent.action")
 	public String NewsContentView(HttpServletRequest request){
 
@@ -87,6 +89,7 @@ public class NewsAction {
 		return "forward:/front/news/hotnewscontent.jsp";
 	}
 
+	//根据新闻id获取热门新闻内容
 	@RequestMapping(value = "/{newsId}", method = RequestMethod.GET)
 	public ResponseEntity<News> queryNewsById(@PathVariable("newsId")Integer newsId){
 		//int id = Integer.parseInt(request.getParameter("id"));
@@ -101,6 +104,7 @@ public class NewsAction {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 
+	//分页获取新闻
 	@RequestMapping("queryNewsPage.action")
 	public String queryNewsPage(HttpServletRequest request){
 		//后台的项目名
@@ -118,7 +122,11 @@ public class NewsAction {
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
 //		获取社团名称作为新闻头
-		String clubName = clubService.getClubById(clubId).getClubName();
+		Club clubById = clubService.getClubById(clubId);
+		String clubName="";
+		if(clubById!=null){
+			clubName = clubService.getClubById(clubId).getClubName();
+		}
 		int currentPage;
 		if(currentPage0==null || currentPage0.equals("")){
 			currentPage = 1;
@@ -324,7 +332,8 @@ public class NewsAction {
 		}
 		return resultMap;
 	}
-	
+
+	//获取新闻评论数据
 	@RequestMapping("/CommentsPl.action")
 	@ResponseBody
 	public Map<String,Object> CommentsPl(HttpServletRequest request){
@@ -357,7 +366,8 @@ public class NewsAction {
 		return resultMap;
 		
 	}
-	
+
+	//添加评论
 	@RequestMapping("/CommentsHf.action")
 	@ResponseBody
 	public Map<String,Object> CommentsHf(HttpServletRequest request){
@@ -390,7 +400,8 @@ public class NewsAction {
 		}
 		return resultMap;
 	}
-	
+
+	//删除评论
 	@RequestMapping("/deleteComment.action")
 	@ResponseBody
 	public Map<String,Object> deleteComment(HttpServletRequest request){
@@ -412,7 +423,8 @@ public class NewsAction {
 		return resultMap;
 
 	}
-	
+
+	//点赞评论
 	@RequestMapping("/CommentOnLike.action")
 	@ResponseBody
 	public Map<String,Object> CommentOnLike(HttpServletRequest request){
