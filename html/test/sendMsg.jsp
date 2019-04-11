@@ -42,7 +42,8 @@
     window.onload = function () {
         //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
         var adminObj = new anychat.AdminObj;
-        adminObj.initAdminToken(oriIdentityUrl,ws_url);
+        //oriIdentityUrl,ws_url
+        adminObj.initAdminToken();
         talkMediator=adminObj.getTalkMediator();
     }
 

@@ -200,7 +200,7 @@
         this.onToUserMessage = function (body) {
             //接收自己发出的消息，用来检测是否发送消息成功并被接收到,接收到消息，所以发送成功
             //alert(body.message.chatContent);
-            alert("发送消息成功");
+            console.log("发送消息成功");
 
         };
 
@@ -239,6 +239,7 @@
         this.chatList = [];
         this.shadow = null;
         this.wsUrl=null;
+        this.talkMediator=null;
         EventDispatcher.apply(this);
         //初始化
         this.init = function (user) {
@@ -257,7 +258,6 @@
         //oriAdminUrl,ws_url
         this.initAdminToken=function () {
             //wsUrl=ws_url;
-            var talkMediator =null;
             var adminToken = null;
             var curWwwPath=window.document.location.href;
             var port=window.location.port;
@@ -277,6 +277,7 @@
             var header = [];
             header["hOpCode"] = "20";
             var httpClient = new juggle.HttpClient();
+            this.talkMediator = new anychat.TalkMediator();
             httpClient.send(data, oriIdentityUrl, header);
             httpClient.addEventListener(juggle.httpEventType.SUCCESS, adminSuccess, this);
             httpClient.addEventListener(juggle.httpEventType.ERROR, adminError, this);
@@ -285,6 +286,7 @@
                 var returnData = JSON.parse(event.mData);
                 adminToken = returnData.tokenId;
                 this.initWs(adminToken);
+                console.log("登录成功 adminToken"+adminToken);
 
             }
 
@@ -302,13 +304,13 @@
             anychat.loginChatProxy.url = "ws://localhost:8082/chat_server/ws";
             //anychat.loginChatProxy.url = wsUrl;
             //console.log("ws接口地址："+wsUrl);
-            talkMediator = new anychat.TalkMediator();
+
             //alert(anychat.loginChatProxy.url);
-            talkMediator.initView(adminToken);
+            this.talkMediator.initView(adminToken);
         };
 
         this.getTalkMediator=function(){
-            return anychat.TalkMediator;
+            return this.talkMediator;
         }
     };
     window.anychat.AdminObj = AdminObj;

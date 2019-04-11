@@ -186,6 +186,13 @@ a:hover{
 <script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-websocket.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/stuchat/js/anychat/dist/chatUtils.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
+    window.onload = function () {
+        debugger;
+        //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码:123456的学生管理员信息
+        var adminObj = new anychat.AdminObj;
+        adminObj.initAdminToken();
+        talkMediator=adminObj.getTalkMediator();
+    }
 	$(function(){
 		
 		//获取路径 | | |
@@ -194,13 +201,7 @@ a:hover{
         var projectName=pathName.substring(0 ,pathName.substr(1).indexOf('/')+1);
 		
         var talkMediator=null;
-        window.onload = function () {
-        	debugger;
-            //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码:123456的学生管理员信息
-            var adminObj = new anychat.AdminObj;
-            adminObj.initAdminToken();
-            talkMediator=adminObj.getTalkMediator();
-        }
+
         
     	debugger;
         //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码:123456的学生管理员信息

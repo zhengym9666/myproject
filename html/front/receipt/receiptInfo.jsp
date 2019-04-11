@@ -210,6 +210,12 @@
 <script src="<%=request.getContextPath()%>/stuchat/js/lib/juggle-websocket.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/stuchat/js/anychat/dist/chatUtils.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
+    window.onload = function () {
+            //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
+            var adminObj = new anychat.AdminObj();
+            adminObj.initAdminToken();
+            talkMediator=adminObj.getTalkMediator();
+        }
 	$(function(){
 		 //获取路径 | | |
         var pathName=window.document.location.pathname;
@@ -225,20 +231,28 @@
             talkMediator=adminObj.getTalkMediator();
         }*/
 
+        //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
+        var adminObj = new anychat.AdminObj();
+        adminObj.initAdminToken();
+        talkMediator=adminObj.getTalkMediator();
+
         function sendNotifyMessage(content,toType,toTypeId) {
-        	var adminObj = new anychat.AdminObj();
-            adminObj.initAdminToken();
-            talkMediator=adminObj.getTalkMediator();
             //content:发送的内容
             //toType：发送类型：1用户 2群组
             //toTypeId：接收的用户
             debugger;
+            console.log("sendNotifyMessage 发送消息");
             if(talkMediator!=null && talkMediator!=undefined){
                 loginChatProxy=talkMediator.onLogChatProxy();
                 if(loginChatProxy!=null && loginChatProxy!=undefined){
                     loginChatProxy.sendMessage(content, 1, toTypeId);
-                }
-            }
+                    console.log("sendNotifyMessage 发送过去了");
+                }else{
+                    console.error("loginChatProxy 不存在");
+				}
+            }else{
+                console.error("talkMediator 不存在");
+			}
         }
 		
 		$("#receiptEntry").click(function(){
