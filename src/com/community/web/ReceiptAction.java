@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.community.bean.Club;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,8 +74,12 @@ public class ReceiptAction {
 		int pageSize = 4;
 		
 		//获取社团名称
-		String clubName = clubService.getClubById(clubId).getClubName();
-		
+		Club clubById = clubService.getClubById(clubId);
+		String clubName="";
+		if(clubById!=null){
+			clubName = clubById.getClubName();
+		}
+
 		PageBean PageOperLog = ReceiptOperLogService.queryAllOperInfo(receiptman_id, clubId,currentPage,pageSize);
 		
 		request.setAttribute("PageOperLog", PageOperLog);

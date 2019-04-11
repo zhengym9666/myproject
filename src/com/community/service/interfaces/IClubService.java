@@ -18,4 +18,5 @@ public interface IClubService {
 	public String getGeneralIdByClubId(String clubId);
 
     Club queryUserGroup(String clubId);
+
 }

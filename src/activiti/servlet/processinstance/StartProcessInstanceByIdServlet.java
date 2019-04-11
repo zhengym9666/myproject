@@ -16,23 +16,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.community.bean.*;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.TaskQuery;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.community.bean.Club;
-import com.community.bean.Department;
-import com.community.bean.Receipt;
-import com.community.bean.ReceiptDetail;
-import com.community.bean.ReceiptOperLog;
-import com.community.bean.Student;
-import com.community.bean.Task;
 import com.community.service.interfaces.IClubService;
 import com.community.service.interfaces.IDepartmentService;
 import com.community.service.interfaces.IGroupMemberService;
@@ -52,6 +48,7 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/process")
 public class StartProcessInstanceByIdServlet{
+    private static transient Log log = LogFactory.getLog(StartProcessInstanceByIdServlet.class);
 	@Autowired
 	IGroupMemberService groupMemberService;
 	
@@ -120,14 +117,31 @@ public class StartProcessInstanceByIdServlet{
 		String departmentId = groupMemberService.getDepartmentId(receiptman_id, clubId);
 
 		//获取部门id获取部长（rank为2）学号作为第一审批人
-		String one_autitor = groupMemberService.getAuditor(departmentId, clubId, 2).getStuNum();
-
+        GroupMember auditor = groupMemberService.getAuditor(departmentId, clubId, 2);
+        String one_autitor=null;
+        if(auditor!=null){
+            one_autitor = auditor.getStuNum();
+        }else {
+            log.error("获取部门id获取部长（rank为2）学号作为第一审批人 失败");
+        }
 		//会长学号（rank为3）作为第二审批人
-		String second_autitor = groupMemberService.getAuditor("", clubId, 3).getStuNum();
+        GroupMember auditor2 = groupMemberService.getAuditor("", clubId, 3);
+        String second_autitor=null;
+        if(auditor2!=null){
+            second_autitor = auditor2.getStuNum();
+        }else {
+            log.error("获取部会长学号（rank为3）作为第二审批人 失败");
+        }
 		
 		//财务学号作为第三审批人
-		String third_autitor = groupMemberService.getAuditor("", clubId, 6).getStuNum();
-		
+        GroupMember auditor3 = groupMemberService.getAuditor("", clubId, 6);
+        String third_autitor=null;
+        if(auditor3!=null){
+            third_autitor = auditor3.getStuNum();
+        }else{
+            log.error("获取财务学号作为第三审批人 失败");
+        }
+
 		Date submit_time = new Date();
 		
 		Receipt receiptBean = new Receipt();

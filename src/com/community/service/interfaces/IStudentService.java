@@ -30,4 +30,5 @@ public interface IStudentService {
 	
 	 public void saveStudentInfo(Student studentInfo);
 
+    Student getAdminFriendInfoByID(String adminId);
 }

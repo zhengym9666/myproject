@@ -41,6 +41,9 @@
         SELECT * FROM STUDENT
     </select>
 
+    <select id="getAdminFriendInfo" resultType="student" parameterType="String">
+        SELECT * FROM STUDENT where stuNum=${stuNum}
+    </select>
 	<insert id="saveStudentInfo" parameterType="com.community.bean.Student">
 		insert into STUDENT(stuNum,stuName,gender,collegeId,grade,email,phone,profession,interest,special,head)
 		values(#{stuNum},#{stuName},#{gender},#{collegeId},#{class_},#{email},#{phone},#{profession},#{interest},#{special},#{head})

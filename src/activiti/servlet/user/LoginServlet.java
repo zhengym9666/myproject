@@ -9,6 +9,7 @@ import com.community.model.base.UCErrorPack;
 import com.community.model.base.User;
 import com.community.service.impl.TokenServiceImpl;
 import com.community.service.interfaces.ITokenService;
+import com.community.util.CommonStatic;
 import com.community.util.EntityToJsonUtil;
 import com.community.util.TimeUtils;
 import com.community.web.TokenAction;
@@ -159,6 +160,7 @@ public class LoginServlet{
 		return packet;*/
 	}
 
+	//用于聊天空间的超级管理员登录
     @RequestMapping("/getAdminToken.action")
     public ResponseEntity<Map> getAdminTokenHandle(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	    com.alibaba.fastjson.JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
@@ -182,7 +184,7 @@ public class LoginServlet{
             }
             Token token = tokenService.getTokenByUserId(student.getStuNum());
             if (token == null) {
-                token = tokenService.createToken(userId,null);
+                token = tokenService.createToken(userId,"all");
                 if (token == null) {
                     token = tokenService.getTokenByUserId(userId);
                 }
@@ -191,12 +193,12 @@ public class LoginServlet{
                 // 判断是否过期
                 if (date.getTime() > token.getTokenExpireTime().getTime()) {
                     tokenService.deleteToken(token.getTokenId());
-                    token = tokenService.createToken(userId,null);
+                    token = tokenService.createToken(userId,CommonStatic.ADMIN_CLUB_FLAG);
                     if (token == null) {
                         token = tokenService.getTokenByUserId(userId);
                     }
                 } else {
-                    tokenService.updateToken(token.getTokenId(),token.getCur_club_id());
+                    tokenService.updateToken(token.getTokenId(),CommonStatic.ADMIN_CLUB_FLAG);
                 }
             }
             if (token == null) {

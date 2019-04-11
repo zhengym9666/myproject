@@ -30,12 +30,12 @@ public class ProcessEngineUtils {
 		/** 设置数据库驱动 */
 		pec.setJdbcDriver("com.mysql.jdbc.Driver");
 		/** 设置连接数据库的URL */
-		pec.setJdbcUrl("jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf-8");
+		pec.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/community?useUnicode=true&characterEncoding=utf8");
 		/** 设置连接数据库的用户名 */
 		pec.setJdbcUsername("root");
 		/** 设置连接数据库的密码 */
 		pec.setJdbcPassword("root");
-		
+
 		/** 设置流程图节点上的字体 */
 		pec.setActivityFontName("宋体");
 		/** 设置连接线上面的字体*/

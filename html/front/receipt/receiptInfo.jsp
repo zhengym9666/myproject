@@ -218,12 +218,12 @@
 		
 		
         var talkMediator=null;
-        window.onload = function () {
+        /*window.onload = function () {
             //注意：使用前必须确保student表有 学生ID：123456，学生名：admin，密码：000000的学生管理员信息
             var adminObj = new anychat.AdminObj();
             adminObj.initAdminToken();
             talkMediator=adminObj.getTalkMediator();
-        }
+        }*/
 
         function sendNotifyMessage(content,toType,toTypeId) {
         	var adminObj = new anychat.AdminObj();
@@ -358,6 +358,7 @@
 						"receiptObj":jsonObj
 					},
 					success:function(data){
+					    debugger;
 						console.log(data.piId);
 						document.getElementById("diagram").src=projectName+"/seeProcessdiagram.action?piId="+data.piId;				
 						$.mask_close_all();
@@ -462,7 +463,7 @@
 				success:function(data){
 					alert("撤销成功！");
 					window.location.href = rootPath+"/receipt/queryAllReceipt.action";
-					sendNotifyMessage("您已成功撤销一笔报销单",1,"1515200021");
+					sendNotifyMessage("您已成功撤销一笔报销单",1,"123");
 				},
 				error:function(){
 					alert("撤销失败！");

@@ -292,7 +292,10 @@
         //创建显示对象
         this.createView = function () {
             var view = document.createElement("li");
-            if (!this.user.isOnline) {
+            //如果是admin管理默认在线状态
+            if(this.user.userId=='123456'){
+
+            }else if (!this.user.isOnline) {
                 view.className = "downLine_P";
             }
             var img;
@@ -305,7 +308,9 @@
             this.view = $(view);
             this.view.attr("id", this.user.userId);
             this.shadow = $("<i class='shadow_P'></i>");
-            if (!this.user.isOnline) {
+            if(this.user.userId=='123456'){
+
+            }else if (!this.user.isOnline) {
                 this.view.append(this.shadow);
             }
         };
@@ -587,8 +592,14 @@
             //说明在好友列表里
             if (userObj !== null && userObj !== undefined) {
                 userObj.user = body.chatUser;
-                userObj.onLine();
-                this.onlineNum++;
+
+                //如果是admin管理默认在线状态
+                if(userObj.user.userId=='123456'){
+                    return;
+                }else {
+                    this.onlineNum++;
+                    userObj.onLine();
+                }
                 $("#currentOnline").text(this.onlineNum);
                 //设置靠前
                 var childNodes = $("#talkUserList")[0].childNodes;
@@ -623,10 +634,15 @@
         this.userOffline = function (body) {
             var userObj = this.userMap[body.userId];
             if (userObj !== null && userObj !== undefined) {
-                userObj.user.isOnline = false;
-                userObj.offLine();
-                this.onlineNum--;
-                $("#currentOnline").text(this.onlineNum);
+                //如果是admin管理默认在线状态
+                if(userObj.user.userId=='123456'){
+                    return;
+                }else{
+                    userObj.user.isOnline = false;
+                    userObj.offLine();
+                    this.onlineNum--;
+                    $("#currentOnline").text(this.onlineNum);
+                }
 
                 //设置靠后
                 var childNodes = $("#talkUserList")[0].childNodes;
@@ -676,6 +692,7 @@
                     var userObj = new UserObj();
                     userObj.init(user);
                     this.userMap[user.userId] = userObj;
+
                     if (user.isOnline) {
                         $("#talkUserList").prepend(userObj.view);
                     } else {
@@ -684,7 +701,10 @@
 
                     userObj.addOptListener();
                     userObj.addEventListener(chatObjEventType.OPEN_CHAT_OBJ, this.openChatObjHandle, this);
-                    if (user.isOnline) {
+                    //如果是admin管理默认在线状态，进行加+操作
+                    if(user.userId=='123456'){
+                        this.onlineNum++
+                    }else if (user.isOnline) {
                         this.onlineNum++;
                     }
                 }

@@ -8,6 +8,7 @@ import com.community.bean.Club;
 import com.community.bean.Student;
 import com.community.bean.User;
 import com.community.bean.UserGroupData;
+import com.community.util.CommonStatic;
 import com.community.util.EntityToJsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,9 @@ public class ClubAction {
 			JSONObject ob = EntityToJsonUtil.getRequestPostJson(request);
 			hOpCode=ob.getString("hOpCode");
 			String clubId=ob.getString("userGroupId");
+			/*if(CommonStatic.ADMIN_USER_ID.equals(tokenObj.getUserId())){
+				stuList=studentService.getFriendListByAdmin();
+			}*/
 			club = clubService.queryUserGroup(clubId);
 			userGroupData = studentToUser(club);
 		}catch (Exception e){
@@ -61,6 +65,7 @@ public class ClubAction {
 		}
 		return ResponseEntity.ok(map);
 	}
+
 
 	public UserGroupData studentToUser(Club club){
 		UserGroupData userGroup=new UserGroupData();

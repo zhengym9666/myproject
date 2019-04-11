@@ -77,7 +77,7 @@ public class TokenHttpFilter implements HandlerInterceptor {
             if (token == null) {
                 //UCError errorPack = UCErrorPack.create(UCErrorCode.ERROR_CODE_1, httpPacket.hSession.headParam.hOpCode);
                 //throw new HttpException(HOpCodeUCenter.UC_ERROR, errorPack);
-                log.info("该token已过期或不合法");
+                log.error("该token已过期或不合法");
                 //return false;
                 throw new Exception("该token已过期或不合法");
             }
@@ -87,7 +87,7 @@ public class TokenHttpFilter implements HandlerInterceptor {
                 tokenService.deleteToken(token.getTokenId());
                 //UCError errorPack = UCErrorPack.create(UCErrorCode.ERROR_CODE_1, httpPacket.hSession.headParam.hOpCode);
                 //throw new HttpException(HOpCodeUCenter.UC_ERROR, errorPack);
-                log.info("该token已过期或不合法");
+                log.error("该token已过期或不合法");
                 //return false;
                 throw new Exception("该token已过期或不合法");
             } else {

@@ -1,6 +1,5 @@
 package com.community.dao;
 
-import com.community.bean.User;
 import org.apache.ibatis.annotations.Param;
 
 import com.community.bean.Student;
@@ -27,4 +26,5 @@ public interface StudentDAO {
     
     public void saveStudentInfo(Student studentInfo);
 
+    Student getAdminFriendInfo(@Param("stuNum")String adminId);
 }

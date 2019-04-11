@@ -25,5 +25,5 @@ public interface GroupMemberDAO {
     
     public void saveMemberInfo(GroupMember memberInfo);
     
-    public GroupMember getAuditor(HashMap<String,Object> map);
+    public List<GroupMember> getAuditor(HashMap<String,Object> map);
 }

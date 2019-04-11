@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.community.bean.Club;
 import com.community.util.DatePersThread;
 import com.community.util.FilePropertiesUtil;
 import net.sf.json.JSONObject;
@@ -118,7 +119,11 @@ public class NewsAction {
 		String clubId =  request.getParameter("clubId");
 		String currentPage0 = request.getParameter("currentPage");
 //		获取社团名称作为新闻头
-		String clubName = clubService.getClubById(clubId).getClubName();
+		Club clubById = clubService.getClubById(clubId);
+		String clubName="";
+		if(clubById!=null){
+			clubName = clubService.getClubById(clubId).getClubName();
+		}
 		int currentPage;
 		if(currentPage0==null || currentPage0.equals("")){
 			currentPage = 1;

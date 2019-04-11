@@ -43,7 +43,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/student")
 public class StudentAction {
-    public static final String ADMIN_USER_ID="123456";
+
     @Autowired
     IStudentService studentService;
     @Autowired
@@ -99,6 +99,10 @@ public class StudentAction {
             //返回500
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+        if(clubId!=null && clubId.length()>0){
+            log.error("聊天空间获取的clubId，可能你没有登录，请token的社团id值");
+            new Exception("聊天空间获取的clubId，可能你没有登录，请token的社团id值");
+        }
         User user = studentToUser(request,student,clubId);
         map.put("user",user);
         map.put("hOpCode",hOpCode);
@@ -123,7 +127,7 @@ public class StudentAction {
 
             List<Student> stuList=null;
             //判断是否是管理员,获取所有学生
-            if(ADMIN_USER_ID.equals(tokenObj.getUserId())){
+            if(CommonStatic.ADMIN_USER_ID.equals(tokenObj.getUserId())){
                 stuList=studentService.getFriendListByAdmin();
             }else{
                 List<GroupMember> groupMembers = groupMemberService.queryMemberListByClubId(cludId);
@@ -135,9 +139,17 @@ public class StudentAction {
                 /*if(adminStudent!=null){
                     studentIds.add(adminStudent.getStuNum());
                 }*/
-                if(studentIds!=null){
-                    stuList = studentService.getFriendListByStudentId(studentIds);
+                //默认每个都要绑定一个管理员信息
+                Student adminInfo=studentService.getAdminFriendInfoByID(CommonStatic.ADMIN_USER_ID);
+                if(adminInfo!=null){
+                    stuList=new ArrayList<>();
+                    stuList.add(adminInfo);
                 }
+                if(studentIds!=null){
+                    List<Student> friendList = studentService.getFriendListByStudentId(studentIds);
+                    stuList.addAll(friendList);
+                }
+
             }
             //List<Student> stuList = studentService.getFriendList(cludId);
             if (userList != null) {

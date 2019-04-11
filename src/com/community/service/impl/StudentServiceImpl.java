@@ -1,9 +1,7 @@
 package com.community.service.impl;
 
-import com.community.bean.User;
+import com.community.util.CommonStatic;
 import com.community.util.MybatisUtil;
-import com.community.web.StudentAction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.bean.Student;
@@ -62,14 +60,20 @@ public class StudentServiceImpl extends AbsServiceImpl<StudentDAO> implements IS
 //		List<Student> friendListByStudentId = service.getFriendListByStudentId(students);
 		List<Student> friendListByAdmin = service.getFriendListByAdmin();
 		System.out.println(friendListByAdmin.size());
-		Student adminStudent = service.getStudentInfoById(StudentAction.ADMIN_USER_ID);
+		Student adminStudent = service.getStudentInfoById(CommonStatic.ADMIN_USER_ID);
 		System.out.println(adminStudent);
-		mybatisUtil.commit();
+        Student studentInfoById = service.getAdminFriendInfoByID(CommonStatic.ADMIN_USER_ID);
+        System.out.println(studentInfoById);
+        mybatisUtil.commit();
 	}
 
 	@Override
 	public void saveStudentInfo(Student studentInfo) {
-		// TODO Auto-generated method stub
 		mapper.saveStudentInfo(studentInfo);
 	}
+
+    @Override
+    public Student getAdminFriendInfoByID(String adminId) {
+        return mapper.getAdminFriendInfo(adminId);
+    }
 }
