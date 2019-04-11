@@ -64,8 +64,7 @@ a:hover{
 #unpassReason{
     width: 500px;
     height: 300px;
-    margin-top: 60px;
-    margin-left: 25px;
+    margin:64px auto;
 }
 #audit_suggest::-webkit-textarea-placeholder{color:red;}
 #audit_suggest{

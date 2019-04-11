@@ -159,7 +159,7 @@
             loginChatProxy.init(this.webSocketClient);
         };
         this.onClose = function (event) {
-            alert("与服务器断开链接");
+            console.log("与服务器断开链接");
         };
         //断开聊天服务器
         this.logoutChatServer = function () {
@@ -266,7 +266,7 @@
             //var identityUrl = "http://"+ip+":8082/StartpointServer/s";
             //var oriIdentityUrl = "http://"+ip+":8080/gd_stu_dev/login/getAdminToken.action";
             //var oriIdentityUrl = oriAdminUrl;
-            var oriIdentityUrl = "http://localhost:8080/ori/login/getAdminToken.action";
+            var oriIdentityUrl = "http://localhost:8080/gd_stu_dev/login/getAdminToken.action";
 
             //请求admintoken，为了后面获取组列表
             var data = {
@@ -301,7 +301,7 @@
             var portIndex = curWwwPath.indexOf(port);
             var ip = curWwwPath.substring(7, portIndex - 1);
             //anychat.loginChatProxy.url = "ws://" + ip + ":8080/AnyChatServer/ws";
-            anychat.loginChatProxy.url = "ws://localhost:8082/chat_server/ws";
+            anychat.loginChatProxy.url = "ws://localhost:8080/AnyChatServer/ws";
             //anychat.loginChatProxy.url = wsUrl;
             //console.log("ws接口地址："+wsUrl);
 
