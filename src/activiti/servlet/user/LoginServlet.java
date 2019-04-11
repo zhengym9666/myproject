@@ -184,7 +184,7 @@ public class LoginServlet{
             }
             Token token = tokenService.getTokenByUserId(student.getStuNum());
             if (token == null) {
-                token = tokenService.createToken(userId,"all");
+                token = tokenService.createToken(userId,CommonStatic.ADMIN_CLUB_FLAG);
                 if (token == null) {
                     token = tokenService.getTokenByUserId(userId);
                 }
