@@ -56,7 +56,8 @@ public class ReceiptAction {
 	
 	@Autowired
 	IStudentService studentService;
-	
+
+	//获取所有报销记录
 	@RequestMapping("/queryAllReceipt.action")
 	public String queryAllReceipt(HttpServletRequest request,HttpServletResponse response) throws Exception, IOException{
 		
@@ -88,6 +89,7 @@ public class ReceiptAction {
 		return "forward:/front/receipt/receiptInfo.jsp";
 	}
 
+	//查看报销详情
 	@RequestMapping("/lookOneReceipt.action")
 	public void LookOneReceipt(HttpServletRequest request,HttpServletResponse response) throws Exception, IOException{
 		
@@ -134,7 +136,8 @@ public class ReceiptAction {
 		request.setAttribute("backPageId", backPageId);
 		request.getRequestDispatcher("/front/receipt/lookReceipt.jsp").forward(request, response);
 	}
-	
+
+	//修改报销单
 	@RequestMapping("/reviseOneReceipt.action")
 	public void ReviseOneReceipt(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		
@@ -152,7 +155,8 @@ public class ReceiptAction {
 		request.getRequestDispatcher("/front/receipt/reviseReceipt.jsp").forward(request, response);
 		
 	}
-	
+
+	//提交修改报销单
 	@RequestMapping("/submitReviseReceipt.action")
 	public void submitReviseReceipt(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
@@ -232,7 +236,8 @@ public class ReceiptAction {
 			e.printStackTrace();
 		}
 	}
-	
+
+	//撤销报销单
 	@RequestMapping("/revokeReceipt.action")
 	public void revokeReceipt(HttpServletRequest request,HttpServletResponse response) throws Exception, IOException{
 		
@@ -254,7 +259,8 @@ public class ReceiptAction {
 		
 		request.getRequestDispatcher("/receipt/queryAllReceipt.action").forward(request, response);
 	}
-	
+
+	//拒绝报销单
 	@RequestMapping("/rejectReceipt.action")
 	public void RejectReceipt(HttpServletRequest request,HttpServletResponse response) throws Exception, IOException{
 		

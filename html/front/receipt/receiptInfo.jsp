@@ -465,6 +465,7 @@
 		}) */
 		
 		//撤销报销信息
+        var stuNum = "<%=session.getAttribute("userId")%>";
 		$(".revoke").click(function(){
 			var procInstId = $(this).parent().siblings("input").val();
 			var url = projectName+"/receipt/revokeReceipt.action";
@@ -477,7 +478,7 @@
 				success:function(data){
 					alert("撤销成功！");
 					window.location.href = rootPath+"/receipt/queryAllReceipt.action";
-					sendNotifyMessage("您已成功撤销一笔报销单",1,"123");
+					sendNotifyMessage("您已成功撤销一笔报销单",1,stuNum);
 				},
 				error:function(){
 					alert("撤销失败！");
