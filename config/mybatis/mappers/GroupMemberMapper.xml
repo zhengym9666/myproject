@@ -38,7 +38,7 @@
 	<select id="getAuditor" parameterType="HashMap" resultMap="BaseResultMap">
 		select * from GROUPMEMBER
 		<where>
-			<if test="departmentId != null and departmentId !=''">and departmentId = #{departId}</if>
+			<if test="departmentId != null and departmentId !=''">and departmentId = #{departmentId}</if>
 			and clubId = #{clubId} and rank = #{rank} and state = 1
 		</where>
 		
