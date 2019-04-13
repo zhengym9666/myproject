@@ -169,10 +169,6 @@ ul li:hover{
           </td>
           <td>
           	<ul id="collegeul">
-<!--           		<li>爱神的箭</li>
-          		<li>爱神的箭</li>
-          		<li>爱神的箭</li>
-          		<li>爱神的箭</li> -->
           	</ul>
           </td>
         </tr>
@@ -295,6 +291,9 @@ ul li:hover{
 	};
 	
 	function showVertify(){
+	    //清空原有界面
+        $('#mpanel4').html("");
+        initVerify();
 		$('#mpanel4').show();
 	};
 	
@@ -336,7 +335,7 @@ ul li:hover{
 	        		dataType:'JSON',
 	        		success:function(response){
 	        			if(response.resultFlag){
-	        				
+	        				$('#mpanel4').html("");
 	        				var args = [{ Key:'stuNum' , Value: response.stuNum }, { Key: 'collegeId', Value: response.collegeId}, { Key: 'clubId', Value: response.clubId}];
 	        	            OpenWindowWithPost(response.adminUrl,
 	        	            "", "NewFile", args);
@@ -364,7 +363,10 @@ ul li:hover{
 		        		dataType:'JSON',
 		        		success:function(response){
 		        			if(response.resultFlag){
-		        				window.open(response.adminUrl);
+		        				$('#mpanel4').html("");
+		        				var args = [{ Key:'adminName' , Value: response.adminName }];
+		        	            OpenWindowWithPost(response.adminUrl,
+		        	            "", "NewFile", args);
 		        			}else{
 		        				alert(response.Msg);
 		        				$('#mpanel4').hide();

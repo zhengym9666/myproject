@@ -83,8 +83,10 @@ public class AdminLoginAction {
 			resultMap.put("resultFlag", 0);
 			resultMap.put("Msg", "用户名或密码错误");
 		}else{
+			request.getSession().setAttribute("adminName",adminName);
 			resultMap.put("resultFlag", 1);
-			resultMap.put("adminUrl", "http://localhost:8080/admin-web/index2.jsp");
+			resultMap.put("adminName", adminName);
+			resultMap.put("adminUrl", "http://localhost:8080/admin-web/admin/SuperLoginAction.action");
 		}
 		return resultMap;
 	}
