@@ -74,7 +74,27 @@ public class ReceiptServiceImpl implements IReceiptService {
 		return pageBean;
 	}
 	
-	
+	@Override
+	public PageBean queryReceiptByThirdId(String clubId, String third_autitor, Integer state, int currentPage,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		int start = (currentPage-1)*pageSize;
+		int size = pageSize;
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(currentPage);
+		pageBean.setPageSize(pageSize);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("clubId", clubId);
+		map.put("third_autitor", third_autitor);
+		map.put("state", state);
+		map.put("start", start);
+		map.put("size", size);
+		List<Receipt> receiptList = receiptMapper.queryReceiptByThirdId(map);
+		pageBean.setData(receiptList);
+		pageBean.setTotalCount(queryTotalCountByThirdId(clubId, third_autitor, state));
+		pageBean.setFirstPage(1);
+		return pageBean;
+	} 
 
 	@Override
 	public void auditReceipt(Integer state, String proc_inst_id,Date lastaudit_time) {
@@ -249,6 +269,7 @@ public class ReceiptServiceImpl implements IReceiptService {
 		map.put("third_autitor", third_autitor);
 		map.put("state", state);
 		return receiptMapper.queryCompletedTotalCountByThirdId(map);
-	} 
+	}
+
 
 }

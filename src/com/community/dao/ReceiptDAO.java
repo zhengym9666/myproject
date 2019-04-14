@@ -19,6 +19,8 @@ public interface ReceiptDAO {
 
 	public List<Receipt> queryReceiptBySecondId(HashMap<String, Object> params);
 	
+	public List<Receipt> queryReceiptByThirdId(HashMap<String, Object> params);
+	
 	public int queryTotalCountByOneId(HashMap<String, Object> params);
 	
 	public int queryTotalCountBySecondId(HashMap<String, Object> params);

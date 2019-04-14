@@ -77,6 +77,8 @@ public class QueryUserTaskServlet{
 			pageAudit = receiptService.queryReceiptByOneId(clubId,userId,0,currentPage,pageSize);
 		}else if(rank==3){
 			pageAudit = receiptService.queryReceiptBySecondId(clubId, userId,1,currentPage,pageSize);
+		}else if(rank==6){
+			pageAudit = receiptService.queryReceiptByThirdId(clubId, userId,2,currentPage,pageSize);
 		}
 		
 		//根据审批人id查询所有待审批报销

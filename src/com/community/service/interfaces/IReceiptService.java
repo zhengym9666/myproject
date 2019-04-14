@@ -21,6 +21,8 @@ public interface IReceiptService {
 	
 	public PageBean queryReceiptBySecondId(String clubId,String second_autitor,Integer state,int currentPage,int pageSize);
 	
+	public PageBean queryReceiptByThirdId(String clubId,String third_autitor,Integer state,int currentPage,int pageSize);
+	
 	public int queryTotalCountByOneId(String clubId,String one_autitor,Integer state);
 	
 	public int queryTotalCountBySecondId(String clubId,String second_autitor,Integer state);

@@ -35,6 +35,9 @@
     <select id="queryReceiptBySecondId" parameterType="HashMap" resultMap="BaseResultMap">
     	select * from RECEIPT where clubId = #{clubId} and second_autitor = #{second_autitor} and state = #{state} limit #{start},#{size}
     </select>
+    <select id="queryReceiptByThirdId" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from RECEIPT where clubId = #{clubId} and third_autitor = #{third_autitor} and state = #{state} limit #{start},#{size}
+    </select>
     
     <select id="queryTotalCountByOneId" parameterType="HashMap" resultType="java.lang.Integer">
     	select count(*) from RECEIPT where clubId = #{clubId} and one_autitor = #{one_autitor} and state = #{state}
