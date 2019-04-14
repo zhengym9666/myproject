@@ -85,7 +85,7 @@
          */
         this.send = function (data) {
             if (!this.isConnected) {
-                alert("未链接至websocket服务器");
+                console.log("未链接至websocket服务器");
                 return;
             }
             var blob = new Blob([JSON.stringify(data)]);
