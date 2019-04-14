@@ -137,6 +137,7 @@ public class JoinAction {
 		memberInfo.setIsFee(0);
 		memberInfo.setJob("普通社员");
 		memberInfo.setApplyTime(new Date());
+		memberInfo.setIsFee(0);
 		
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		//生成头像路径
@@ -153,7 +154,8 @@ public class JoinAction {
 		}
 		
 		Student stuInfo = new Student();
-		stuInfo.setCollegeId("1010000");
+		String collegeId = (String) request.getSession().getAttribute("collegeId");
+		stuInfo.setCollegeId(collegeId);
 		stuInfo.setStuNum(num);
 		stuInfo.setStuName(name);
 		stuInfo.setGender(gender);

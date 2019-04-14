@@ -31,7 +31,7 @@ public class feeAction {
 	@ResponseBody
 	public Map<String,Object> queryCode(HttpServletRequest request){
 		
-		request.getSession().setAttribute("clubId", "1010100");
+		//request.getSession().setAttribute("clubId", "1010100");
 		String clubId = (String) request.getSession().getAttribute("clubId");
 		Fee feeInfo = feeService.getFeeInfoById(clubId);
 		Map<String,Object> resultMap = new HashMap<String,Object>();

@@ -190,7 +190,7 @@ public class NewsAction {
 
 		HashMap<String,Object> resultMap = new HashMap<String,Object>();
 		List<Map<String,String>> imglist=new ArrayList<>();
-		if(clubId==null || clubId.length()>0){
+		if(clubId==null || clubId.length()<0){
 			clubId="1010100";
 		}
 
@@ -225,7 +225,7 @@ public class NewsAction {
 
 		HashMap<String,Object> resultMap = new HashMap<String,Object>();
 		List<JSONObject> news=new ArrayList<>();
-		if(clubId==null || clubId.length()>0){
+		if(clubId==null || clubId.length()<0){
 			clubId="1010100";
 		}
 
