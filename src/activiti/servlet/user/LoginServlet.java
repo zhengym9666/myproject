@@ -216,6 +216,12 @@ public class LoginServlet{
             return ResponseEntity.ok(returnJson);
         }
     }
+    
+    @RequestMapping("/exitAction.action")
+    public void exitAction(HttpServletRequest request){
+    	request.getSession().removeAttribute("userId");
+    	request.getSession().removeAttribute("userName");
+    }
 
 	public static void main(String[] args) {
 		UCError errorPack = UCErrorPack.create(UCErrorCode.ERROR_CODE_4,"213");

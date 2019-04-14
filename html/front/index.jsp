@@ -222,7 +222,10 @@
 		</ul>
 		<div id="login">登录</div>
 		<c:if test="${not empty sessionScope.userName }">
-		<div class="blank" style="position:absolute;right:0">欢迎您，${sessionScope.userName }</div>
+		<div class="blank" style="position:absolute;right:0">欢迎您，${sessionScope.userName }</div>	
+		<div id="exit" onclick="Exit();" style="position:absolute;right:20px;top:7px;">
+		<a style="cursor:pointer;color:#3779bf;">[退出]</a>
+		</div>
 		</c:if>
 	<div class="cls"></div>
 	</div>
@@ -243,9 +246,6 @@
 				<c:forEach items="${sessionScope.clublist }" var="club">
 				<li id="${club.clubId }">${club.clubName }</li>
 				</c:forEach>
-<!-- 				<option>团委学生会</option>
-				<option>青年志愿者协会</option>
-				<option>红十字会</option> -->
 			</ul>
 		</div>
 		<div style="margin-left:10px;margin-top:28px;font-size:15px;color:#026fe8;">
@@ -347,27 +347,32 @@ scrolling="no" style="position:fixed;top:115px;">
 		//获取对应选项的标签名称
 		$(".topmenu a").click(function(){
 			var navid = $(this).attr("id");
-			iframe.src="./"+navid+"/"+navid+".jsp";
             /* <c:if test="${empty sessionScope.token}">window.location.href=rootPath+"/front/index.jsp?isLogin=1"</c:if>
 
-			var navid = $(this).attr("id");
-			if(navid=="receipt"){
-				var sessionUser = $("#userName").text();
-				if(sessionUser==""){
+			var navid = $(this).attr("id");*/
+			if(navid=="receipt" || navid=="chat"){
+				var sessionUser = "<%=session.getAttribute("userName")%>";
+				if(sessionUser=="null"){
 					alert("请先登录！");
 					return;
-				}else{
+					/* window.location.href=rootPath+"/front/index.jsp"; */
+				}else if(navid=="receipt"){
 					iframe.src="./"+navid+"/"+navid+".jsp";
+				}else{
+					 iframe.src="./"+navid+"/"+navid+".jsp?token=${sessionScope.token }";
 				}
-			} */
-			if(navid=="chat"){
+			}else{
+				iframe.src="./"+navid+"/"+navid+".jsp";
+			} 
+			/* if(navid=="chat"){
                 iframe.src="./"+navid+"/"+navid+".jsp?token=${sessionScope.token }";
-            }
+            } */
 			
 			var index = $(".topmenu a").index(this);
 			var slide = -769+160*index+"px";
 			$(".sideline").animate({left:slide},200);
 		});
+		
 
 	});
 
@@ -422,6 +427,23 @@ scrolling="no" style="position:fixed;top:115px;">
     		alert('验证码不匹配！');
     	}
     });
+	
+	function Exit(){
+		$.ajax({
+			url:rootPath+"/login/exitAction.action",
+			type:'post',
+			data:{},
+			async:false,
+			cache:false,
+			success:function(){
+				console.log("退出成功")
+			},
+			error:function(){
+				console.log("退出失败");
+			}
+		});
+		window.location.href=rootPath+"/front/index.jsp";
+	}
 	</script>
 </body>
 </html>

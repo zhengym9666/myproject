@@ -49,24 +49,13 @@
 		
 	</div>
 	<div class="newscontent" style="width:77%;">
-		<%--<img alt="" src="${news.image }">
-			&lt;%&ndash; <%=request.getAttribute("content") %> &ndash;%&gt;
-			${news.content }
-		<img alt="" src="${news.image }">
-			&lt;%&ndash; <%=request.getAttribute("content") %> &ndash;%&gt;
-			${news.content }
-		<img alt="" src="${news.image }">
-		<p>
-			&lt;%&ndash; <%=request.getAttribute("content") %> &ndash;%&gt;
-			${news.content }
-		</p>--%>
 		${news.content }
 	</div>
 	
 	<!-- 热门新闻轮播图 模块-->
 	<!--UL标签class属性必需，图片alt属性值即标题文字-->
 	<div class="hotnews">
-		<span class="title">*热门新闻*</span>
+		<span class="title">*最近新闻*</span>
 		<div class="yx-rotaion">
 			<ul class="rotaion_list" >
 				<li><a><img src="../css/news/images/3.jpg" alt="图片信息1"></a></li>
@@ -75,25 +64,11 @@
 				<li><a></a></li>
 				<li><a></a></li>
 				<li><a></a></li>
-				<%--<li><a href="http://www.jq22.com/"><img src="http://localhost:8081/admin/upload/4a01d7bd-c211-4f19-b914-4e299bebd220.png" alt="图片信息1"></a></li>
-
-				<li><a href="http://www.jq22.com/"><img src="http://localhost:8081/admin/upload/4a01d7bd-c211-4f19-b914-4e299bebd220.png" alt="图片信息2"></a></li>--%>
-				<%--<li><a href="http://www.jq22.com/"><img src="../css/news/images/3.jpg" alt="图片信息3"></a></li>
-
-				<li><a href="http://www.jq22.com/"><img src="../css/news/images/4.jpg" alt="图片信息4"></a></li>
-
-				<li><a href="http://www.jq22.com/"><img src="../css/news/images/5.jpg" alt="图片信息5"></a></li>--%>
 		
 			</ul>
 		</div>
 		<div>
 			<ul class="newsList">
-					<%--<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>
-					<li><a href="">蜂蜜真的不会变质吗？看完我震惊了</a></li>--%>
 			</ul>
 		</div>
 	</div>
@@ -112,10 +87,10 @@
 	    <div class="comment-show">
 	    <c:forEach items="${resultMap.dataList }" var="commentBlock">
 	        <div class="comment-show-con clearfix">
-	        	<c:if test="${commentBlock.mainComment.commentHead!=null }">
+	        	<c:if test="${commentBlock.mainComment.commentHead!='null'}">
 	        		<div class="comment-show-con-img pull-left"><img src="/Cache/Img_Cache/${commentBlock.mainComment.commentHead }" alt=""></div>	
 	        	</c:if>
-	            <c:if test="${commentBlock.mainComment.commentHead==null }">
+	            <c:if test="${commentBlock.mainComment.commentHead=='null' }">
 	            	<div class="comment-show-con-img pull-left"><img src="../css/news/images/header-img-comment_03.png" alt=""></div>
 	            </c:if>
 	            <div class="comment-show-con-list pull-left clearfix">
@@ -208,7 +183,7 @@
         var headImg = "<%=session.getAttribute("headImg")%>";
         var plName;
         var imgUrl;
-        if(userName!=null && userName!="" && userName!=undefined){
+        if(userName!="null"){
         	plName = userName;
         	imgUrl = "/Cache/Img_Cache/"+headImg;
         }else{
@@ -329,7 +304,7 @@
                  });
                 var userName = "<%=session.getAttribute("userName")%>";
                 var hfName;
-                if(userName!=null && userName!="" && userName!=undefined){
+                if(userName!="null"){
                 	hfName = userName;
                 }else{
                 	var timestamp=new Date().getTime();
@@ -464,13 +439,14 @@
 </script> -->
 <%--加载最近的六篇文章的标题和链接--%>
 <script type="text/javascript">
+	var clubId = "<%=request.getAttribute("clubId")%>";
     $.ajax({
         url : rootPath+"/news/queryNewsRecently.action",
         type:'post',
         async:true,
         cache:false,
         data : {
-            clubId:${clubId}
+            clubId:clubId
         },
         dataType:'JSON',
         success : function(response) {
