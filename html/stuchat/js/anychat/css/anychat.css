@@ -496,8 +496,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .windowL_P li img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     position: absolute;
     left: 10px;
     top: 4px;
@@ -622,8 +622,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .otherAsk_P > a > img, .myAsk_P > a > img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 }
 
 .otherAsk_P > dl {

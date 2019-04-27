@@ -23,7 +23,7 @@ import java.io.OutputStream;
 
 /**
  * @ClassName:
- * @author linyb3
+ * @author zhengym
  * @date
  */
 @Controller
@@ -55,7 +55,7 @@ public class ImageAction {
                 suffix=imageName.substring(imageName.lastIndexOf(".")+1);
                 //没有上传图片则获取默认图片
             }else{
-                imageName="default.png";
+                imageName="default1.png";
                 String defaultPath = request.getServletContext().getRealPath("/stuchat/js/anychat/images/");
                 suffix = imageName.substring(imageName.lastIndexOf(".")+1);
                 file = new File(defaultPath+imageName);
