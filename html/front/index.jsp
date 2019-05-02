@@ -209,7 +209,7 @@
           </div>
         </div>
 <%-- <div id="college"><%@ include file="./panel/qttop.jsp"%></div> --%>
-	<div id="topTitle">${sessionScope.collegeName }</div>
+	<div id="topTitle"><span style="margin-left:180px;font-size:20px;line-height:75px;">${sessionScope.fullName }</span></div>
 	<div id="menu2" class="topmenu">
 		<div class="blank" style="position:absolute;left:0;"></div>
 		<ul>

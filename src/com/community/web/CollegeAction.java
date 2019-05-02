@@ -50,6 +50,7 @@ public class CollegeAction{
 //		获取学院名和id，放入session
 		College collegeinfo = collegeService.queryCollegeById(collegeId);
 		session.setAttribute("collegeName", collegeinfo.getAbbr());
+		session.setAttribute("fullName", collegeinfo.getFullname());
 		session.setAttribute("collegeId", collegeinfo.getId());
 		System.out.println(clublist);
 		
