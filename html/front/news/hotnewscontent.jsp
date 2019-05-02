@@ -22,8 +22,8 @@
 
 		</p>
 		<div class="info">
-			<span>发布日期：</span><span> ${news.submit_time } 2019年2月18日</span>
-			<span style="margin-left:35px;">点击量：</span><span>100</span>
+			<span>发布日期：</span><span> ${news.submit_time } </span>
+			<span style="margin-left:35px;">点击量：</span><span>${news.readcount }</span>
 		</div>
 		
 		

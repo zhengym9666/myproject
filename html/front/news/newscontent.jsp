@@ -17,6 +17,18 @@
 	.comment-show-con-img img{
 		width:50px;
 	}
+	a.departContro{
+		display:block;
+		position:absolute;
+		top:37px;
+		font-size:12px;
+		font-weight:600;
+		color:#b2dbef59;
+		cursor:pointer;
+	}
+	a.departContro:hover{
+		color:#ff3535a6;
+	}
 </style>
 </head>
 <body>
@@ -27,6 +39,9 @@
 			<%-- <%=request.getAttribute("head") %> --%>
 			${clubName}
 		</span>
+		<input type="hidden" id="clubId" value="${clubId }"/>
+		<%-- <a class="departContro" onclick="getDepartInfo(${clubId});">部门介绍</a> --%>
+		<a class="departContro" target="blank" href="${pageContext.request.contextPath }/depart/getDepartList.action?clubId=${clubId}">部门介绍</a>
 		<div class="curpos">
 			<span>当前位置：</span>
 			<span>${sessionScope.collegeName }</span><span style="font-size:18px;"> · </span>
@@ -508,5 +523,25 @@
     //留到下面图片加载再处理
     $(".yx-rotaion").yx_rotaion({auto:true});
 </script>
+<!-- <script type="text/javascript">
+	function getDepartInfo(clubId){
+		$.ajax({
+			url:rootPath+"/",
+			type:'post',
+			data:{
+				clubId:clubId
+			},
+			 async:false,
+	         cache:false,
+	         dataType:'JSON',
+	         success:function(){
+	        	 
+	         },
+	         error:function(){
+	        	 
+	         }
+		})
+	}
+</script> -->
 
 </html>
